@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四下社會 期末複習｜第3～4單元（康軒版）</title>
+<style>
+  :root{
+    --bg:#f4f7fb; --card:#ffffff; --ink:#1f2a44; --muted:#64748b;
+    --u3:#2f8f6b; --u3-soft:#e3f5ec;
+    --u4:#c2611f; --u4-soft:#fbeede;
+    --line:#e2e8f0; --shadow:0 6px 20px rgba(31,42,68,.08);
+    --ok:#16a34a; --no:#dc2626; --accent:#2563eb;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; -webkit-text-size-adjust:100%;}
+  .wrap{max-width:880px; margin:0 auto; padding:18px 16px 60px;}
+  header.top{text-align:center; padding:20px 10px 6px;}
+  header.top h1{font-size:1.55rem; margin:0 0 4px;}
+  header.top p{margin:0; color:var(--muted); font-size:.95rem;}
+  .hidden{display:none !important;}
+
+  /* progress overview */
+  .overview{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:14px 16px; margin:16px 0; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .overview .bar{flex:1; min-width:160px; height:14px; background:#eef2f7; border-radius:99px; overflow:hidden;}
+  .overview .bar > i{display:block; height:100%; width:0; background:linear-gradient(90deg,#34d399,#2563eb); transition:width .5s;}
+  .overview .pct{font-weight:800; font-size:1.1rem;}
+  .overview small{color:var(--muted)}
+
+  .unit{margin:22px 0 6px;}
+  .unit h2{display:flex; align-items:center; gap:10px; font-size:1.2rem; margin:0 0 10px; padding-left:12px; border-left:6px solid var(--u3);}
+  .unit.u4 h2{border-left-color:var(--u4);}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:16px; margin:12px 0;}
+  .lesson-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .lesson-head .name{font-size:1.08rem; font-weight:800;}
+  .badge{font-size:.92rem; padding:4px 10px; border-radius:99px; background:#eef2f7; color:var(--muted); white-space:nowrap;}
+  .badge.lv1{background:#fdf0e1;color:#a85a17}
+  .badge.lv2{background:#eef1f4;color:#4b5563}
+  .badge.lv3{background:#fff6d6;color:#a07c00}
+  .badge.lv4{background:#e7f9ee;color:#15803d; font-weight:800}
+
+  .btnrow{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;}
+  button{font-family:inherit; cursor:pointer; border:0; border-radius:12px; padding:11px 16px; font-size:1rem; font-weight:700; transition:transform .05s, filter .15s;}
+  button:active{transform:translateY(1px)}
+  .btn-main{background:var(--accent); color:#fff;}
+  .btn-soft{background:#eef2f7; color:var(--ink);}
+  .btn-u3{background:var(--u3); color:#fff;}
+  .btn-u4{background:var(--u4); color:#fff;}
+  .btn-ghost{background:transparent; color:var(--accent); padding:8px 4px;}
+  button:hover{filter:brightness(.97)}
+
+  /* lesson detail */
+  .section-title{font-weight:800; font-size:1.05rem; margin:4px 0 8px; display:flex; align-items:center; gap:8px;}
+  .points{margin:0; padding:0; list-style:none;}
+  .points li{position:relative; padding:8px 10px 8px 30px; border-bottom:1px dashed var(--line);}
+  .points li:last-child{border-bottom:0}
+  .points li::before{content:"📌"; position:absolute; left:6px; top:8px; font-size:.95rem;}
+  .review p{margin:.4rem 0;}
+  .review .kw{background:#fff3cd; padding:0 3px; border-radius:4px; font-weight:700;}
+  details.more{margin-top:10px; background:#f8fafc; border:1px solid var(--line); border-radius:12px; padding:6px 12px;}
+  details.more summary{cursor:pointer; font-weight:700; color:var(--accent);}
+
+  /* quiz */
+  .quizbar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; color:var(--muted); font-size:.95rem;}
+  .qprog{flex:1; height:8px; background:#eef2f7; border-radius:99px; overflow:hidden;}
+  .qprog > i{display:block; height:100%; background:var(--accent); width:0; transition:width .3s;}
+  .qtext{font-size:1.15rem; font-weight:800; margin:10px 0 14px;}
+  .qtype{font-size:.8rem; font-weight:700; padding:2px 8px; border-radius:6px; background:#eef2f7; color:var(--muted); margin-right:8px;}
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:block; width:100%; text-align:left; background:#f8fafc; border:2px solid var(--line); color:var(--ink); font-weight:600; padding:13px 14px; border-radius:12px;}
+  .opt:hover{border-color:#c7d2fe}
+  .opt.correct{border-color:var(--ok); background:#e7f9ee;}
+  .opt.wrong{border-color:var(--no); background:#fde8e8;}
+  .opt[disabled]{cursor:default; opacity:1;}
+  .feedback{margin-top:14px; padding:12px 14px; border-radius:12px; font-weight:600; display:none;}
+  .feedback.show{display:block;}
+  .feedback.good{background:#e7f9ee; color:#14532d;}
+  .feedback.bad{background:#fde8e8; color:#7f1d1d;}
+  .feedback .lab{font-weight:800; display:block; margin-bottom:2px;}
+
+  /* result */
+  .result{text-align:center; padding:10px 6px;}
+  .result .big{font-size:3rem; margin:6px 0;}
+  .result .score{font-size:1.3rem; font-weight:800;}
+  .levelup{font-size:1.15rem; font-weight:800; margin:10px 0; padding:10px; border-radius:12px;}
+  .levelup.up{background:#e7f9ee; color:#15803d;}
+  .levelup.same{background:#eef2f7; color:#475569;}
+  .ladder{display:flex; justify-content:center; gap:6px; margin:14px 0; flex-wrap:wrap;}
+  .rung{font-size:.85rem; padding:6px 10px; border-radius:10px; background:#eef2f7; color:var(--muted);}
+  .rung.on{background:#fff6d6; color:#a07c00; font-weight:800;}
+  .rung.cur{outline:3px solid #fbbf24;}
+
+  footer{ text-align:center; color:var(--muted); font-size:.82rem; margin-top:30px;}
+  .toplink{display:inline-block; margin:10px 0; color:var(--accent); font-weight:700; cursor:pointer;}
+  @media(max-width:520px){
+    header.top h1{font-size:1.25rem}
+    .qtext{font-size:1.05rem}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== HOME ===== -->
+  <section id="home">
+    <header class="top">
+      <h1>🗺️ 四下社會 期末複習</h1>
+      <p>第三單元 家鄉的交通 ｜ 第四單元 家鄉風情畫（康軒版）</p>
+    </header>
+
+    <div class="overview">
+      <div>
+        <div class="pct"><span id="ovPct">0</span>%</div>
+        <small>精熟進度</small>
+      </div>
+      <div class="bar"><i id="ovBar"></i></div>
+      <div><small id="ovText">完成各課測驗，集滿 🏆 精熟吧！</small></div>
+    </div>
+
+    <div id="unitList"></div>
+
+    <div style="text-align:center; margin-top:20px;">
+      <button class="btn-ghost" onclick="resetAll()">🗑️ 重置所有進度</button>
+    </div>
+
+    <footer>
+      內容依康軒版國小社會四下教師手冊整理，供班級複習使用。<br>
+      等級：⚪ 未挑戰 → 🥉 銅牌 → 🥈 銀牌 → 🥇 金牌 → 🏆 精熟（每回合隨機抽 10 題，全對即達精熟）
+    </footer>
+  </section>
+
+  <!-- ===== LESSON DETAIL ===== -->
+  <section id="lesson" class="hidden">
+    <span class="toplink" onclick="goHome()">← 回首頁</span>
+    <div class="card">
+      <div class="lesson-head">
+        <span class="name" id="lsName"></span>
+        <span class="badge" id="lsBadge"></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">🔑 重點提示</div>
+      <ul class="points" id="lsPoints"></ul>
+    </div>
+
+    <div class="card review">
+      <div class="section-title">📖 複習內容</div>
+      <div id="lsReview"></div>
+    </div>
+
+    <div class="card" style="text-align:center;">
+      <div class="section-title" style="justify-content:center;">✏️ 複習測驗</div>
+      <p style="color:var(--muted); margin:.2rem 0 0;">隨機抽題，答對率越高、等級越高，可無限次重做挑戰 <b>🏆 精熟</b>。</p>
+      <div class="btnrow" style="justify-content:center;">
+        <button class="btn-main" id="lsStart">開始測驗</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section id="quiz" class="hidden">
+    <span class="toplink" onclick="quitQuiz()">← 結束測驗</span>
+    <div class="card">
+      <div class="quizbar">
+        <span id="qIdx"></span>
+        <div class="qprog"><i id="qBar"></i></div>
+        <span id="qScore"></span>
+      </div>
+      <div class="qtext" id="qText"></div>
+      <div class="opts" id="qOpts"></div>
+      <div class="feedback" id="qFb"></div>
+      <div class="btnrow" style="justify-content:flex-end;">
+        <button class="btn-main hidden" id="qNext">下一題 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESULT ===== -->
+  <section id="result" class="hidden">
+    <div class="card result">
+      <div class="big" id="rEmoji">🎉</div>
+      <div class="score" id="rScore"></div>
+      <div class="levelup" id="rLevel"></div>
+      <div class="ladder" id="rLadder"></div>
+      <div class="btnrow" style="justify-content:center;">
+        <button class="btn-main" id="rRetry">再挑戰一次</button>
+        <button class="btn-soft" id="rReview">看重點</button>
+        <button class="btn-soft" onclick="goHome()">回首頁</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ============================================================
+   資料：第3、4單元（重點提示 / 複習內容 / 題庫）
+   題型 type: 'choice'（單選，answer=正解索引） / 'tf'（是非，answer=true/false）
+   ============================================================ */
+const DATA = [
+ {
+  id:"u3", title:"第三單元　家鄉的交通", cls:"u3",
+  lessons:[
+   {
+    id:"3-1", name:"3-1　家鄉的運輸",
+    points:[
+      "家鄉的運輸方式分三類：<b>陸上運輸、水上運輸、空中運輸</b>。",
+      "<b>陸上運輸</b>：公路較能因應自然環境、提供各式車輛行駛；鐵路、捷運、高速公路、高鐵則<b>載運量大、速度較快</b>。可用橋梁跨越河流、隧道貫穿山地。",
+      "目前有捷運的都市：<b>臺北、新北、桃園、臺中、高雄</b>。",
+      "<b>水上運輸</b>：家鄉鄰近海洋、湖泊或河流時發展；設施有碼頭、港口；船舶有渡輪（載人與車）、貨輪（運貨）、觀光遊艇。",
+      "<b>空中運輸</b>：主要工具是飛機；需寬廣平地起降、易受天氣影響；載客量多、速度快、可長途跨國；<b>規定與限制較多</b>（液體管制、安全檢查、起降禁用電子產品）以確保飛安。",
+      "運輸發展的影響：正面→便利、促進產業與人口發展；負面→影響行人安全、破壞自然環境。",
+      "<b>永續做法</b>：謹慎評估、適度興建；設生態廊道保護動物（如墾丁陸蟹）；強調行人路權優先。",
+      "偏遠地區交通：政府設置可事先預約的<b>幸福巴士、幸福小黃</b>（DRTS 需求反應式運輸）。"
+    ],
+    review:`<p>家鄉便捷的運輸，讓居民能快速往來各地、運送貨物。依照不同的<span class="kw">自然環境</span>與<span class="kw">人口數量</span>，發展出<b>陸上、水上、空中</b>三種運輸方式。</p>
+    <p><b>陸上運輸</b>中，公路最能因應各種地形、提供各式車輛行駛；而鐵路、捷運、高速公路、高鐵的特性是<span class="kw">載運量大、速度快</span>。遇到河流可蓋橋梁跨越，遇到山地可挖隧道貫穿。</p>
+    <p><b>水上運輸</b>需要碼頭、港口等設施，船舶包括能同時載人與車的<span class="kw">渡輪</span>、專門運貨的<span class="kw">貨輪</span>、休閒觀光的遊艇。<b>空中運輸</b>以飛機為主，速度快、能跨國，但容易受天氣影響，而且為了<span class="kw">飛航安全</span>，有液體管制、安全檢查等較多限制。</p>
+    <p>運輸發展帶來便利、促進產業與人口，但也可能傷害環境與行人安全。因此要追求<span class="kw">人與環境的永續平衡</span>，例如墾丁設立生態廊道保護過馬路的陸蟹；偏遠地區則有可預約的幸福巴士、幸福小黃服務居民。</p>`,
+    questions:[
+      {type:"choice", q:"下列哪一種是「陸上運輸」工具？", options:["渡輪","高鐵","飛機","貨輪"], answer:1, explain:"高鐵屬於陸上運輸；渡輪、貨輪是水上運輸，飛機是空中運輸。"},
+      {type:"tf", q:"公路運輸比鐵路更能因應自然環境，提供各式車輛行駛。", answer:true, explain:"公路較能因應各種地形，提供各式車輛行駛。"},
+      {type:"choice", q:"關於「鐵路、捷運、高鐵」的特性，何者正確？", options:["載運量小","速度很慢","載運量大、速度快","只能載貨"], answer:2, explain:"鐵路、捷運、高鐵的特性是載運量大、速度較快。"},
+      {type:"tf", q:"臺灣目前有捷運的都市包括臺北、新北、桃園、臺中、高雄。", answer:true, explain:"課本列出有捷運的都市為臺北、新北、桃園、臺中、高雄。"},
+      {type:"choice", q:"家鄉鄰近海洋、湖泊或河流時，適合發展哪一種運輸？", options:["陸上運輸","水上運輸","空中運輸","太空運輸"], answer:1, explain:"鄰近海洋、湖泊或河流可發展水上運輸。"},
+      {type:"choice", q:"下列何者是「水上運輸」的設施？", options:["機場","碼頭與港口","高速公路","火車站"], answer:1, explain:"碼頭、港口是水上運輸的設施。"},
+      {type:"choice", q:"可以同時載送人與車輛的船舶是？", options:["貨輪","渡輪","漁船","遊艇"], answer:1, explain:"渡輪能同時載送人與車輛；貨輪專門運貨。"},
+      {type:"tf", q:"飛機需要較寬廣的平地起飛與降落，而且航行時容易受天氣影響。", answer:true, explain:"飛機需寬廣平地起降，且容易受天氣變化影響。"},
+      {type:"choice", q:"為什麼空中運輸的規定和限制比較多？", options:["因為飛機很慢","為了確保飛航安全","因為飛機很便宜","因為都沒有人搭"], answer:1, explain:"為確保飛航安全，有液體管制、安全檢查、起降禁用電子產品等規定。"},
+      {type:"tf", q:"搭飛機時，起飛和降落可以隨意使用電子產品。", answer:false, explain:"起飛、降落時不可使用電子產品，以確保飛安。"},
+      {type:"choice", q:"運輸發展可能帶來的「負面」影響是？", options:["促進產業發展","方便人們往來","破壞自然環境、影響行人安全","運送貨物更方便"], answer:2, explain:"運輸發展也可能破壞自然環境、影響行人用路安全。"},
+      {type:"choice", q:"墾丁為了保護過馬路的陸蟹，採取的措施是？", options:["蓋更多公路","設立告示牌、交通管制、建立生態廊道","禁止居民居住","把陸蟹移到別處"], answer:1, explain:"墾丁國家公園以告示牌、交通管制與生態廊道護蟹過馬路。"},
+      {type:"tf", q:"為了偏遠地區居民的交通需求，政府設置可事先預約的「幸福巴士、幸福小黃」。", answer:true, explain:"幸福巴士、幸福小黃可事前預約，方便偏遠地區居民外出。"},
+      {type:"choice", q:"興建運輸設施時，為了「永續發展」應該怎麼做？", options:["不管環境盡量蓋","謹慎評估、適度興建以降低環境危害","完全不蓋任何設施","只蓋公路就好"], answer:1, explain:"應謹慎評估、適度興建，降低對環境的危害。"},
+      {type:"tf", q:"公路可以透過橋梁跨越河流，也可以興建隧道貫穿山地。", answer:true, explain:"橋梁可跨河、隧道可穿山。"}
+    ]
+   },
+   {
+    id:"3-2", name:"3-2　訊息的傳遞",
+    points:[
+      "人們傳遞訊息是為了<b>溝通、聯繫情感</b>。",
+      "傳遞方式：口耳相傳、書信郵寄、電話聯絡、網路通訊、智慧型手機；早期還有飛鴿傳書、信箭、瓶中信、電報、旗語、烽火、摩斯密碼等。",
+      "智慧型手機、平板電腦方便攜帶又能上網，稱為<b>行動載具</b>。",
+      "各種傳遞方式的共同優點：<b>打破時間與空間的限制</b>。",
+      "<b>網路通訊的功能</b>：即時聯絡、查詢資料、學習知識、休閒娛樂、購物消費。",
+      "<b>網路通訊的影響</b>：帶來便利，但也有網路謠言、訊息難辨真假、網路成癮、使用過長影響身體健康等問題。",
+      "正確使用態度：判斷訊息真假（可查<b>臺灣事實查核中心</b>）、遵守網路禮儀、適時休息（用眼 30 分鐘休息 10 分鐘）、妥善分配時間。",
+      "尊重隱私與<b>肖像權</b>：上傳合照要先經對方同意；不可隨意下載別人的照片來用；不隨意轉傳未經證實的訊息。"
+    ],
+    review:`<p>人們為了<span class="kw">溝通與聯繫情感</span>，發展出各種傳遞訊息的方法：口耳相傳、書信郵寄、電話聯絡、網路通訊、智慧型手機等。早期則有飛鴿傳書、旗語、烽火、摩斯密碼等方式。能方便攜帶又能上網的智慧型手機與平板，稱為<span class="kw">行動載具</span>。</p>
+    <p>各種傳遞方式都能<span class="kw">打破時間與空間的限制</span>。其中網路通訊的功能很多，包括：<b>即時聯絡、查詢資料、學習知識、休閒娛樂、購物消費</b>。</p>
+    <p>不過網路通訊也帶來困擾：網路謠言流傳、訊息真假難辨、容易成癮、使用過長會影響健康。因此面對網路訊息要<span class="kw">先查證、判斷真假</span>（可查臺灣事實查核中心），遵守網路禮儀，<span class="kw">適時休息</span>（用眼 30 分鐘休息 10 分鐘）、妥善分配時間；上傳合照前要先取得對方同意，尊重<span class="kw">肖像權</span>，也不隨意轉傳未經證實的消息。</p>`,
+    questions:[
+      {type:"choice", q:"人們傳遞訊息主要是為了什麼？", options:["浪費時間","溝通、聯繫情感","製造垃圾","比賽輸贏"], answer:1, explain:"傳遞訊息是為了溝通、聯繫情感等需要。"},
+      {type:"choice", q:"下列何者「不是」現代常見的訊息傳遞方式？", options:["電話聯絡","網路通訊","飛鴿傳書","智慧型手機"], answer:2, explain:"飛鴿傳書是早期的傳遞方式，不是現代常見方式。"},
+      {type:"tf", q:"智慧型手機、平板電腦方便攜帶又能上網，稱為「行動載具」。", answer:true, explain:"能方便攜帶又有上網功能的，稱為行動載具。"},
+      {type:"choice", q:"各種傳遞訊息的方式有什麼共同的優點？", options:["只能面對面說","打破時間與空間的限制","速度都很慢","一次只能傳給一個人"], answer:1, explain:"各種傳遞方式都能打破時間與空間的限制。"},
+      {type:"choice", q:"下列何者「不是」網路通訊的功能？", options:["即時聯絡","查詢資料","購物消費","讓人完全不用睡覺"], answer:3, explain:"網路通訊功能有即時聯絡、查詢資料、學習知識、休閒娛樂、購物消費。"},
+      {type:"tf", q:"網路上的訊息都是真的，可以直接相信並轉傳給大家。", answer:false, explain:"網路訊息真假難辨，應先查證判斷，不隨意轉傳。"},
+      {type:"choice", q:"使用網路通訊時間過長，可能造成什麼問題？", options:["身體更健康","網路成癮、視力下降、影響健康","成績一定變好","睡得更好"], answer:1, explain:"長時間使用易造成網路成癮、視力下降、影響身體健康。"},
+      {type:"choice", q:"想把和姐姐的合照上傳到網路，正確的做法是？", options:["直接上傳","先經過姐姐同意才上傳","偷偷上傳","改成別人的名字再傳"], answer:1, explain:"要尊重肖像權，上傳合照前須先取得對方同意。"},
+      {type:"tf", q:"為了保護眼睛，使用螢幕應「用眼 30 分鐘，休息 10 分鐘」。", answer:true, explain:"適時休息可避免影響視力與健康。"},
+      {type:"choice", q:"發現自己或同學成為網路謠言主角時，最適當的做法是？", options:["也上網罵回去","告訴家人師長、在網頁公告澄清、必要時報警","假裝沒看到並一直轉傳","刪掉帳號逃走"], answer:1, explain:"應請師長家人協助澄清、停止散布，必要時可報警。"},
+      {type:"tf", q:"可以隨意下載別人的照片拿來自己使用。", answer:false, explain:"照片有肖像權或著作權，使用前應取得對方同意。"},
+      {type:"choice", q:"下列何者屬於良好的「網路禮儀」？", options:["尊重言論、遵守網站規範","隨意謾罵他人","散布不實謠言","盜用別人帳號"], answer:0, explain:"網路禮儀包含尊重言論、遵守網站規範、謹守法律界線。"},
+      {type:"choice", q:"下列何者是「早期」人們傳遞訊息的方式？", options:["打手機","傳 LINE","飛鴿傳書、旗語、烽火","視訊通話"], answer:2, explain:"飛鴿傳書、旗語、烽火都是早期的傳遞方式。"},
+      {type:"tf", q:"面對沒有根據的訊息，應該先查證，不隨意傳播假訊息。", answer:true, explain:"應保有懷疑精神、學會查證，不隨意散播假訊息。"}
+    ]
+   }
+  ]
+ },
+ {
+  id:"u4", title:"第四單元　家鄉風情畫", cls:"u4",
+  lessons:[
+   {
+    id:"4-1", name:"4-1　家鄉的風貌",
+    points:[
+      "家鄉的風貌分為<b>自然風貌</b>與<b>人文風貌</b>兩大類。",
+      "<b>自然風貌</b>受到<b>地形、氣候</b>影響。例：宜蘭翠峰湖（高山湖泊）、新北野柳奇岩（女王頭、燭狀岩、蕈狀岩）、苗栗油桐花「五月雪」、臺南七股溼地的黑面琵鷺。",
+      "<b>人文風貌</b>是人類在生活中創造出來的（不是大自然本身形成的），包含<b>產業活動、建築設施、節慶活動</b>。",
+      "人文風貌例子：澎湖七美雙心石滬（先民捕魚智慧）、桃園大溪橋（巴洛克造型）、臺東卑南鄉魯凱族小米收穫祭。",
+      "人文風貌的意義：呈現居民生活面貌、代表歷史文化意義、展現獨特美感。",
+      "發現並記錄家鄉之美的方式：<b>畫圖、攝影、文字</b>。"
+    ],
+    review:`<p>我們的家鄉有豐富的風貌，可分成<b>自然風貌</b>與<b>人文風貌</b>。</p>
+    <p><b>自然風貌</b>受到<span class="kw">地形與氣候</span>的影響而各不相同，例如：宜蘭<span class="kw">翠峰湖</span>是美麗的高山湖泊、新北<span class="kw">野柳</span>有女王頭等海邊奇岩、苗栗山區四、五月盛開的<span class="kw">油桐花</span>像下雪（五月雪）、臺南<span class="kw">七股溼地</span>是黑面琵鷺來臺過冬的地方。</p>
+    <p><b>人文風貌</b>是人類在生活過程中<span class="kw">創造</span>出來的，並非大自然本身形成，包含產業活動、建築設施與節慶活動。例如：澎湖七美的<span class="kw">雙心石滬</span>展現先民捕魚智慧、桃園<span class="kw">大溪橋</span>有特色造型、臺東卑南鄉魯凱族的<span class="kw">小米收穫祭</span>。人文風貌能呈現居民生活、代表歷史文化意義與獨特美感。</p>
+    <p>每個人都可以用<span class="kw">畫圖、攝影、文字</span>等方式，發現並記錄家鄉的美，分享給更多人。</p>`,
+    questions:[
+      {type:"choice", q:"家鄉的風貌可以分為哪兩大類？", options:["自然風貌與人文風貌","山與海","城市與鄉村","白天與晚上"], answer:0, explain:"家鄉風貌分為自然風貌與人文風貌。"},
+      {type:"choice", q:"下列何者屬於「自然風貌」？", options:["原住民族祭典","野柳的奇特岩石","大溪橋","雙心石滬"], answer:1, explain:"野柳奇岩是受地形氣候影響的自然風貌；祭典、橋梁、石滬是人文風貌。"},
+      {type:"tf", q:"家鄉的自然風貌主要受到地形和氣候的影響。", answer:true, explain:"地形、氣候造就不同的自然風貌。"},
+      {type:"choice", q:"苗栗山區四、五月盛開、花落像下雪，被稱為「五月雪」的是？", options:["櫻花","油桐花","梅花","菊花"], answer:1, explain:"油桐花在四、五月盛開，花落如雪，被稱為五月雪。"},
+      {type:"choice", q:"每年到臺南七股溼地過冬的瀕臨絕種候鳥是？", options:["黑面琵鷺","麻雀","老鷹","企鵝"], answer:0, explain:"黑面琵鷺每年九至十月到七股溼地過冬。"},
+      {type:"choice", q:"宜蘭縣翠峰湖屬於哪一種自然風貌？", options:["海邊岩石","高山湖泊","沙漠","溼地"], answer:1, explain:"翠峰湖是臺灣最大的高山湖泊。"},
+      {type:"choice", q:"下列何者屬於「人文風貌」？", options:["高山湖泊","黑面琵鷺","澎湖雙心石滬","油桐花"], answer:2, explain:"石滬是人類創造的人文風貌；其餘為自然風貌。"},
+      {type:"tf", q:"人文風貌是大自然本身形成的，和人類活動無關。", answer:false, explain:"人文風貌是人類在生活中創造出來的，並非大自然本身形成。"},
+      {type:"choice", q:"早期漁民利用海邊礁石排成、用來捕魚的設施稱為？", options:["石滬","碼頭","燈塔","漁網"], answer:0, explain:"石滬是先民利用礁石堆成的捕魚陷阱，展現生活智慧。"},
+      {type:"choice", q:"人文風貌包含哪些內容？", options:["只有產業活動","產業活動、建築設施、節慶活動","只有節慶活動","只有建築設施"], answer:1, explain:"人文風貌包含產業活動、建築設施與節慶活動。"},
+      {type:"tf", q:"臺東卑南鄉魯凱族在小米收成後會舉辦「小米收穫祭」。", answer:true, explain:"魯凱族在小米收成後舉辦小米收穫祭，是節慶活動。"},
+      {type:"choice", q:"想要發現並記錄家鄉之美，可以用什麼方式？", options:["畫圖、攝影、文字","破壞環境","亂丟垃圾","攀折花朵"], answer:0, explain:"可透過畫圖、攝影、文字記錄並分享家鄉之美。"},
+      {type:"tf", q:"桃園大溪橋改建後設計成西式巴洛克風格，成為吸引遊客的景點。", answer:true, explain:"大溪橋改建為巴洛克造型，成為著名觀光景點。"}
+    ]
+   },
+   {
+    id:"4-2", name:"4-2　家鄉的特產",
+    points:[
+      "<b>特產</b>是家鄉居民從事產業活動所生產、具有特色的物品；其形成與當地<b>自然環境、氣候、產業、歷史文化</b>息息相關。",
+      "特產三種類型：①配合自然環境生產的<b>農作物／水產品</b>（宜蘭三星蔥、屏東林邊蓮霧、嘉義布袋虱目魚）。",
+      "②將農作物或水產品<b>加工製作成食品</b>（臺南玉井芒果乾、臺東成功柴魚片）。",
+      "③利用自然資源發展出的<b>生活用品／工藝品</b>（新北鶯歌陶瓷、南投埔里手工紙、高雄美濃油紙傘、屏東三地門皮雕）。",
+      "<b>特產成為家鄉特色</b>：有些反映當地傳統文化；外地遊客採購的家鄉特產叫<b>伴手禮</b>；農漁會會用網站行銷在地農漁產品。",
+      "<b>推廣家鄉特產的活動</b>：結合觀光、節慶（南投世界茶業博覽會、苗栗三義木雕節、新竹米粉體驗），能展現家鄉特色、促進地方經濟發展。"
+    ],
+    review:`<p><b>特產</b>是家鄉居民從事產業活動所生產、具有特色的物品。因為每個家鄉的<span class="kw">自然環境、氣候、產業與歷史文化</span>不同，所以發展出不同的特產。</p>
+    <p>特產大致分三類：第一類是<span class="kw">配合自然環境生產的農作物或水產品</span>，如宜蘭三星蔥、屏東林邊蓮霧、嘉義布袋虱目魚；第二類是<span class="kw">加工製成的食品</span>，如玉井芒果乾、成功柴魚片，加工可延長保存、避免浪費、增加收入；第三類是<span class="kw">利用自然資源做成的生活用品或工藝品</span>，如鶯歌陶瓷、埔里手工紙、美濃油紙傘、三地門皮雕。</p>
+    <p>有些特產反映當地<span class="kw">傳統文化</span>。遊客來觀光時採購的家鄉特產稱為<span class="kw">伴手禮</span>，是居民的收入來源之一；農漁會也會透過網站行銷在地產品。近年居民常結合<span class="kw">觀光與節慶</span>推廣特產（如南投世界茶業博覽會、三義木雕節），不但展現家鄉特色，也促進地方經濟發展。</p>`,
+    questions:[
+      {type:"choice", q:"「特產」是指什麼？", options:["進口的商品","家鄉居民產業活動生產、具特色的物品","每個地方都一樣的東西","工廠的廢棄物"], answer:1, explain:"特產是家鄉居民產業活動所生產、具有特色的物品。"},
+      {type:"tf", q:"各地特產不同，和當地的自然環境、氣候、產業、歷史文化息息相關。", answer:true, explain:"特產的形成與當地自然環境與人文背景密切相關。"},
+      {type:"choice", q:"下列何者是「配合自然環境生產的農作物／水產品」特產？", options:["玉井芒果乾","宜蘭三星蔥","鶯歌陶瓷","美濃油紙傘"], answer:1, explain:"三星蔥是配合當地自然環境生產的農作物。"},
+      {type:"choice", q:"將農作物或水產品「加工製作成食品」的特產是？", options:["三星蔥","林邊蓮霧","臺東成功柴魚片","三地門皮雕"], answer:2, explain:"柴魚片是把鰹魚加工製成的食品。"},
+      {type:"choice", q:"新北市鶯歌區運用當地黏土製作的特產是？", options:["茶葉","陶瓷用品","米粉","醬油"], answer:1, explain:"鶯歌運用當地黏土製作茶壺、碗盤等陶瓷用品。"},
+      {type:"tf", q:"把農漁產品加工製成食品，可以延長保存期限、避免浪費，還能增加居民收入。", answer:true, explain:"加工可延長保存、避免腐爛浪費，並增加收入。"},
+      {type:"choice", q:"外地遊客來家鄉觀光時採購的家鄉特產，稱為？", options:["伴手禮","紀念照","門票","稅金"], answer:0, explain:"遊客觀光時採購的家鄉特產稱為伴手禮。"},
+      {type:"choice", q:"美濃油紙傘、三地門皮雕、埔里手工紙等特產，主要反映了什麼？", options:["進口文化","當地傳統文化特色","工業汙染","外國技術"], answer:1, explain:"這些特產反映當地的傳統文化特色。"},
+      {type:"tf", q:"家鄉特產可以透過交通運輸對外販售，成為居民的收入來源之一。", answer:true, explain:"特產可外送販售，是居民的收入來源之一。"},
+      {type:"choice", q:"下列哪一個是「推廣家鄉特產」結合觀光節慶的活動？", options:["南投世界茶業博覽會","淨灘活動","防災演練","班際運動會"], answer:0, explain:"南投世界茶業博覽會結合觀光與節慶推廣特產。"},
+      {type:"choice", q:"推廣家鄉特產的活動有什麼好處？", options:["破壞環境","展現家鄉特色、促進地方經濟發展","讓特產消失","增加垃圾"], answer:1, explain:"能展現家鄉特色，並促進地方經濟發展。"},
+      {type:"tf", q:"農漁會會透過網站行銷在地的農漁特產。", answer:true, explain:"農漁會負責協助在地農漁產品的生產與銷售，並透過網站行銷。"}
+    ]
+   },
+   {
+    id:"4-3", name:"4-3　愛我家鄉",
+    points:[
+      "愛護家鄉有三個面向：<b>友善環境重視生態、保存文化永續發展、為家鄉盡心力</b>。",
+      "<b>友善環境</b>：參與淨灘（撿垃圾、海廢再利用）；採用友善土地的耕作方式（不用農藥、化肥）。",
+      "案例「<b>老鷹紅豆</b>」：農民改用農機把紅豆種子深埋土裡，小鳥就不吃豆苗，老鷹也不再因吃中毒小鳥而死亡。",
+      "<b>保存文化</b>：用行動記錄家鄉。臺南將軍國小學生拍紀錄片、製作繪本（神明帽老店），守護家鄉文化。",
+      "<b>為家鄉盡心力</b>：主動關心公共事務、以實際行動解決問題。新北野柳國小學生寫信給市長、設置竹叢礁復育軟絲。",
+      "愛護家鄉是<b>每一個人的責任</b>，要主動關心、以實際行動參與解決家鄉的問題。"
+    ],
+    review:`<p>每個人都希望擁有美好的家鄉，因此家鄉的環境汙染、文化保存等問題，需要我們主動關心與解決。愛護家鄉可從三方面著手：</p>
+    <p><b>一、友善環境、重視生態：</b>例如主動參與<span class="kw">淨灘</span>，把撿回的海洋廢棄物再利用做成藝術品；採用<span class="kw">友善土地的耕作方式</span>，不使用農藥與化肥。屏東「<span class="kw">老鷹紅豆</span>」的故事中，農民改用農機把種子深埋土裡，小鳥不再吃豆苗，老鷹也不再中毒，生態逐漸恢復。</p>
+    <p><b>二、保存文化、永續發展：</b>有些傳統文化逐漸消失，居民用各種方式為它注入新活力。臺南<span class="kw">將軍國小</span>學生拍攝紀錄片、製作繪本（如神明帽老店），記錄並守護家鄉文化。</p>
+    <p><b>三、為家鄉盡心力：</b>主動關心公共事務、以實際行動解決問題。新北<span class="kw">野柳國小</span>學生寫信給市長、設置竹叢礁成功復育軟絲。愛護家鄉是<span class="kw">每一個人的責任</span>。</p>`,
+    questions:[
+      {type:"choice", q:"下列何者「不是」愛護家鄉的面向？", options:["友善環境、重視生態","保存文化、永續發展","為家鄉盡心力","亂丟垃圾破壞環境"], answer:3, explain:"亂丟垃圾、破壞環境並不是愛護家鄉的行為。"},
+      {type:"choice", q:"屏東「老鷹紅豆」故事中，農民改用什麼方式種紅豆，讓小鳥不再吃豆苗、老鷹不再中毒？", options:["撒更多農藥","改用農機把種子深埋土裡","放火燒田","乾脆不種了"], answer:1, explain:"改用農機把種子深埋，豆苗長出時已粗壯，小鳥就不吃了。"},
+      {type:"tf", q:"友善土地的耕作方式，不使用農藥和化學肥料。", answer:true, explain:"友善土地的耕作不用農藥、化肥，以保護生態。"},
+      {type:"choice", q:"在海邊撿拾垃圾、維護海洋環境的活動稱為？", options:["淨灘","露營","衝浪","釣魚"], answer:0, explain:"淨灘是在海邊撿拾垃圾、維護環境的行動。"},
+      {type:"tf", q:"把撿回的海洋廢棄物再利用，創作成藝術作品，也是愛護家鄉的方式。", answer:true, explain:"海廢再利用創作，能傳達保育理念，也是愛護家鄉。"},
+      {type:"choice", q:"臺南將軍國小的學生用什麼方式保存與記錄家鄉文化？", options:["拍紀錄片、製作繪本","拆掉老店","搬離家鄉","不理會"], answer:0, explain:"將軍國小學生以拍紀錄片、製作繪本記錄家鄉文化。"},
+      {type:"choice", q:"新北野柳國小的學生為了復育海中的軟絲，做了什麼行動？", options:["寫信給市長、設置竹叢礁復育","大量捕撈軟絲","把海水抽乾","什麼都沒做"], answer:0, explain:"野柳國小學生寫信給市長，並以竹叢礁成功復育軟絲。"},
+      {type:"tf", q:"愛護家鄉是每個人的責任，我們應主動關心並以實際行動參與解決家鄉問題。", answer:true, explain:"愛護家鄉是每個人的責任，要主動關心、實際行動。"},
+      {type:"choice", q:"有些家鄉的傳統文化面臨什麼問題，需要我們保存？", options:["數量太多","逐漸消失","太新潮","太昂貴"], answer:1, explain:"有些傳統文化逐漸消失，需要保存與注入新活力。"},
+      {type:"choice", q:"看到家鄉有閒置已久、年久失修的老房子，適當的行動是？", options:["放火燒掉","請里長幫忙反映給相關單位規畫整修","占為己有","完全不管它"], answer:1, explain:"可請里長反映給相關單位，規畫整修，是關心公共事務的表現。"},
+      {type:"tf", q:"為了改善生態環境，有些農民採用友善土地的耕作方式。", answer:true, explain:"為改善生態，農民採用友善土地、不用農藥的耕作方式。"}
+    ]
+   }
+  ]
+ }
+];
+
+/* ============================================================
+   等級制度
+   ============================================================ */
+const LEVELS = ["⚪ 未挑戰","🥉 銅牌","🥈 銀牌","🥇 金牌","🏆 精熟"];
+const LADDER = ["🥉 銅牌","🥈 銀牌","🥇 金牌","🏆 精熟"]; // 1..4
+const ROUND_SIZE = 10;
+const STORE_KEY = "she4_u34_levels_v1";
+
+function loadLevels(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch(e){return {};} }
+function saveLevels(o){ try{localStorage.setItem(STORE_KEY, JSON.stringify(o));}catch(e){} }
+function getLevel(id){ return loadLevels()[id]||0; }
+function setLevel(id, lv){ const o=loadLevels(); o[id]=Math.max(o[id]||0, lv); saveLevels(o); }
+
+function tierForAccuracy(acc){
+  if(acc>=1.0) return 4;       // 精熟
+  if(acc>=0.9) return 3;       // 金
+  if(acc>=0.75) return 2;      // 銀
+  if(acc>=0.6) return 1;       // 銅
+  return 0;
+}
+function badgeClass(lv){ return lv>0 ? ("badge lv"+lv) : "badge"; }
+
+/* ============================================================
+   首頁渲染
+   ============================================================ */
+const allLessons = DATA.flatMap(u=>u.lessons);
+function renderHome(){
+  const list = document.getElementById("unitList");
+  list.innerHTML = "";
+  DATA.forEach(u=>{
+    const wrap = document.createElement("div");
+    wrap.className = "unit"+(u.cls==="u4"?" u4":"");
+    wrap.innerHTML = `<h2>${u.title}</h2>`;
+    u.lessons.forEach(ls=>{
+      const lv = getLevel(ls.id);
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="lesson-head">
+          <span class="name">${ls.name}</span>
+          <span class="${badgeClass(lv)}">${LEVELS[lv]}</span>
+        </div>
+        <div class="btnrow">
+          <button class="${u.cls==='u4'?'btn-u4':'btn-u3'}" data-go="lesson" data-id="${ls.id}">看重點 / 複習</button>
+          <button class="btn-main" data-go="quiz" data-id="${ls.id}">開始測驗</button>
+        </div>`;
+      wrap.appendChild(card);
+    });
+    list.appendChild(wrap);
+  });
+  // overall mastery progress = 已達精熟課數 / 總課數
+  const mastered = allLessons.filter(l=>getLevel(l.id)>=4).length;
+  const pct = Math.round(mastered/allLessons.length*100);
+  document.getElementById("ovPct").textContent = pct;
+  document.getElementById("ovBar").style.width = pct+"%";
+  document.getElementById("ovText").textContent =
+    mastered===allLessons.length ? "🎊 太厲害了！全部達到精熟！" : `已精熟 ${mastered} / ${allLessons.length} 課，繼續加油！`;
+
+  list.querySelectorAll("button[data-go]").forEach(b=>{
+    b.addEventListener("click", ()=>{
+      const id=b.getAttribute("data-id");
+      if(b.getAttribute("data-go")==="lesson") openLesson(id);
+      else startQuiz(id);
+    });
+  });
+}
+
+/* ============================================================
+   課程詳情
+   ============================================================ */
+function findLesson(id){ return allLessons.find(l=>l.id===id); }
+let curLessonId=null;
+
+function show(sec){
+  ["home","lesson","quiz","result"].forEach(s=>{
+    document.getElementById(s).classList.toggle("hidden", s!==sec);
+  });
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function goHome(){ renderHome(); show("home"); }
+
+function openLesson(id){
+  curLessonId=id;
+  const ls=findLesson(id);
+  const lv=getLevel(id);
+  document.getElementById("lsName").textContent=ls.name;
+  const badge=document.getElementById("lsBadge");
+  badge.className=badgeClass(lv); badge.textContent=LEVELS[lv];
+  document.getElementById("lsPoints").innerHTML = ls.points.map(p=>`<li>${p}</li>`).join("");
+  document.getElementById("lsReview").innerHTML = ls.review;
+  document.getElementById("lsStart").onclick=()=>startQuiz(id);
+  show("lesson");
+}
+
+/* ============================================================
+   測驗引擎
+   ============================================================ */
+let q={lessonId:null, items:[], idx:0, correct:0, answered:false};
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+
+function startQuiz(id){
+  const ls=findLesson(id);
+  const pool=shuffle(ls.questions);
+  q={lessonId:id, items:pool.slice(0, Math.min(ROUND_SIZE, pool.length)), idx:0, correct:0, answered:false};
+  show("quiz");
+  renderQuestion();
+}
+
+function renderQuestion(){
+  q.answered=false;
+  const it=q.items[q.idx];
+  document.getElementById("qIdx").textContent=`第 ${q.idx+1} / ${q.items.length} 題`;
+  document.getElementById("qScore").textContent=`✔ ${q.correct}`;
+  document.getElementById("qBar").style.width=Math.round(q.idx/q.items.length*100)+"%";
+  const typeLabel = it.type==="tf" ? "是非題" : "選擇題";
+  document.getElementById("qText").innerHTML=`<span class="qtype">${typeLabel}</span>${it.q}`;
+  const opts=document.getElementById("qOpts");
+  opts.innerHTML="";
+  const choices = it.type==="tf" ? ["⭕ 對","❌ 錯"] : it.options;
+  choices.forEach((c,i)=>{
+    const b=document.createElement("button");
+    b.className="opt"; b.innerHTML=c;
+    b.addEventListener("click", ()=>answer(i,b));
+    opts.appendChild(b);
+  });
+  const fb=document.getElementById("qFb"); fb.className="feedback"; fb.innerHTML="";
+  document.getElementById("qNext").classList.add("hidden");
+}
+
+function answer(i, btn){
+  if(q.answered) return;
+  q.answered=true;
+  const it=q.items[q.idx];
+  const correctIdx = it.type==="tf" ? (it.answer?0:1) : it.answer;
+  const isRight = (i===correctIdx);
+  if(isRight) q.correct++;
+  const opts=document.getElementById("qOpts").children;
+  for(let k=0;k<opts.length;k++){ opts[k].setAttribute("disabled","true"); }
+  opts[correctIdx].classList.add("correct");
+  if(!isRight) btn.classList.add("wrong");
+  const fb=document.getElementById("qFb");
+  fb.className="feedback show "+(isRight?"good":"bad");
+  fb.innerHTML=`<span class="lab">${isRight?"✅ 答對了！":"❌ 答錯了"}</span>${it.explain}`;
+  document.getElementById("qScore").textContent=`✔ ${q.correct}`;
+  const next=document.getElementById("qNext");
+  next.classList.remove("hidden");
+  next.textContent = (q.idx===q.items.length-1) ? "看結果 🎯" : "下一題 →";
+}
+
+document.getElementById("qNext").addEventListener("click", ()=>{
+  if(q.idx<q.items.length-1){ q.idx++; renderQuestion(); }
+  else finishQuiz();
+});
+
+function quitQuiz(){ goHome(); }
+
+function finishQuiz(){
+  const total=q.items.length, acc=q.correct/total;
+  const before=getLevel(q.lessonId);
+  const earned=tierForAccuracy(acc);
+  const after=Math.max(before, earned);
+  setLevel(q.lessonId, after);
+
+  document.getElementById("qBar").style.width="100%";
+  const pct=Math.round(acc*100);
+  document.getElementById("rScore").textContent=`答對 ${q.correct} / ${total} 題（${pct}%）`;
+  const emoji = acc>=1?"🏆": acc>=0.9?"🥇": acc>=0.75?"🥈": acc>=0.6?"🥉":"💪";
+  document.getElementById("rEmoji").textContent=emoji;
+
+  const lvBox=document.getElementById("rLevel");
+  if(after>before){
+    lvBox.className="levelup up";
+    lvBox.innerHTML = `🎉 升級！本課等級達到 <b>${LEVELS[after]}</b>`;
+  }else if(earned>=4){
+    lvBox.className="levelup up";
+    lvBox.innerHTML = `🏆 太棒了！維持 <b>精熟</b> 等級！`;
+  }else{
+    lvBox.className="levelup same";
+    const need = after<4 ? `再加油，挑戰 <b>${LADDER[after]}</b>${after<3?"以上":""}！` : "";
+    lvBox.innerHTML = `目前等級 <b>${LEVELS[after]}</b>。${need}`;
+  }
+
+  // ladder display
+  const ladder=document.getElementById("rLadder");
+  ladder.innerHTML="";
+  LADDER.forEach((name,k)=>{
+    const lv=k+1;
+    const r=document.createElement("span");
+    r.className="rung"+(after>=lv?" on":"")+(after===lv?" cur":"");
+    r.textContent=name;
+    ladder.appendChild(r);
+  });
+
+  document.getElementById("rRetry").onclick=()=>startQuiz(q.lessonId);
+  document.getElementById("rReview").onclick=()=>openLesson(q.lessonId);
+  show("result");
+}
+
+/* ============================================================
+   重置
+   ============================================================ */
+function resetAll(){
+  if(confirm("確定要清除所有課程的等級與進度嗎？")){
+    localStorage.removeItem(STORE_KEY);
+    goHome();
+  }
+}
+
+/* init */
+goHome();
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四下期末複習｜社會・自然・國語</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+    min-height:100vh; color:#22324a; line-height:1.7;
+    background:linear-gradient(160deg,#eaf3fb 0%,#f5eef6 100%);
+    display:flex; flex-direction:column; align-items:center; padding:32px 16px 60px;}
+  .head{text-align:center; margin-bottom:6px;}
+  .head h1{font-size:2rem; letter-spacing:1px;}
+  .head .sub{color:#5b7186; margin-top:6px; font-size:1rem;}
+  .badge-line{margin-top:14px; font-size:.9rem; color:#64748b; background:#fff; display:inline-block; padding:6px 14px; border-radius:99px; box-shadow:0 4px 14px rgba(31,42,68,.08);}
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:880px; width:100%; margin-top:30px;}
+  @media(max-width:760px){ .cards{grid-template-columns:1fr;} .head h1{font-size:1.6rem;} }
+  a.card{text-decoration:none; color:inherit; background:#fff; border-radius:22px; padding:26px 22px 24px;
+    box-shadow:0 10px 28px rgba(31,42,68,.10); border-top:8px solid var(--c);
+    display:flex; flex-direction:column; align-items:center; text-align:center; transition:transform .12s, box-shadow .12s;}
+  a.card:hover{transform:translateY(-5px); box-shadow:0 16px 36px rgba(31,42,68,.16);}
+  .emoji{font-size:3.2rem; line-height:1;}
+  .subject{font-size:1.5rem; font-weight:800; margin:12px 0 4px; color:var(--c);}
+  .scope{color:#64748b; font-size:.95rem;}
+  .topics{margin-top:12px; font-size:.86rem; color:#7a8aa0; min-height:38px;}
+  .go{margin-top:16px; background:var(--c); color:#fff; font-weight:800; padding:10px 22px; border-radius:99px; font-size:1rem;}
+  .tip{margin-top:34px; max-width:680px; text-align:center; color:#7a8aa0; font-size:.9rem; line-height:1.8;}
+  .tip b{color:#475569;}
+  footer{margin-top:26px; color:#9aa7b8; font-size:.8rem; text-align:center;}
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>🎒 四下期末複習</h1>
+    <div class="sub">點一個科目開始複習，闖關集滿 🏆 精熟吧！</div>
+    <div class="badge-line">⚪ 未挑戰 → 🥉 銅牌 → 🥈 銀牌 → 🥇 金牌 → 🏆 精熟</div>
+  </div>
+
+  <div class="cards">
+    <a class="card" href="social.html" style="--c:#2f8f6b">
+      <div class="emoji">🗺️</div>
+      <div class="subject">社會</div>
+      <div class="scope">第 3～4 單元（康軒）</div>
+      <div class="topics">家鄉的交通・家鄉風情畫</div>
+      <div class="go">開始複習 →</div>
+    </a>
+    <a class="card" href="science.html" style="--c:#1d74c4">
+      <div class="emoji">🔬</div>
+      <div class="subject">自然</div>
+      <div class="scope">第 3～4 單元（南一）</div>
+      <div class="topics">水的移動・了解臺灣的環境</div>
+      <div class="go">開始複習 →</div>
+    </a>
+    <a class="card" href="chinese.html" style="--c:#c0392b">
+      <div class="emoji">📖</div>
+      <div class="subject">國語</div>
+      <div class="scope">第 7～12 課（南一）</div>
+      <div class="topics">愛在哪裡・想像起飛</div>
+      <div class="go">開始複習 →</div>
+    </a>
+  </div>
+
+  <div class="tip">
+    💡 <b>怎麼玩：</b>每一課都有「重點提示」「複習內容」和「複習測驗」。<br>
+    測驗每次隨機抽 10 題，<b>全部答對</b>就能達到 🏆 <b>精熟</b>！答錯會馬上看到正解和說明，<br>
+    進度會自動記住，可以無限次重做，慢慢把每一課都變成金牌、精熟。加油！
+  </div>
+
+  <footer>依教科書內容整理，供複習練習使用。</footer>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四下自然 期末複習｜第3～4單元（南一版）</title>
+<style>
+  :root{
+    --bg:#f1f7fb; --card:#ffffff; --ink:#16263a; --muted:#5b7186;
+    --u3:#1d74c4; --u3-soft:#e1f0fb;
+    --u4:#8a6230; --u4-soft:#f6eddd;
+    --line:#dde7ef; --shadow:0 6px 20px rgba(16,38,58,.08);
+    --ok:#16a34a; --no:#dc2626; --accent:#1d74c4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; -webkit-text-size-adjust:100%;}
+  .wrap{max-width:880px; margin:0 auto; padding:18px 16px 60px;}
+  header.top{text-align:center; padding:20px 10px 6px;}
+  header.top h1{font-size:1.55rem; margin:0 0 4px;}
+  header.top p{margin:0; color:var(--muted); font-size:.95rem;}
+  .hidden{display:none !important;}
+  .overview{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:14px 16px; margin:16px 0; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .overview .bar{flex:1; min-width:160px; height:14px; background:#e8eff5; border-radius:99px; overflow:hidden;}
+  .overview .bar > i{display:block; height:100%; width:0; background:linear-gradient(90deg,#38bdf8,#1d74c4); transition:width .5s;}
+  .overview .pct{font-weight:800; font-size:1.1rem;}
+  .overview small{color:var(--muted)}
+  .unit{margin:22px 0 6px;}
+  .unit h2{display:flex; align-items:center; gap:10px; font-size:1.2rem; margin:0 0 10px; padding-left:12px; border-left:6px solid var(--u3);}
+  .unit.u4 h2{border-left-color:var(--u4);}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:16px; margin:12px 0;}
+  .lesson-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .lesson-head .name{font-size:1.08rem; font-weight:800;}
+  .badge{font-size:.92rem; padding:4px 10px; border-radius:99px; background:#eef2f7; color:var(--muted); white-space:nowrap;}
+  .badge.lv1{background:#fdf0e1;color:#a85a17}
+  .badge.lv2{background:#eef1f4;color:#4b5563}
+  .badge.lv3{background:#fff6d6;color:#a07c00}
+  .badge.lv4{background:#e7f9ee;color:#15803d; font-weight:800}
+  .btnrow{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;}
+  button{font-family:inherit; cursor:pointer; border:0; border-radius:12px; padding:11px 16px; font-size:1rem; font-weight:700; transition:transform .05s, filter .15s;}
+  button:active{transform:translateY(1px)}
+  .btn-main{background:var(--accent); color:#fff;}
+  .btn-soft{background:#eef2f7; color:var(--ink);}
+  .btn-u3{background:var(--u3); color:#fff;}
+  .btn-u4{background:var(--u4); color:#fff;}
+  .btn-ghost{background:transparent; color:var(--accent); padding:8px 4px;}
+  button:hover{filter:brightness(.97)}
+  .section-title{font-weight:800; font-size:1.05rem; margin:4px 0 8px; display:flex; align-items:center; gap:8px;}
+  .points{margin:0; padding:0; list-style:none;}
+  .points li{position:relative; padding:8px 10px 8px 30px; border-bottom:1px dashed var(--line);}
+  .points li:last-child{border-bottom:0}
+  .points li::before{content:"🔬"; position:absolute; left:6px; top:8px; font-size:.95rem;}
+  .review p{margin:.4rem 0;}
+  .review .kw{background:#d9eefb; padding:0 3px; border-radius:4px; font-weight:700;}
+  .quizbar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; color:var(--muted); font-size:.95rem;}
+  .qprog{flex:1; height:8px; background:#eef2f7; border-radius:99px; overflow:hidden;}
+  .qprog > i{display:block; height:100%; background:var(--accent); width:0; transition:width .3s;}
+  .qtext{font-size:1.15rem; font-weight:800; margin:10px 0 14px;}
+  .qtype{font-size:.8rem; font-weight:700; padding:2px 8px; border-radius:6px; background:#eef2f7; color:var(--muted); margin-right:8px;}
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:block; width:100%; text-align:left; background:#f7fafc; border:2px solid var(--line); color:var(--ink); font-weight:600; padding:13px 14px; border-radius:12px;}
+  .opt:hover{border-color:#bcdcf5}
+  .opt.correct{border-color:var(--ok); background:#e7f9ee;}
+  .opt.wrong{border-color:var(--no); background:#fde8e8;}
+  .opt[disabled]{cursor:default; opacity:1;}
+  .feedback{margin-top:14px; padding:12px 14px; border-radius:12px; font-weight:600; display:none;}
+  .feedback.show{display:block;}
+  .feedback.good{background:#e7f9ee; color:#14532d;}
+  .feedback.bad{background:#fde8e8; color:#7f1d1d;}
+  .feedback .lab{font-weight:800; display:block; margin-bottom:2px;}
+  .result{text-align:center; padding:10px 6px;}
+  .result .big{font-size:3rem; margin:6px 0;}
+  .result .score{font-size:1.3rem; font-weight:800;}
+  .levelup{font-size:1.15rem; font-weight:800; margin:10px 0; padding:10px; border-radius:12px;}
+  .levelup.up{background:#e7f9ee; color:#15803d;}
+  .levelup.same{background:#eef2f7; color:#475569;}
+  .ladder{display:flex; justify-content:center; gap:6px; margin:14px 0; flex-wrap:wrap;}
+  .rung{font-size:.85rem; padding:6px 10px; border-radius:10px; background:#eef2f7; color:var(--muted);}
+  .rung.on{background:#fff6d6; color:#a07c00; font-weight:800;}
+  .rung.cur{outline:3px solid #fbbf24;}
+  footer{ text-align:center; color:var(--muted); font-size:.82rem; margin-top:30px;}
+  .toplink{display:inline-block; margin:10px 0; color:var(--accent); font-weight:700; cursor:pointer;}
+  @media(max-width:520px){ header.top h1{font-size:1.25rem} .qtext{font-size:1.05rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section id="home">
+    <header class="top">
+      <h1>🔬 四下自然 期末複習</h1>
+      <p>第三單元 水的移動 ｜ 第四單元 了解臺灣的環境（南一版）</p>
+    </header>
+    <div class="overview">
+      <div><div class="pct"><span id="ovPct">0</span>%</div><small>精熟進度</small></div>
+      <div class="bar"><i id="ovBar"></i></div>
+      <div><small id="ovText"></small></div>
+    </div>
+    <div id="unitList"></div>
+    <div style="text-align:center; margin-top:20px;">
+      <button class="btn-ghost" onclick="resetAll()">🗑️ 重置所有進度</button>
+    </div>
+    <footer>
+      內容依南一版國小自然科學四下教師手冊整理，供班級複習使用。<br>
+      等級：⚪ 未挑戰 → 🥉 銅牌 → 🥈 銀牌 → 🥇 金牌 → 🏆 精熟（每回合隨機抽 10 題，全對即達精熟）
+    </footer>
+  </section>
+
+  <section id="lesson" class="hidden">
+    <span class="toplink" onclick="goHome()">← 回首頁</span>
+    <div class="card"><div class="lesson-head"><span class="name" id="lsName"></span><span class="badge" id="lsBadge"></span></div></div>
+    <div class="card"><div class="section-title">🔑 重點提示</div><ul class="points" id="lsPoints"></ul></div>
+    <div class="card review"><div class="section-title">📖 複習內容</div><div id="lsReview"></div></div>
+    <div class="card" style="text-align:center;">
+      <div class="section-title" style="justify-content:center;">✏️ 複習測驗</div>
+      <p style="color:var(--muted); margin:.2rem 0 0;">隨機抽題，答對率越高、等級越高，可無限次重做挑戰 <b>🏆 精熟</b>。</p>
+      <div class="btnrow" style="justify-content:center;"><button class="btn-main" id="lsStart">開始測驗</button></div>
+    </div>
+  </section>
+
+  <section id="quiz" class="hidden">
+    <span class="toplink" onclick="quitQuiz()">← 結束測驗</span>
+    <div class="card">
+      <div class="quizbar"><span id="qIdx"></span><div class="qprog"><i id="qBar"></i></div><span id="qScore"></span></div>
+      <div class="qtext" id="qText"></div>
+      <div class="opts" id="qOpts"></div>
+      <div class="feedback" id="qFb"></div>
+      <div class="btnrow" style="justify-content:flex-end;"><button class="btn-main hidden" id="qNext">下一題 →</button></div>
+    </div>
+  </section>
+
+  <section id="result" class="hidden">
+    <div class="card result">
+      <div class="big" id="rEmoji">🎉</div>
+      <div class="score" id="rScore"></div>
+      <div class="levelup" id="rLevel"></div>
+      <div class="ladder" id="rLadder"></div>
+      <div class="btnrow" style="justify-content:center;">
+        <button class="btn-main" id="rRetry">再挑戰一次</button>
+        <button class="btn-soft" id="rReview">看重點</button>
+        <button class="btn-soft" onclick="goHome()">回首頁</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const DATA = [
+ {
+  id:"u3", title:"第三單元　水的移動", cls:"u3",
+  lessons:[
+   {
+    id:"3A", name:"3-1　毛細現象",
+    points:[
+      "水通常會由<b>高處往低處流</b>。",
+      "<b>毛細現象</b>：水會沿著物體的<b>縫隙</b>往四面八方移動（不只往下）。",
+      "<b>縫隙愈小</b>，水沿著物體移動的距離<b>愈長</b>（愈明顯）。",
+      "<b>有縫隙、會吸水</b>的物體：餐巾紙、衛生紙、報紙、毛巾、海綿。",
+      "<b>沒有縫隙、幾乎不吸水</b>的物體：塑膠袋、塑膠尺、玻璃片、鋁箔紙。",
+      "生活應用：蠟燭燭芯吸蠟油、毛筆吸墨、海綿吸水、毛巾吸汗、精油擴香棒、油漆刷；<b>植物的根莖葉</b>也靠毛細現象運送水分。",
+      "觀察縫隙可用<b>放大鏡</b>；實驗用<b>染色的水</b>是為了方便觀察水移動的情形。"
+    ],
+    review:`<p>水通常會<span class="kw">由高處往低處流</span>，但水也會沿著物體的<span class="kw">縫隙</span>往四面八方移動，這種現象稱為<b>毛細現象</b>。</p>
+    <p>實驗發現：物體的<span class="kw">縫隙愈小，水移動的距離愈長</span>。有縫隙的物體（餐巾紙、衛生紙、毛巾、海綿）會吸水；沒有縫隙的物體（塑膠袋、塑膠尺、玻璃片、鋁箔紙）幾乎不吸水。</p>
+    <p>生活中毛細現象的應用很多，例如：蠟燭的燭芯吸蠟油幫助燃燒、毛筆吸墨、毛巾吸汗、精油擴香棒、油漆刷等；連<span class="kw">植物</span>也是靠毛細現象，把根部的水分往上運送到葉子。</p>`,
+    questions:[
+      {type:"choice", q:"水通常會往哪個方向流動？", options:["由低處往高處","由高處往低處","只往左邊","完全不會流動"], answer:1, explain:"水通常由高處往低處流。"},
+      {type:"choice", q:"水沿著物體的縫隙往四面八方移動的現象，稱為？", options:["蒸發","毛細現象","虹吸現象","凝結"], answer:1, explain:"水沿著縫隙往四面八方移動，稱為毛細現象。"},
+      {type:"tf", q:"物體的縫隙愈小，水沿著它移動的距離愈長。", answer:true, explain:"縫隙愈小，毛細現象愈明顯，水移動距離愈長。"},
+      {type:"choice", q:"下列哪一種物體因為有縫隙而會吸水？", options:["塑膠袋","玻璃片","餐巾紙","鋁箔紙"], answer:2, explain:"餐巾紙有縫隙會吸水；塑膠袋、玻璃片、鋁箔紙沒有縫隙。"},
+      {type:"choice", q:"下列哪一種物體幾乎不吸水（沒有縫隙）？", options:["毛巾","衛生紙","海綿","塑膠尺"], answer:3, explain:"塑膠尺沒有縫隙，幾乎不吸水。"},
+      {type:"tf", q:"蠟燭的燭芯吸蠟油、毛筆吸墨汁，都是毛細現象的應用。", answer:true, explain:"這些都是水（或液體）沿縫隙移動的毛細現象。"},
+      {type:"choice", q:"植物能把根部的水分往上運送到葉子，主要是利用？", options:["虹吸現象","毛細現象","連通管原理","地震"], answer:1, explain:"植物體內有細微的導管，靠毛細現象運送水分。"},
+      {type:"choice", q:"想觀察物體的縫隙，最適合使用什麼工具？", options:["放大鏡","溫度計","磁鐵","碼錶"], answer:0, explain:"用放大鏡可以觀察物體的縫隙。"},
+      {type:"tf", q:"把餐巾紙和塑膠袋裁成一樣大小放入染色水中，兩者吸水情形相同。", answer:false, explain:"餐巾紙有縫隙會吸水，塑膠袋沒有縫隙幾乎不吸水，情形不同。"},
+      {type:"choice", q:"下列何者「不是」毛細現象的例子？", options:["毛巾吸汗","精油擴香棒吸油","海綿吸水","電風扇吹出風"], answer:3, explain:"電風扇吹風與毛細現象無關。"},
+      {type:"choice", q:"做毛細現象實驗時，為什麼要用「染色的水」？", options:["比較好喝","比較容易觀察水移動的情形","讓水變重","沒有原因"], answer:1, explain:"染色後比較容易觀察到水移動的情形。"},
+      {type:"tf", q:"水只會往低處流，絕對不可能沿著物體往上移動。", answer:false, explain:"因為毛細現象，水可以沿著縫隙往上或往四面八方移動。"}
+    ]
+   },
+   {
+    id:"3B", name:"3-2　水平與連通管原理",
+    points:[
+      "<b>水平</b>：容器內的水，不管平放或傾斜，靜止時水面都會維持在<b>相同高度的水平面</b>。",
+      "<b>連通管原理</b>：數個形狀不同、<b>底部相通</b>的容器，注入水後靜止時，各容器的<b>水面高度相同</b>。",
+      "應用①：<b>熱水瓶的透明窗</b>能看出內部水量，因為透明窗和內膽<b>底部相通</b>。",
+      "應用②：用一條裝水的<b>水管</b>，可以測量物體（如掛畫）是否<b>水平</b>，因為水管兩端水面會維持相同高度。",
+      "應用③：洗手臺的設計也應用了連通管原理。"
+    ],
+    review:`<p>容器內的水，不論是平放或傾斜，當水<span class="kw">靜止</span>時，水面都會維持在<b>相同高度的水平面</b>，這叫做<span class="kw">水平</span>。</p>
+    <p>把水裝在數個<span class="kw">形狀不同但底部相通</span>的容器中，水靜止時各容器的<b>水面高度會相同</b>，這就是<b>連通管原理</b>。</p>
+    <p>生活中的應用：<span class="kw">熱水瓶的透明窗</span>可以看出裡面的水量，是因為透明窗和內膽底部相通；用一條裝水的<span class="kw">水管</span>，可以測量畫掛得是否水平，因為水管兩端的水面會維持相同高度。</p>`,
+    questions:[
+      {type:"choice", q:"水壺裡的水，不管平放或傾斜，靜止時水面會？", options:["跟著傾斜","維持水平（相同高度）","往上凸起","消失不見"], answer:1, explain:"靜止時水面會維持在相同高度的水平面。"},
+      {type:"choice", q:"數個形狀不同但底部相通的容器，裝水靜止後各容器水面高度？", options:["都不同","都相同","最大的最高","最小的最高"], answer:1, explain:"底部相通的容器，水面高度會相同，這是連通管原理。"},
+      {type:"tf", q:"底部相通的容器，水靜止時水面會維持相同高度，這叫連通管原理。", answer:true, explain:"這正是連通管原理。"},
+      {type:"choice", q:"熱水瓶外面的透明窗可以看出裡面的水量，是應用了？", options:["毛細現象","連通管原理","虹吸現象","磁力"], answer:1, explain:"透明窗和內膽底部相通，水面相同，所以能看出水量（連通管原理）。"},
+      {type:"choice", q:"用一條裝水的水管，可以用來測量？", options:["溫度","物體（如畫）掛得是否水平","時間","重量"], answer:1, explain:"水管兩端水面維持相同高度，可用來測量是否水平。"},
+      {type:"tf", q:"寶特瓶斜放時，裡面靜止的水面會跟著一起傾斜。", answer:false, explain:"靜止的水面會維持水平，不會跟著傾斜。"},
+      {type:"choice", q:"為什麼裝水的水管可以測量畫掛得是否水平？", options:["水管兩端的水面會維持相同高度","水管會變色","水會結冰","水管會發光"], answer:0, explain:"水管兩端水面相同高度，物體兩側對齊水面即為水平。"},
+      {type:"choice", q:"「水平」是指容器內靜止的水面？", options:["維持在相同高度的水平面","一直流動","結成冰","分成兩半"], answer:0, explain:"水平即水面維持在相同高度的水平面。"},
+      {type:"tf", q:"洗手臺的設計也應用了連通管原理。", answer:true, explain:"洗手臺是連通管原理在生活中的應用。"},
+      {type:"choice", q:"熱水瓶的透明窗能顯示水量，是因為透明窗和內膽？", options:["完全分開","底部相通","裝不同的水","沒有任何關係"], answer:1, explain:"透明窗和內膽底部相通，水面同高，故能顯示水量。"}
+    ]
+   },
+   {
+    id:"3C", name:"3-3　虹吸現象",
+    points:[
+      "<b>虹吸現象</b>：用<b>充滿水</b>的水管連接兩個容器，當<b>出水口低於</b>入水口（原來的水面）時，水會沿著彎曲的水管上升再流向出水口。",
+      "成功的<b>兩個條件</b>：①水管要<b>充滿水</b>；②<b>出水口要低於</b>水族箱（入水口）的水面。",
+      "當水管連接的<b>兩端水面一樣高</b>時，虹吸現象會<b>停止</b>，水不再流動。",
+      "生活應用：用水管<b>幫水族箱換水</b>、<b>虹吸式馬桶</b>（把穢物沖走）。"
+    ],
+    review:`<p>用<span class="kw">充滿水</span>的水管連接兩個容器，當<span class="kw">出水口低於</span>原來容器的水面時，水會沿著彎曲的水管先上升、再流向出水口，這個現象稱為<b>虹吸現象</b>。</p>
+    <p>虹吸成功有兩個條件：<b>水管要充滿水</b>、<b>出水口要低於入水口（水面）</b>。當水管兩端的<span class="kw">水面一樣高</span>時，虹吸現象就會停止，水不再流動。</p>
+    <p>生活中的應用：可以用水管利用虹吸現象<span class="kw">幫水族箱換水</span>；<span class="kw">虹吸式馬桶</span>也是利用虹吸現象把穢物沖走。</p>`,
+    questions:[
+      {type:"choice", q:"用充滿水的水管，把水從高處容器引流到低處的現象，稱為？", options:["毛細現象","連通管原理","虹吸現象","蒸發"], answer:2, explain:"這個現象稱為虹吸現象。"},
+      {type:"choice", q:"要讓虹吸現象成功，水管裡要？", options:["裝滿水","只裝一半水","完全不裝水","裝滿空氣"], answer:0, explain:"水管要充滿水，虹吸才會成功。"},
+      {type:"choice", q:"虹吸現象成功時，出水口的位置要比入水口（水族箱）的水面？", options:["高","低","一樣高","沒有關係"], answer:1, explain:"出水口要低於入水口的水面，水才會流出。"},
+      {type:"tf", q:"當水管連接的兩端水面一樣高時，虹吸現象會停止，水不再流動。", answer:true, explain:"兩端水面相同時，虹吸停止。"},
+      {type:"choice", q:"下列何者是虹吸現象的應用？", options:["虹吸式馬桶沖水","用毛巾吸水","蠟燭燃燒","掛畫測水平"], answer:0, explain:"虹吸式馬桶利用虹吸現象沖走穢物。"},
+      {type:"tf", q:"幫水族箱換水時，可以用充滿水的水管利用虹吸現象把水引出來。", answer:true, explain:"這是虹吸現象在生活中的應用。"},
+      {type:"choice", q:"虹吸進行時，如果把出水口抬到比水面還高，水會？", options:["繼續流出","流回水箱","結冰","沸騰"], answer:1, explain:"出水口高於水面時，水會流回水箱。"},
+      {type:"choice", q:"虹吸現象需要水管連接的兩側水面？", options:["高度有差別","完全一樣高","都很高才行","都沒有水"], answer:0, explain:"兩側水面要有高低差，水才會由高往低流。"},
+      {type:"tf", q:"虹吸現象的水管裡有很多空氣也沒關係，一樣能成功。", answer:false, explain:"水管必須充滿水，有空氣會失敗。"},
+      {type:"choice", q:"虹吸式馬桶利用虹吸現象的主要目的是？", options:["把穢物沖走","裝飾好看","節省電力","發出聲音"], answer:0, explain:"虹吸式馬桶用虹吸現象將穢物吸走、沖走。"}
+    ]
+   }
+  ]
+ },
+ {
+  id:"u4", title:"第四單元　了解臺灣的環境", cls:"u4",
+  lessons:[
+   {
+    id:"4A", name:"4-1　地表環境與自然資源",
+    points:[
+      "臺灣有各種地形：<b>高山、丘陵、平原、河川</b>等。",
+      "不同地表環境有不同生物：山地（臺灣水鹿、長鬃山羊）、<b>丘陵（石虎）</b>、平原（梅花鹿、珠頸斑鳩）、河川（馬口魚）。",
+      "自然資源是<b>有限</b>的，要<b>珍惜使用</b>。",
+      "人類<b>過度開發</b>會破壞環境：開礦使山地凹陷、過度砍伐林木使山光禿、過度開採砂石、<b>過度抽地下水會造成地層下陷</b>。",
+      "要設法取得<b>人類需求</b>與<b>生態保護</b>的<b>平衡</b>。",
+      "臺灣最大平原是<b>嘉南平原</b>；最高峰是<b>玉山</b>（約3952公尺）。"
+    ],
+    review:`<p>臺灣有各式各樣的地表環境，例如：陡峭的<span class="kw">高山</span>、較低緩的<span class="kw">丘陵</span>、開闊的<span class="kw">平原</span>和<span class="kw">河川</span>。不同的地表環境住著不同的生物，例如：石虎住在丘陵、梅花鹿在平原。</p>
+    <p>人類的生活依賴各種自然資源，但<span class="kw">自然資源是有限的，要珍惜使用</span>。如果過度開發，會破壞環境，例如：開礦使山地凹陷、過度砍伐林木使山變光禿、過度開採砂石、<span class="kw">過度抽地下水造成地層下陷</span>。</p>
+    <p>為了發展經濟免不了會開發環境，因此我們要設法在開發時減少破壞，取得<span class="kw">人類需求與生態保護的平衡</span>。</p>`,
+    questions:[
+      {type:"choice", q:"下列何者「不是」臺灣常見的地形？", options:["高山","丘陵","平原","沙漠"], answer:3, explain:"臺灣常見地形有高山、丘陵、平原、河川，沒有沙漠。"},
+      {type:"choice", q:"石虎主要生活在哪一種地表環境？", options:["高山","丘陵","海洋","沙漠"], answer:1, explain:"石虎主要生活在丘陵環境。"},
+      {type:"tf", q:"不同的地表環境，會有不同的生物生存其中。", answer:true, explain:"不同地表環境有不同生物。"},
+      {type:"choice", q:"關於自然資源，下列何者正確？", options:["取之不盡用之不竭","是有限的，要珍惜使用","越用越多","完全不需要保護"], answer:1, explain:"自然資源是有限的，要珍惜使用。"},
+      {type:"choice", q:"過度抽取地下水，可能會造成？", options:["地層下陷","天氣變冷","地震變多","海水變甜"], answer:0, explain:"過度抽地下水會造成地層下陷。"},
+      {type:"choice", q:"下列哪一種行為會破壞自然環境？", options:["過度砍伐林木","種樹","資源回收","節約用水"], answer:0, explain:"過度砍伐林木會破壞環境、造成土石流失。"},
+      {type:"tf", q:"開發環境時，我們應設法減少破壞，取得人類需求與生態保護的平衡。", answer:true, explain:"要在開發與保護之間取得平衡。"},
+      {type:"choice", q:"臺灣最大的平原是？", options:["嘉南平原","宜蘭平原","屏東平原","臺北盆地"], answer:0, explain:"嘉南平原是臺灣最大的平原與農業區。"},
+      {type:"choice", q:"臺灣最高峰是？", options:["玉山","阿里山","陽明山","合歡山"], answer:0, explain:"玉山主峰約3952公尺，是臺灣最高峰。"},
+      {type:"tf", q:"過度開採砂石、把森林砍光，下大雨時容易造成土石流失。", answer:true, explain:"過度開發會使下大雨時容易發生土石流失。"},
+      {type:"choice", q:"下列哪些動物常出現在「山地」？", options:["臺灣水鹿、長鬃山羊","企鵝","北極熊","駱駝"], answer:0, explain:"山地常見臺灣水鹿、長鬃山羊。"}
+    ]
+   },
+   {
+    id:"4B", name:"4-2　地表物質與雨水的作用",
+    points:[
+      "地表物質依顆粒大小分為：<b>礫石（最大、最粗）＞砂（中間）＞土壤（最小、最細）</b>。",
+      "可用<b>放大鏡看顆粒大小</b>、用<b>手摸觸感</b>來區分礫石、砂、土壤。",
+      "不同地區的土<b>顏色不同</b>（常見黃褐、紅、黑）。",
+      "<b>雨水會改變地表環境</b>，會搬運地表物質。",
+      "<b>雨量（水量）愈大</b>，被搬運的物質<b>愈多、愈大</b>，搬運的<b>距離愈遠</b>。",
+      "顆粒<b>愈小</b>的物質，被水搬運得<b>愈遠</b>。",
+      "做「雨量大小」實驗時，要比較水量，所以<b>土堆高度、特性、澆水高度等其他條件要相同</b>（只改變水量）。"
+    ],
+    review:`<p>構成地表的物質，依<span class="kw">顆粒大小</span>可分為<b>礫石、砂、土壤</b>：礫石顆粒最大、摸起來最粗；土壤顆粒最小、摸起來最細；砂介於兩者之間。可以用<span class="kw">放大鏡</span>看顆粒大小、用<span class="kw">手摸</span>觸感來區分。不同地區的土顏色也不同（黃褐、紅、黑）。</p>
+    <p><span class="kw">雨水會改變地表環境</span>，把地表物質搬運到別的地方。實驗發現：<span class="kw">雨量（水量）愈大</span>，被沖走的物質愈多、顆粒愈大，搬運的距離也愈遠；而<span class="kw">顆粒愈小</span>的物質，被水搬得愈遠。</p>
+    <p>做「雨量多寡對地表的影響」實驗時，因為要比較的是水量大小，所以土堆的高度、特性與澆水的高度等其他條件都要<span class="kw">保持相同</span>。</p>`,
+    questions:[
+      {type:"choice", q:"地表物質依顆粒大小，由大到小排列是？", options:["土壤＞砂＞礫石","礫石＞砂＞土壤","砂＞礫石＞土壤","三個一樣大"], answer:1, explain:"礫石最大、砂中間、土壤最小。"},
+      {type:"choice", q:"顆粒最小、摸起來最細的是？", options:["礫石","砂","土壤","石頭"], answer:2, explain:"土壤的顆粒最小、最細。"},
+      {type:"choice", q:"顆粒最大、摸起來最粗的是？", options:["礫石","砂","土壤","灰塵"], answer:0, explain:"礫石的顆粒最大、最粗。"},
+      {type:"tf", q:"可以用放大鏡看顆粒大小、用手摸觸感，來區分礫石、砂和土壤。", answer:true, explain:"用顆粒大小與觸感即可區分。"},
+      {type:"choice", q:"下雨時，雨水會對地表造成什麼影響？", options:["沒有任何影響","搬運地表物質、改變地表","讓地表變硬","讓地表發光"], answer:1, explain:"雨水會搬運地表物質、改變地表環境。"},
+      {type:"choice", q:"雨量（水量）愈大，被搬運的地表物質會？", options:["愈少愈小","愈多愈大、搬得愈遠","完全不變","直接消失"], answer:1, explain:"水量愈大，搬運的物質愈多愈大、距離愈遠。"},
+      {type:"choice", q:"在土堆澆水的實驗中，顆粒愈小的物質會被水？", options:["搬得愈遠","留在原地","往上飛","變大"], answer:0, explain:"顆粒愈小的物質被水搬得愈遠。"},
+      {type:"tf", q:"臺灣不同地區的土，顏色都一樣。", answer:false, explain:"不同地區的土顏色不同，常見黃褐、紅、黑。"},
+      {type:"choice", q:"做「雨量多寡對地表的影響」實驗，要比較水量大小，下列哪一項必須保持相同？", options:["土堆的高度與特性","澆水的水量","出水口高度可以隨意","什麼都不用相同"], answer:0, explain:"只改變水量，土堆與澆水高度等其他條件要相同（公平實驗）。"},
+      {type:"tf", q:"顆粒愈大的物質，愈容易被水搬到很遠的地方。", answer:false, explain:"相反，顆粒愈小的物質才被搬得愈遠。"}
+    ]
+   },
+   {
+    id:"4C", name:"4-3　地震與防災",
+    points:[
+      "臺灣位於<b>歐亞板塊和菲律賓海板塊</b>的交界處，兩板塊互相推擠，所以地震<b>頻繁</b>。",
+      "<b>震源</b>：地震發生的起始點。<b>震央</b>：震源在地表上的投影點。",
+      "<b>地震規模</b>：描述地震大小（依釋放的能量），用<b>芮氏規模</b>表示，<b>沒有單位</b>。",
+      "<b>震度</b>：人所感受到的搖晃程度、或建築物被破壞的程度。中央氣象署把震度分為<b>10級</b>（0、1、2、3、4、5弱、5強、6弱、6強、7）。",
+      "地震災害：房屋倒塌、橋梁斷裂、<b>土壤液化</b>、海嘯、火災等。",
+      "地震時：口訣<b>「趴下、掩護、穩住」</b>，最重要的是<b>保護頭部和頸部</b>。",
+      "平時準備：固定家具、準備<b>緊急避難包</b>；地震後檢查<b>瓦斯、電線、水管</b>（聞到瓦斯味勿開關電器、勿用火）。",
+      "每年<b>9月21日</b>是「<b>國家防災日</b>」（因921大地震而訂）。"
+    ],
+    review:`<p>臺灣位於<span class="kw">歐亞板塊和菲律賓海板塊</span>的交界，兩個板塊互相推擠，因此地震很頻繁。看地震報告時常見幾個名詞：<b>震源</b>是地震發生的起始點、<b>震央</b>是震源在地表的投影點；<b>地震規模</b>描述地震的大小（依能量），用<span class="kw">芮氏規模</span>表示且<span class="kw">沒有單位</span>；<b>震度</b>則是人感受到的搖晃或建築物被破壞的程度，中央氣象署分為<span class="kw">10級</span>，震度愈大，搖晃和破壞愈明顯。</p>
+    <p>地震可能造成房屋倒塌、橋梁斷裂、<span class="kw">土壤液化</span>、海嘯、火災等災害。地震發生時要做到<span class="kw">「趴下、掩護、穩住」</span>，最重要的是<b>保護頭部和頸部</b>。</p>
+    <p>平時要把家具固定好、準備<span class="kw">緊急避難包</span>；地震後要檢查瓦斯、電線、水管，若聞到瓦斯味，千萬不可開關電器或用火。每年<span class="kw">9月21日是國家防災日</span>。</p>`,
+    questions:[
+      {type:"choice", q:"臺灣為什麼地震頻繁？", options:["位於歐亞板塊和菲律賓海板塊交界，兩板塊互相推擠","離海太近","山太多","人口太多"], answer:0, explain:"臺灣位於兩板塊交界，互相推擠導致地震頻繁。"},
+      {type:"choice", q:"「地震發生的起始點」稱為？", options:["震央","震源","震度","規模"], answer:1, explain:"震源是地震發生的起始點。"},
+      {type:"choice", q:"「震源在地表上的投影點」稱為？", options:["震源","震央","震度","規模"], answer:1, explain:"震央是震源在地表的投影點。"},
+      {type:"choice", q:"用來描述地震大小（釋放的能量）、且「沒有單位」的是？", options:["震度","地震規模","震央","深度"], answer:1, explain:"地震規模依能量而定、用芮氏規模表示、沒有單位。"},
+      {type:"choice", q:"「人所感受到的搖晃程度或建築物被破壞的程度」稱為？", options:["規模","震源","震度","震央"], answer:2, explain:"震度是人感受到搖晃或建物被破壞的程度。"},
+      {type:"tf", q:"中央氣象署將地震震度分為10個等級（0到7，含5弱、5強、6弱、6強）。", answer:true, explain:"現行震度分為10級。"},
+      {type:"choice", q:"下列何者「不是」地震可能造成的災害？", options:["房屋倒塌","橋梁斷裂","土壤液化","天氣變熱"], answer:3, explain:"地震不會使天氣變熱；其餘都是地震災害。"},
+      {type:"choice", q:"地震發生時，最重要的是保護身體哪個部位？", options:["腳","頭部和頸部","手","肚子"], answer:1, explain:"地震時最重要是保護頭部和頸部。"},
+      {type:"choice", q:"地震時的避難口訣是？", options:["跑、跳、叫","趴下、掩護、穩住","躺、滾、爬","站、看、等"], answer:1, explain:"避難口訣是「趴下、掩護、穩住」。"},
+      {type:"tf", q:"地震後若聞到瓦斯味，應立刻打開電燈查看。", answer:false, explain:"聞到瓦斯味不可開關電器或用火，以免火花引起爆炸；應關瓦斯、輕輕開窗。"},
+      {type:"choice", q:"每年的哪一天是「國家防災日」（因921大地震而訂）？", options:["9月21日","1月1日","12月25日","4月4日"], answer:0, explain:"9月21日為國家防災日，紀念921大地震。"},
+      {type:"tf", q:"平時準備緊急避難包、把家具固定好，可以減少地震帶來的傷害。", answer:true, explain:"事前準備能降低地震災害。"}
+    ]
+   }
+  ]
+ }
+];
+
+const LEVELS = ["⚪ 未挑戰","🥉 銅牌","🥈 銀牌","🥇 金牌","🏆 精熟"];
+const LADDER = ["🥉 銅牌","🥈 銀牌","🥇 金牌","🏆 精熟"];
+const ROUND_SIZE = 10;
+const STORE_KEY = "nat4_u34_levels_v1";
+function loadLevels(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch(e){return {};} }
+function saveLevels(o){ try{localStorage.setItem(STORE_KEY, JSON.stringify(o));}catch(e){} }
+function getLevel(id){ return loadLevels()[id]||0; }
+function setLevel(id, lv){ const o=loadLevels(); o[id]=Math.max(o[id]||0, lv); saveLevels(o); }
+function tierForAccuracy(acc){ if(acc>=1.0)return 4; if(acc>=0.9)return 3; if(acc>=0.75)return 2; if(acc>=0.6)return 1; return 0; }
+function badgeClass(lv){ return lv>0 ? ("badge lv"+lv) : "badge"; }
+
+const allLessons = DATA.flatMap(u=>u.lessons);
+function renderHome(){
+  const list = document.getElementById("unitList"); list.innerHTML="";
+  DATA.forEach(u=>{
+    const wrap=document.createElement("div"); wrap.className="unit"+(u.cls==="u4"?" u4":"");
+    wrap.innerHTML=`<h2>${u.title}</h2>`;
+    u.lessons.forEach(ls=>{
+      const lv=getLevel(ls.id); const card=document.createElement("div"); card.className="card";
+      card.innerHTML=`<div class="lesson-head"><span class="name">${ls.name}</span><span class="${badgeClass(lv)}">${LEVELS[lv]}</span></div>
+        <div class="btnrow">
+          <button class="${u.cls==='u4'?'btn-u4':'btn-u3'}" data-go="lesson" data-id="${ls.id}">看重點 / 複習</button>
+          <button class="btn-main" data-go="quiz" data-id="${ls.id}">開始測驗</button>
+        </div>`;
+      wrap.appendChild(card);
+    });
+    list.appendChild(wrap);
+  });
+  const mastered=allLessons.filter(l=>getLevel(l.id)>=4).length;
+  const pct=Math.round(mastered/allLessons.length*100);
+  document.getElementById("ovPct").textContent=pct;
+  document.getElementById("ovBar").style.width=pct+"%";
+  document.getElementById("ovText").textContent = mastered===allLessons.length ? "🎊 太厲害了！全部達到精熟！" : `已精熟 ${mastered} / ${allLessons.length} 課，繼續加油！`;
+  list.querySelectorAll("button[data-go]").forEach(b=>{
+    b.addEventListener("click",()=>{ const id=b.getAttribute("data-id"); if(b.getAttribute("data-go")==="lesson") openLesson(id); else startQuiz(id); });
+  });
+}
+function findLesson(id){ return allLessons.find(l=>l.id===id); }
+function show(sec){ ["home","lesson","quiz","result"].forEach(s=>document.getElementById(s).classList.toggle("hidden", s!==sec)); window.scrollTo({top:0,behavior:"smooth"}); }
+function goHome(){ renderHome(); show("home"); }
+function openLesson(id){
+  const ls=findLesson(id); const lv=getLevel(id);
+  document.getElementById("lsName").textContent=ls.name;
+  const badge=document.getElementById("lsBadge"); badge.className=badgeClass(lv); badge.textContent=LEVELS[lv];
+  document.getElementById("lsPoints").innerHTML=ls.points.map(p=>`<li>${p}</li>`).join("");
+  document.getElementById("lsReview").innerHTML=ls.review;
+  document.getElementById("lsStart").onclick=()=>startQuiz(id);
+  show("lesson");
+}
+let q={lessonId:null, items:[], idx:0, correct:0, answered:false};
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+function startQuiz(id){ const ls=findLesson(id); const pool=shuffle(ls.questions); q={lessonId:id, items:pool.slice(0,Math.min(ROUND_SIZE,pool.length)), idx:0, correct:0, answered:false}; show("quiz"); renderQuestion(); }
+function renderQuestion(){
+  q.answered=false; const it=q.items[q.idx];
+  document.getElementById("qIdx").textContent=`第 ${q.idx+1} / ${q.items.length} 題`;
+  document.getElementById("qScore").textContent=`✔ ${q.correct}`;
+  document.getElementById("qBar").style.width=Math.round(q.idx/q.items.length*100)+"%";
+  document.getElementById("qText").innerHTML=`<span class="qtype">${it.type==="tf"?"是非題":"選擇題"}</span>${it.q}`;
+  const opts=document.getElementById("qOpts"); opts.innerHTML="";
+  const choices=it.type==="tf"?["⭕ 對","❌ 錯"]:it.options;
+  choices.forEach((c,i)=>{ const b=document.createElement("button"); b.className="opt"; b.innerHTML=c; b.addEventListener("click",()=>answer(i,b)); opts.appendChild(b); });
+  const fb=document.getElementById("qFb"); fb.className="feedback"; fb.innerHTML="";
+  document.getElementById("qNext").classList.add("hidden");
+}
+function answer(i,btn){
+  if(q.answered)return; q.answered=true; const it=q.items[q.idx];
+  const correctIdx=it.type==="tf"?(it.answer?0:1):it.answer; const isRight=(i===correctIdx);
+  if(isRight)q.correct++;
+  const opts=document.getElementById("qOpts").children;
+  for(let k=0;k<opts.length;k++)opts[k].setAttribute("disabled","true");
+  opts[correctIdx].classList.add("correct"); if(!isRight)btn.classList.add("wrong");
+  const fb=document.getElementById("qFb"); fb.className="feedback show "+(isRight?"good":"bad");
+  fb.innerHTML=`<span class="lab">${isRight?"✅ 答對了！":"❌ 答錯了"}</span>${it.explain}`;
+  document.getElementById("qScore").textContent=`✔ ${q.correct}`;
+  const next=document.getElementById("qNext"); next.classList.remove("hidden");
+  next.textContent=(q.idx===q.items.length-1)?"看結果 🎯":"下一題 →";
+}
+document.getElementById("qNext").addEventListener("click",()=>{ if(q.idx<q.items.length-1){q.idx++; renderQuestion();} else finishQuiz(); });
+function quitQuiz(){ goHome(); }
+function finishQuiz(){
+  const total=q.items.length, acc=q.correct/total;
+  const before=getLevel(q.lessonId), earned=tierForAccuracy(acc), after=Math.max(before,earned);
+  setLevel(q.lessonId, after);
+  document.getElementById("qBar").style.width="100%";
+  document.getElementById("rScore").textContent=`答對 ${q.correct} / ${total} 題（${Math.round(acc*100)}%）`;
+  document.getElementById("rEmoji").textContent=acc>=1?"🏆":acc>=0.9?"🥇":acc>=0.75?"🥈":acc>=0.6?"🥉":"💪";
+  const lvBox=document.getElementById("rLevel");
+  if(after>before){ lvBox.className="levelup up"; lvBox.innerHTML=`🎉 升級！本課等級達到 <b>${LEVELS[after]}</b>`; }
+  else if(earned>=4){ lvBox.className="levelup up"; lvBox.innerHTML=`🏆 太棒了！維持 <b>精熟</b> 等級！`; }
+  else{ lvBox.className="levelup same"; lvBox.innerHTML=`目前等級 <b>${LEVELS[after]}</b>。${after<4?`再加油，挑戰 <b>${LADDER[after]}</b>${after<3?"以上":""}！`:""}`; }
+  const ladder=document.getElementById("rLadder"); ladder.innerHTML="";
+  LADDER.forEach((name,k)=>{ const lv=k+1; const r=document.createElement("span"); r.className="rung"+(after>=lv?" on":"")+(after===lv?" cur":""); r.textContent=name; ladder.appendChild(r); });
+  document.getElementById("rRetry").onclick=()=>startQuiz(q.lessonId);
+  document.getElementById("rReview").onclick=()=>openLesson(q.lessonId);
+  show("result");
+}
+function resetAll(){ if(confirm("確定要清除所有課程的等級與進度嗎？")){ localStorage.removeItem(STORE_KEY); goHome(); } }
+goHome();
+</script>
+</body>
+</html>

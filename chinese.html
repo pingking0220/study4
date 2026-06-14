@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四下國語 期末複習｜第7～12課（南一版）</title>
+<style>
+  :root{
+    --bg:#fbf5f4; --card:#ffffff; --ink:#3a2230; --muted:#7a6470;
+    --u3:#c0392b; --u3-soft:#f7e4e1;
+    --u4:#7c4dbd; --u4-soft:#efe7f9;
+    --line:#ecdfe2; --shadow:0 6px 20px rgba(58,34,48,.08);
+    --ok:#16a34a; --no:#dc2626; --accent:#c0392b;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.7; -webkit-text-size-adjust:100%;}
+  .wrap{max-width:880px; margin:0 auto; padding:18px 16px 60px;}
+  header.top{text-align:center; padding:20px 10px 6px;}
+  header.top h1{font-size:1.55rem; margin:0 0 4px;}
+  header.top p{margin:0; color:var(--muted); font-size:.95rem;}
+  .hidden{display:none !important;}
+  .overview{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:14px 16px; margin:16px 0; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .overview .bar{flex:1; min-width:160px; height:14px; background:#f0e6e8; border-radius:99px; overflow:hidden;}
+  .overview .bar > i{display:block; height:100%; width:0; background:linear-gradient(90deg,#f0907f,#c0392b); transition:width .5s;}
+  .overview .pct{font-weight:800; font-size:1.1rem;}
+  .overview small{color:var(--muted)}
+  .unit{margin:22px 0 6px;}
+  .unit h2{display:flex; align-items:center; gap:10px; font-size:1.2rem; margin:0 0 10px; padding-left:12px; border-left:6px solid var(--u3);}
+  .unit.u4 h2{border-left-color:var(--u4);}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:16px; margin:12px 0;}
+  .lesson-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .lesson-head .name{font-size:1.08rem; font-weight:800;}
+  .badge{font-size:.92rem; padding:4px 10px; border-radius:99px; background:#f0e6e8; color:var(--muted); white-space:nowrap;}
+  .badge.lv1{background:#fdf0e1;color:#a85a17}
+  .badge.lv2{background:#eef1f4;color:#4b5563}
+  .badge.lv3{background:#fff6d6;color:#a07c00}
+  .badge.lv4{background:#e7f9ee;color:#15803d; font-weight:800}
+  .btnrow{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;}
+  button{font-family:inherit; cursor:pointer; border:0; border-radius:12px; padding:11px 16px; font-size:1rem; font-weight:700; transition:transform .05s, filter .15s;}
+  button:active{transform:translateY(1px)}
+  .btn-main{background:var(--accent); color:#fff;}
+  .btn-soft{background:#f0e6e8; color:var(--ink);}
+  .btn-u3{background:var(--u3); color:#fff;}
+  .btn-u4{background:var(--u4); color:#fff;}
+  .btn-ghost{background:transparent; color:var(--accent); padding:8px 4px;}
+  button:hover{filter:brightness(.97)}
+  .section-title{font-weight:800; font-size:1.05rem; margin:4px 0 8px; display:flex; align-items:center; gap:8px;}
+  .points{margin:0; padding:0; list-style:none;}
+  .points li{position:relative; padding:8px 10px 8px 30px; border-bottom:1px dashed var(--line);}
+  .points li:last-child{border-bottom:0}
+  .points li::before{content:"📖"; position:absolute; left:6px; top:8px; font-size:.95rem;}
+  .review p{margin:.4rem 0;}
+  .review .kw{background:#fdeecf; padding:0 3px; border-radius:4px; font-weight:700;}
+  .quizbar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; color:var(--muted); font-size:.95rem;}
+  .qprog{flex:1; height:8px; background:#f0e6e8; border-radius:99px; overflow:hidden;}
+  .qprog > i{display:block; height:100%; background:var(--accent); width:0; transition:width .3s;}
+  .qtext{font-size:1.15rem; font-weight:800; margin:10px 0 14px;}
+  .qtype{font-size:.8rem; font-weight:700; padding:2px 8px; border-radius:6px; background:#f0e6e8; color:var(--muted); margin-right:8px;}
+  .opts{display:flex; flex-direction:column; gap:10px;}
+  .opt{display:block; width:100%; text-align:left; background:#fcf7f7; border:2px solid var(--line); color:var(--ink); font-weight:600; padding:13px 14px; border-radius:12px;}
+  .opt:hover{border-color:#edc9c3}
+  .opt.correct{border-color:var(--ok); background:#e7f9ee;}
+  .opt.wrong{border-color:var(--no); background:#fde8e8;}
+  .opt[disabled]{cursor:default; opacity:1;}
+  .feedback{margin-top:14px; padding:12px 14px; border-radius:12px; font-weight:600; display:none;}
+  .feedback.show{display:block;}
+  .feedback.good{background:#e7f9ee; color:#14532d;}
+  .feedback.bad{background:#fde8e8; color:#7f1d1d;}
+  .feedback .lab{font-weight:800; display:block; margin-bottom:2px;}
+  .result{text-align:center; padding:10px 6px;}
+  .result .big{font-size:3rem; margin:6px 0;}
+  .result .score{font-size:1.3rem; font-weight:800;}
+  .levelup{font-size:1.15rem; font-weight:800; margin:10px 0; padding:10px; border-radius:12px;}
+  .levelup.up{background:#e7f9ee; color:#15803d;}
+  .levelup.same{background:#f0e6e8; color:#6b5560;}
+  .ladder{display:flex; justify-content:center; gap:6px; margin:14px 0; flex-wrap:wrap;}
+  .rung{font-size:.85rem; padding:6px 10px; border-radius:10px; background:#f0e6e8; color:var(--muted);}
+  .rung.on{background:#fff6d6; color:#a07c00; font-weight:800;}
+  .rung.cur{outline:3px solid #fbbf24;}
+  footer{ text-align:center; color:var(--muted); font-size:.82rem; margin-top:30px;}
+  .toplink{display:inline-block; margin:10px 0; color:var(--accent); font-weight:700; cursor:pointer;}
+  @media(max-width:520px){ header.top h1{font-size:1.25rem} .qtext{font-size:1.05rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section id="home">
+    <header class="top">
+      <h1>📚 四下國語 期末複習</h1>
+      <p>第參單元 愛在哪裡 ｜ 第肆單元 想像起飛（南一版・第7～12課）</p>
+    </header>
+    <div class="overview">
+      <div><div class="pct"><span id="ovPct">0</span>%</div><small>精熟進度</small></div>
+      <div class="bar"><i id="ovBar"></i></div>
+      <div><small id="ovText"></small></div>
+    </div>
+    <div id="unitList"></div>
+    <div style="text-align:center; margin-top:20px;">
+      <button class="btn-ghost" onclick="resetAll()">🗑️ 重置所有進度</button>
+    </div>
+    <footer>
+      內容依南一版國小國語四下教師專用課本整理，供班級複習使用。<br>
+      等級：⚪ 未挑戰 → 🥉 銅牌 → 🥈 銀牌 → 🥇 金牌 → 🏆 精熟（每回合隨機抽 10 題，全對即達精熟）
+    </footer>
+  </section>
+
+  <section id="lesson" class="hidden">
+    <span class="toplink" onclick="goHome()">← 回首頁</span>
+    <div class="card"><div class="lesson-head"><span class="name" id="lsName"></span><span class="badge" id="lsBadge"></span></div></div>
+    <div class="card"><div class="section-title">🔑 重點提示</div><ul class="points" id="lsPoints"></ul></div>
+    <div class="card review"><div class="section-title">📖 複習內容</div><div id="lsReview"></div></div>
+    <div class="card" style="text-align:center;">
+      <div class="section-title" style="justify-content:center;">✏️ 複習測驗</div>
+      <p style="color:var(--muted); margin:.2rem 0 0;">隨機抽題，答對率越高、等級越高，可無限次重做挑戰 <b>🏆 精熟</b>。</p>
+      <div class="btnrow" style="justify-content:center;"><button class="btn-main" id="lsStart">開始測驗</button></div>
+    </div>
+  </section>
+
+  <section id="quiz" class="hidden">
+    <span class="toplink" onclick="quitQuiz()">← 結束測驗</span>
+    <div class="card">
+      <div class="quizbar"><span id="qIdx"></span><div class="qprog"><i id="qBar"></i></div><span id="qScore"></span></div>
+      <div class="qtext" id="qText"></div>
+      <div class="opts" id="qOpts"></div>
+      <div class="feedback" id="qFb"></div>
+      <div class="btnrow" style="justify-content:flex-end;"><button class="btn-main hidden" id="qNext">下一題 →</button></div>
+    </div>
+  </section>
+
+  <section id="result" class="hidden">
+    <div class="card result">
+      <div class="big" id="rEmoji">🎉</div>
+      <div class="score" id="rScore"></div>
+      <div class="levelup" id="rLevel"></div>
+      <div class="ladder" id="rLadder"></div>
+      <div class="btnrow" style="justify-content:center;">
+        <button class="btn-main" id="rRetry">再挑戰一次</button>
+        <button class="btn-soft" id="rReview">看重點</button>
+        <button class="btn-soft" onclick="goHome()">回首頁</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const DATA = [
+ {
+  id:"u3", title:"第參單元　愛在哪裡（愛無所不在）", cls:"u3",
+  lessons:[
+   {
+    id:"L7", name:"第七課　不一樣的母親花",
+    points:[
+      "文體：<b>說明文</b>（事物類）；主旨：介紹各國的母親花，說明人們以母親花表達對母親<b>真誠溫暖的謝意</b>。（對人的愛）",
+      "課文結構：<b>總說</b>（各國母親花不一樣）→ <b>分說</b>（康乃馨、萱草、玫瑰花、茉莉花）→ <b>總結</b>（都有真誠溫暖的謝意），結尾用<b>總結法</b>。",
+      "<b>康乃馨</b>：最早視為母親花的國家是<b>美國</b>；多重花瓣像紅絹布；1914年美國訂母親節（安娜·賈維斯提議）。",
+      "<b>萱草</b>＝金針花，又叫<b>忘憂草</b>（中國古代流傳）；清晨開橙黃色花、黃昏凋謝；古時遊子種萱草減輕母親思念。",
+      "<b>玫瑰花</b>：越南、印尼；莖上有刺、花瓣香。<b>茉莉花</b>：泰國；淡雅純白、可製花茶、串成花環。",
+      "修辭：「像帶有香氣的紅絹布」是<b>譬喻</b>。",
+      "生字延伸成語：束手無策、各自為政、負重致遠、利令智昏、杞人憂天。"
+    ],
+    review:`<p>本課是<b>說明文</b>（事物類），屬第參單元「愛在哪裡」中<span class="kw">對人的愛</span>。主旨是：介紹各國不一樣的母親花，說明人們都用母親花表達對母親<span class="kw">真誠且溫暖的謝意</span>。</p>
+    <p>課文用<b>總說→分說→總結</b>的結構：先說各國母親花不一樣（總說）；再分別介紹<span class="kw">康乃馨</span>（美國等西方國家，花瓣像紅絹布）、<span class="kw">萱草</span>（即金針花、忘憂草，中國古代流傳）、<span class="kw">玫瑰花</span>（越南、印尼）、<span class="kw">茉莉花</span>（泰國，可串成花環）；最後總結：雖然母親花不同，但謝意相同。結尾用的是<b>總結法</b>。</p>`,
+    questions:[
+      {type:"choice", q:"〈不一樣的母親花〉這一課的文體是？", options:["說明文","記敘文","詩歌","書信"], answer:0, explain:"本課是說明文（事物類），舉例介紹各國母親花。"},
+      {type:"choice", q:"本課的主旨是？", options:["介紹各國母親花，說明人們以母親花表達對母親真誠溫暖的謝意","教大家種花","介紹母親節的食物","描寫春天的景色"], answer:0, explain:"主旨是說明人們以母親花表達對母親的謝意。"},
+      {type:"choice", q:"最早把「康乃馨」視為母親花的國家是？", options:["美國","中國","泰國","越南"], answer:0, explain:"康乃馨最早由美國視為母親花，1914年訂母親節。"},
+      {type:"choice", q:"課文中「萱草」又叫什麼？", options:["忘憂草（金針花）","玫瑰","茉莉","百合"], answer:0, explain:"萱草又名忘憂草，就是常見的金針花。"},
+      {type:"choice", q:"哪一國的人會把「茉莉花」串成花環送給母親？", options:["泰國","美國","中國","印尼"], answer:0, explain:"泰國人會把茉莉花串成花環送母親。"},
+      {type:"choice", q:"本課的課文結構是？", options:["總說、分說、總結","起、承、轉、合","倒敘回憶","問題、解決"], answer:0, explain:"本課用總說→分說→總結的結構。"},
+      {type:"choice", q:"「看起來就像帶有香氣的紅絹布」用了什麼修辭？", options:["譬喻","擬人","誇飾","設問"], answer:0, explain:"用「就像」把花瓣比喻成紅絹布，是譬喻。"},
+      {type:"tf", q:"不一樣的母親花，傳達對母親的謝意是相同的。", answer:true, explain:"母親花雖不同，但謝意相同，這是課文的總結。"},
+      {type:"choice", q:"古時候孩子遠行前在院子種下萱草，目的是？", options:["減輕母親對孩子的思念","賣錢","裝飾房子","當食物"], answer:0, explain:"種萱草是希望母親照顧它時能減輕對孩子的思念。"},
+      {type:"choice", q:"「向母親表達謝意」的「ㄓˋ意」應寫成？", options:["致意","至意","緻意","制意"], answer:0, explain:"「致意」指表達思念、問候、感謝等情意。"},
+      {type:"choice", q:"成語「□手無策」（毫無解決辦法）應填入？", options:["束","數","收","樹"], answer:0, explain:"「束手無策」比喻面對問題毫無解決的辦法。"},
+      {type:"choice", q:"本課所屬的第參單元，單元主旨是？", options:["愛無所不在","想像起飛","保護環境","認識家鄉"], answer:0, explain:"第參單元「愛在哪裡」，主旨是愛無所不在。"}
+    ]
+   },
+   {
+    id:"L8", name:"第八課　屋頂上的小貓",
+    points:[
+      "作者：<b>子魚</b>（本名孫藝玨）；文體：<b>記敘文</b>。（對動物的愛）",
+      "主旨：藉由作者照顧幼貓的過程與體悟，鼓勵<b>善待動物、尊重生命</b>。",
+      "寫作手法：<b>倒敘法</b>（先寫現在、再寫回憶）＋<b>感想法</b>結尾。",
+      "內容：夏夜哭聲→想起六歲搬新家被屋頂貓叫聲嚇得發抖→媽媽和作者<b>化身小貓對話</b>→照顧從天而降的幼貓→領會對生命應有的態度。",
+      "作者幫幼貓取名<b>小煤球</b>（因耳朵、鼻頭像煤球般黑）。",
+      "修辭：<b>摹寫</b>（聽覺、視覺、觸覺）、<b>感嘆</b>（哇！）。",
+      "字辨：「<b>必須</b>」後接動作（一定要）；「<b>需要</b>」後接事物。生字延伸成語：先發制人、養精蓄銳、嬌生慣養、循循善誘。"
+    ],
+    review:`<p>本課作者是<b>子魚</b>（本名孫藝玨），是一篇<b>記敘文</b>，屬第參單元中<span class="kw">對動物的愛</span>。主旨是藉由作者照顧幼貓的過程與體悟，鼓勵大家<span class="kw">善待動物、尊重生命</span>。</p>
+    <p>寫作上用了<b>倒敘法</b>：先寫現在（夏夜像嬰兒的哭聲），再回憶六歲搬新家時被屋頂貓叫聲嚇到，媽媽便和他<span class="kw">化身小貓對話</span>來安慰他；後來他照顧一隻從天而降的幼貓（取名<span class="kw">小煤球</span>），在過程中領會了對生命應有的態度。結尾用<b>感想法</b>，修辭上有許多<b>摹寫</b>（描寫貓叫聲、毛色）。</p>`,
+    questions:[
+      {type:"choice", q:"〈屋頂上的小貓〉的作者是？", options:["子魚","陳郁如","魯皓平","田中達也"], answer:0, explain:"作者是子魚（本名孫藝玨）。"},
+      {type:"choice", q:"本課的文體是？", options:["記敘文","說明文","詩歌","應用文"], answer:0, explain:"本課是記敘文。"},
+      {type:"choice", q:"本課的主旨是？", options:["善待動物、尊重生命","介紹各種貓的品種","教大家養貓賺錢","描寫夏天的夜晚"], answer:0, explain:"主旨是鼓勵善待動物、尊重生命。"},
+      {type:"choice", q:"本課開頭先寫現在、再寫回憶，這種寫法叫？", options:["倒敘法","順敘法","插敘法","總說法"], answer:0, explain:"先寫現在再回憶，是倒敘法。"},
+      {type:"choice", q:"作者幫從天而降的幼貓取名為？", options:["小煤球","小白","阿珠","小灰"], answer:0, explain:"因幼貓耳朵、鼻頭像煤球般黑，取名小煤球。"},
+      {type:"choice", q:"為什麼幼貓叫「小煤球」？", options:["耳朵和鼻頭像煤球般黑","很愛玩煤球","喜歡吃煤炭","住在煤礦旁"], answer:0, explain:"因耳朵、鼻頭如煤球般黑而取名。"},
+      {type:"choice", q:"課文描寫「喵嗚──啊嗚──」的貓叫聲，用了什麼修辭？", options:["摹寫（聽覺）","譬喻","誇飾","排比"], answer:0, explain:"把聽到的聲音描繪出來，是聽覺摹寫。"},
+      {type:"choice", q:"作者小時候害怕屋頂的貓叫聲，媽媽怎麼安慰他？", options:["和作者化身小貓對話","開燈陪他","把貓趕走","帶他出去玩"], answer:0, explain:"媽媽帶著作者化身小貓對話，化解害怕。"},
+      {type:"choice", q:"「想要在考試得好成績，上課ㄅㄧˋㄒㄩ專心」，空格（一定要、後接動作）應填？", options:["必須","需要","須要","需求"], answer:0, explain:"「必須」帶有強制語氣，後面接動作。"},
+      {type:"tf", q:"作者認為動物和人一樣都有生命，需要被善待。", answer:true, explain:"這正是本課要傳達的尊重生命觀念。"},
+      {type:"choice", q:"成語「嬌生□養」（在寵愛縱容中成長）應填？", options:["慣","關","貫","管"], answer:0, explain:"「嬌生慣養」指在備受寵愛縱容中成長。"},
+      {type:"choice", q:"本課的結尾，作者抒發對這件事的感想，這種結尾法叫？", options:["感想法","總結法","期許法","設問法"], answer:0, explain:"根據主旨抒發感想作結，是感想法。"}
+    ]
+   },
+   {
+    id:"L9", name:"第九課　用一公斤愛嘉明湖",
+    points:[
+      "文體：<b>記敘文</b>（遊記）。（對大自然的愛）",
+      "<b>嘉明湖</b>：位於<b>臺東縣</b>，海拔三千三百多公尺，是臺灣<b>第二高</b>的高山湖泊；布農族稱「月亮的鏡子」，登山界稱「<b>天使的眼淚</b>」；無溪流注入卻終年清澈湛藍。",
+      "活動：「<b>一人一公斤，為永續嘉明湖國家步道而背</b>」——背土石上山<b>回填</b>流失的土石，讓山林恢復原貌。",
+      "主旨：透過響應負重活動，用<b>實際行動</b>展現對山林（大自然）的愛。",
+      "寫作手法：<b>期許法</b>結尾、以特色（顏色）指稱事物、注意時間詞。",
+      "修辭：<b>擬人</b>（嘉明湖「呼喚」著我）、映襯、摹寫。",
+      "生字延伸成語：出類拔萃、夢寐以求、捷足先登、義憤填膺、百折不撓。"
+    ],
+    review:`<p>本課是<b>記敘文</b>（遊記），屬第參單元中<span class="kw">對大自然的愛</span>。<b>嘉明湖</b>在<span class="kw">臺東縣</span>，海拔三千三百多公尺，是臺灣第二高的高山湖泊，因終年清澈湛藍，登山界稱它為「<span class="kw">天使的眼淚</span>」。</p>
+    <p>作者入山時參加了「<span class="kw">一人一公斤，為永續嘉明湖國家步道而背</span>」活動——把一公斤土石背上山回填，讓流失的步道恢復原貌。即使背得汗流浹背、氣喘如牛，作者仍咬緊牙關完成，用<span class="kw">實際行動</span>表達對山林的愛。結尾用<b>期許法</b>，希望每位山友都一起響應；文中「嘉明湖一直呼喚著我」用了<b>擬人</b>修辭。</p>`,
+    questions:[
+      {type:"choice", q:"「嘉明湖」位於哪一個縣？", options:["臺東縣","南投縣","花蓮縣","宜蘭縣"], answer:0, explain:"嘉明湖位於臺東縣，是臺灣第二高的高山湖泊。"},
+      {type:"choice", q:"嘉明湖因終年清澈湛藍，被登山界稱為？", options:["天使的眼淚","太陽的鏡子","大地的傷口","彩虹的家"], answer:0, explain:"登山界稱嘉明湖為「天使的眼淚」。"},
+      {type:"choice", q:"「一人一公斤」活動的目的是？", options:["背土石上山回填，讓山林恢復原貌","比賽誰背得多","減肥健身","收集石頭做紀念"], answer:0, explain:"目的是回填流失的土石，讓山林恢復原本的樣子。"},
+      {type:"choice", q:"本課的文體是？", options:["記敘文","說明文","詩歌","議論文"], answer:0, explain:"本課是記敘文（遊記）。"},
+      {type:"choice", q:"本課的主旨是？", options:["用實際行動展現對山林（大自然）的愛","介紹登山裝備","教大家爬山技巧","描寫日出美景"], answer:0, explain:"主旨是用實際行動展現對山林的愛。"},
+      {type:"choice", q:"本課結尾表達「希望每位山友一起響應」，這種結尾法是？", options:["期許法","感想法","總結法","倒敘法"], answer:0, explain:"以期望、勉勵作結，是期許法。"},
+      {type:"choice", q:"「迷人的嘉明湖一直呼喚著我」用了什麼修辭？", options:["擬人","譬喻","誇飾","設問"], answer:0, explain:"把湖當人會「呼喚」，是擬人。"},
+      {type:"choice", q:"「流了很多汗、溼透背部」的成語「□流浹背」應填？", options:["汗","汁","汙","河"], answer:0, explain:"「汗流浹背」形容流汗很多。"},
+      {type:"choice", q:"形容湖水「深藍色」的「ㄓㄢˋ藍」應寫成？", options:["湛藍","甚藍","斟藍","堪藍"], answer:0, explain:"「湛藍」指深藍色。"},
+      {type:"tf", q:"作者已背近十公斤裝備，仍願再背一公斤土石上山，是因為對山林的愛。", answer:true, explain:"這「一公斤」格外有分量，因為承載了對山林的愛。"},
+      {type:"choice", q:"成語「百折不□」（意志堅定、堅持到底）應填？", options:["撓","橈","繞","饒"], answer:0, explain:"「百折不撓」形容意志剛強、堅持不變。"},
+      {type:"choice", q:"課名「用一公斤愛嘉明湖」中的「一公斤」是指？", options:["背上山回填的土石","湖水的重量","裝備的重量","體重"], answer:0, explain:"指活動中要背上山回填的一公斤土石。"}
+    ]
+   }
+  ]
+ },
+ {
+  id:"u4", title:"第肆單元　想像起飛（想像讓故事豐富、生活精采）", cls:"u4",
+  lessons:[
+   {
+    id:"L10", name:"第十課　想像與發明",
+    points:[
+      "文體：<b>說明文</b>（事理類）；主旨：<b>想像促進發明</b>。（結合兩物的想像）",
+      "結構：<b>總說</b>（想像讓發明誕生）→ <b>分說</b>（蔡倫造紙、便利貼、合併兩物）→ <b>總結</b>（想像是促成發明的關鍵）。",
+      "例子：<b>蔡倫</b>改進東漢造紙術（用樹皮、破布、麻頭、魚網），被封龍亭侯，後人稱「<b>蔡侯紙</b>」。",
+      "例子：<b>便利貼</b>由 3M 公司員工發明；「椅子＋輪子＝輪椅」「紙張＋膠＝便利貼」都是合併兩物。",
+      "本課用<b>組合法</b>（合併兩物）練習想像；學會用<b>主題句</b>找大意。",
+      "修辭：<b>譬喻</b>（想像是智慧的火苗）、轉化、遞進複句（不但…而且…）。",
+      "生字延伸成語：秀外慧中、事過境遷、因材施教、知己知彼、權宜之計。"
+    ],
+    review:`<p>本課是<b>說明文</b>（事理類），主旨是<span class="kw">想像促進發明</span>，屬第肆單元中<span class="kw">結合兩物的想像</span>。課文用<b>總說→分說→總結</b>的結構說明想像與發明的關係。</p>
+    <p>課文舉例：<span class="kw">蔡倫</span>改進東漢的造紙技術，用樹皮、破布、麻頭、魚網等材料降低成本，後人稱他做的紙為「蔡侯紙」；<span class="kw">便利貼</span>是把紙張加上膠的發明。許多發明都來自<span class="kw">合併兩物</span>的想像（如椅子加輪子變輪椅）。最後總結：想像是促成發明的重要關鍵，為社會帶來進步。修辭上「想像是智慧的火苗」是<b>譬喻</b>。</p>`,
+    questions:[
+      {type:"choice", q:"〈想像與發明〉的文體是？", options:["說明文","記敘文","詩歌","遊記"], answer:0, explain:"本課是說明文（事理類）。"},
+      {type:"choice", q:"本課的主旨是？", options:["想像促進發明","介紹蔡倫的一生","教大家做便利貼","描寫古代生活"], answer:0, explain:"主旨是想像促進發明。"},
+      {type:"choice", q:"課文中改進「東漢」造紙技術的人是？", options:["蔡倫","史賓塞","田中達也","蔡侯"], answer:0, explain:"蔡倫改進造紙術，被封龍亭侯。"},
+      {type:"choice", q:"蔡倫製的紙，後人稱為？", options:["蔡侯紙","宣紙","便利貼","龍亭紙"], answer:0, explain:"因蔡倫被封龍亭侯，故稱蔡侯紙。"},
+      {type:"choice", q:"課文舉「椅子加上輪子」可以變成什麼？", options:["輪椅","桌子","便利貼","紙膠帶"], answer:0, explain:"椅子加輪子可變成輪椅、辦公椅等。"},
+      {type:"choice", q:"「想像是智慧的火苗」用了什麼修辭？", options:["譬喻","設問","誇飾","排比"], answer:0, explain:"把想像比喻成火苗，是譬喻。"},
+      {type:"choice", q:"本課用「合併兩物」的方法練習想像，這叫？", options:["組合法","改變規模法","轉化法","摹寫法"], answer:0, explain:"合併兩物產生發明，是組合法。"},
+      {type:"tf", q:"想像出來的東西，一定都能成為實用的發明。", answer:false, explain:"不一定，想像可以天馬行空，重點在啟發思維。"},
+      {type:"choice", q:"成語「因□施教」（依資質給不同教導）應填？", options:["材","才","財","裁"], answer:0, explain:"「因材施教」指依受教者資質給不同教導。"},
+      {type:"tf", q:"課文認為想像是促成發明的重要關鍵。", answer:true, explain:"想像是促成發明的關鍵，為社會帶來進步。"},
+      {type:"choice", q:"便利貼是哪一間公司的員工發明的？", options:["3M 公司","蘋果公司","南一公司","台積電"], answer:0, explain:"便利貼由 3M 公司的員工發明。"},
+      {type:"choice", q:"本課所屬第肆單元的單元主旨是？", options:["想像讓故事豐富、生活精采","愛無所不在","保護家鄉","認識植物"], answer:0, explain:"第肆單元「想像起飛」主旨是想像讓故事豐富、生活精采。"}
+    ]
+   },
+   {
+    id:"L11", name:"第十一課　小事物　大驚奇",
+    points:[
+      "作者：<b>魯皓平</b>；文體：<b>記敘文</b>。（改變規模的想像）",
+      "介紹微型攝影師<b>田中達也</b>（1981年生於<b>日本熊本縣</b>）。",
+      "主旨：<b>改變既有的想法、重新思考，便可以從不同的視角發現樂趣</b>。",
+      "田中達也的創作：從生活找靈感、收集日常小物、<b>改變規模、重新組合、結合微型人偶</b>，把靈感收入<b>筆記本</b>。",
+      "作品例：五線譜上跨欄、巧克力米麵包上攀岩、耳機當煎臺、<b>青花菜當綠蔭</b>。",
+      "本課用<b>改變規模法</b>練習想像。修辭：摹寫、遞進複句（不僅…還…）、映襯、引用。",
+      "生字延伸成語：尋章摘句、生靈塗炭、集思廣益、改邪歸正。"
+    ],
+    review:`<p>本課作者是<b>魯皓平</b>，是一篇<b>記敘文</b>，介紹日本微型攝影師<span class="kw">田中達也</span>（1981年生於日本熊本縣）。主旨是：只要<span class="kw">改變既有的想法、重新思考</span>，便能從不同的視角發現樂趣，屬第肆單元中<span class="kw">改變規模的想像</span>。</p>
+    <p>田中達也從生活中找靈感、收集日常小物，運用想像力<span class="kw">改變規模、重新組合並結合微型人偶</span>，創造出令人驚奇的畫面，例如把<span class="kw">青花菜當成綠蔭</span>、耳機當煎臺。他會把靈光一閃的點子收進筆記本。本課用<b>改變規模法</b>練習想像，修辭上有摹寫、遞進複句（不僅…還…）等。</p>`,
+    questions:[
+      {type:"choice", q:"〈小事物　大驚奇〉的作者是？", options:["魯皓平","子魚","陳郁如","田中達也"], answer:0, explain:"本課作者是魯皓平，介紹微型攝影師田中達也。"},
+      {type:"choice", q:"課文介紹的微型攝影師是誰？是哪一國人？", options:["田中達也，日本","蔡倫，中國","子魚，臺灣","史賓塞，美國"], answer:0, explain:"田中達也是日本人，1981年生於熊本縣。"},
+      {type:"choice", q:"本課的文體是？", options:["記敘文","說明文","詩歌","書信"], answer:0, explain:"本課是記敘文。"},
+      {type:"choice", q:"本課的主旨是？", options:["改變想法、重新思考，便能從不同視角發現樂趣","教大家攝影技巧","介紹日本文化","描寫食物"], answer:0, explain:"主旨是改變想法、轉換角度就能發現樂趣。"},
+      {type:"choice", q:"田中達也用哪一種蔬菜來呈現濃密的「綠蔭」？", options:["青花菜","高麗菜","菠菜","白蘿蔔"], answer:0, explain:"青花菜頂端濃密、菜梗像樹幹，用來當綠蔭。"},
+      {type:"choice", q:"田中達也創作時，把靈光一閃的點子收在哪裡？", options:["筆記本","手機","電腦","腦中"], answer:0, explain:"他把靈感盡快收入筆記本中。"},
+      {type:"choice", q:"本課用什麼方法練習想像？", options:["改變規模法","組合法","轉化法","總結法"], answer:0, explain:"把事物改變規模產生想像，是改變規模法。"},
+      {type:"choice", q:"「不僅……還……」是哪一種複句？", options:["遞進複句","轉折複句","因果複句","假設複句"], answer:0, explain:"後句比前句更進一層，是遞進複句。"},
+      {type:"choice", q:"田中達也創作的方法，下列何者正確？", options:["改變規模、重新組合、結合微型人偶","只拍真實風景","用電腦合成","畫圖"], answer:0, explain:"他改變規模、重新組合並結合微型人偶。"},
+      {type:"choice", q:"由大變小的「ㄙㄨㄛ小」應寫成？", options:["縮小","宿小","素小","俗小"], answer:0, explain:"「縮小」指由大變小。"},
+      {type:"choice", q:"成語「集思□益」（集結眾人智慧、廣納意見）應填？", options:["廣","光","管","關"], answer:0, explain:"「集思廣益」指集結眾人智慧、廣納意見。"},
+      {type:"tf", q:"田中達也用自製或收藏的微型人偶模型，作為作品中的主角。", answer:true, explain:"他以微型人偶為主角，搭配日常物品建構場景。"}
+    ]
+   },
+   {
+    id:"L12", name:"第十二課　九蛙傳奇",
+    points:[
+      "作者：<b>陳郁如</b>（定居美國，奇幻小說，有「臺版 J.K. 羅琳」美稱）；文體：<b>記敘文（故事）</b>。（賦予生命力的想像）",
+      "故事地點：<b>日月潭</b>（位於<b>南投縣魚池鄉</b>，臺灣第一大半天然湖泊）。",
+      "主旨：透過想像<b>賦予事物生命力</b>，增添故事的豐富性。",
+      "故事結構（故事梯）：<b>背景→問題→轉折→解決→結果</b>。",
+      "情節：蛙巫為保護蛙族獲法力 → 千年衰老法力漸失、蛙族受天災 → 白鹿說爬上<b>九蛙疊像最頂端</b>讓清晨第一道日光照身可永遠守護 → 蛙族幫忙爬上頂端、靈魂進入雕像 → 永遠守護蛙族。",
+      "本課用<b>轉化法</b>（賦予九蛙生命）練習想像。九蛙疊像是日月潭的<b>水位指標</b>。",
+      "生字延伸成語：無妄之災、首鼠兩端、神魂顛倒、一帆風順、息事寧人。"
+    ],
+    review:`<p>本課作者是<b>陳郁如</b>（定居美國，擅長奇幻小說，有「臺版 J.K. 羅琳」之稱），是一篇<b>記敘文（故事）</b>。故事發生在<span class="kw">日月潭</span>（南投縣魚池鄉，臺灣第一大半天然湖泊），主旨是透過想像<span class="kw">賦予事物生命力</span>，讓故事更豐富。</p>
+    <p>故事依<b>背景→問題→轉折→解決→結果</b>展開：蛙巫為保護蛙族獲得法力；千年後衰老、法力漸失，蛙族受到天災；<span class="kw">白鹿</span>告訴牠，爬上<span class="kw">九蛙疊像最頂端</span>、讓清晨第一道日光照在身上，就能永遠守護蛙族；在蛙族幫助下，蛙巫爬上頂端、靈魂進入雕像，從此永遠守護蛙族。本課把九蛙當人來寫，用的是<b>轉化法</b>。</p>`,
+    questions:[
+      {type:"choice", q:"〈九蛙傳奇〉的作者是誰？有什麼美稱？", options:["陳郁如，臺版 J.K. 羅琳","子魚，故事大王","魯皓平，攝影家","田中達也，藝術家"], answer:0, explain:"作者陳郁如，擅長奇幻小說，有臺版 J.K. 羅琳之稱。"},
+      {type:"choice", q:"故事發生在哪一個湖？位於哪個縣？", options:["日月潭，南投縣","嘉明湖，臺東縣","翠峰湖，宜蘭縣","澄清湖，高雄市"], answer:0, explain:"故事發生在南投縣魚池鄉的日月潭。"},
+      {type:"choice", q:"本課的文體是？", options:["記敘文（故事）","說明文","詩歌","議論文"], answer:0, explain:"本課是記敘文，屬於故事。"},
+      {type:"choice", q:"本課的主旨是？", options:["透過想像賦予事物生命力，增添故事豐富性","介紹日月潭的歷史","教大家發電","描寫青蛙的生態"], answer:0, explain:"主旨是用想像賦予事物生命力。"},
+      {type:"choice", q:"蛙巫為什麼能獲得法力？", options:["為了保護蛙族","為了變漂亮","為了賺錢","為了長生不老"], answer:0, explain:"白鹿說蛙族需要被保護，蛙巫答應後獲得法力。"},
+      {type:"choice", q:"白鹿告訴蛙巫，怎麼做才能永遠守護蛙族？", options:["爬上九蛙疊像最頂端，讓清晨第一道日光照在身上","喝下神水","吃下仙草","到山頂大喊"], answer:0, explain:"爬上九蛙疊像頂端讓清晨第一道日光照身，靈魂便留存雕像中。"},
+      {type:"choice", q:"本課故事的結構順序是？", options:["背景→問題→轉折→解決→結果","起→承→轉→合","總說→分說→總結","現在→回憶"], answer:0, explain:"用故事梯：背景、問題、轉折、解決、結果。"},
+      {type:"choice", q:"本課把「九蛙」當作人來寫、賦予生命，用了什麼方法練習想像？", options:["轉化法","組合法","改變規模法","摹寫法"], answer:0, explain:"賦予事物生命，是轉化法。"},
+      {type:"choice", q:"蛙巫爬九蛙疊像時，是誰幫助牠？", options:["蛙族","白鹿","人類","遊客"], answer:0, explain:"蛙族圍著推著蛙巫，幫牠爬上頂端。"},
+      {type:"choice", q:"日月潭是臺灣第幾大的（半天然）湖泊？", options:["第一大","第二大","第三大","最小"], answer:0, explain:"日月潭是臺灣第一大的半天然湖泊。"},
+      {type:"choice", q:"身體老化的「ㄕㄨㄞ老」應寫成？", options:["衰老","哀老","衷老","衰退"], answer:0, explain:"「衰老」指身體、外貌老化。"},
+      {type:"choice", q:"成語「一帆風□」（非常順利）應填？", options:["順","川","巡","訓"], answer:0, explain:"「一帆風順」比喻非常順利、毫無阻礙。"}
+    ]
+   }
+  ]
+ }
+];
+
+const LEVELS = ["⚪ 未挑戰","🥉 銅牌","🥈 銀牌","🥇 金牌","🏆 精熟"];
+const LADDER = ["🥉 銅牌","🥈 銀牌","🥇 金牌","🏆 精熟"];
+const ROUND_SIZE = 10;
+const STORE_KEY = "gy4_u34_levels_v1";
+function loadLevels(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch(e){return {};} }
+function saveLevels(o){ try{localStorage.setItem(STORE_KEY, JSON.stringify(o));}catch(e){} }
+function getLevel(id){ return loadLevels()[id]||0; }
+function setLevel(id, lv){ const o=loadLevels(); o[id]=Math.max(o[id]||0, lv); saveLevels(o); }
+function tierForAccuracy(acc){ if(acc>=1.0)return 4; if(acc>=0.9)return 3; if(acc>=0.75)return 2; if(acc>=0.6)return 1; return 0; }
+function badgeClass(lv){ return lv>0 ? ("badge lv"+lv) : "badge"; }
+
+const allLessons = DATA.flatMap(u=>u.lessons);
+function renderHome(){
+  const list = document.getElementById("unitList"); list.innerHTML="";
+  DATA.forEach(u=>{
+    const wrap=document.createElement("div"); wrap.className="unit"+(u.cls==="u4"?" u4":"");
+    wrap.innerHTML=`<h2>${u.title}</h2>`;
+    u.lessons.forEach(ls=>{
+      const lv=getLevel(ls.id); const card=document.createElement("div"); card.className="card";
+      card.innerHTML=`<div class="lesson-head"><span class="name">${ls.name}</span><span class="${badgeClass(lv)}">${LEVELS[lv]}</span></div>
+        <div class="btnrow">
+          <button class="${u.cls==='u4'?'btn-u4':'btn-u3'}" data-go="lesson" data-id="${ls.id}">看重點 / 複習</button>
+          <button class="btn-main" data-go="quiz" data-id="${ls.id}">開始測驗</button>
+        </div>`;
+      wrap.appendChild(card);
+    });
+    list.appendChild(wrap);
+  });
+  const mastered=allLessons.filter(l=>getLevel(l.id)>=4).length;
+  const pct=Math.round(mastered/allLessons.length*100);
+  document.getElementById("ovPct").textContent=pct;
+  document.getElementById("ovBar").style.width=pct+"%";
+  document.getElementById("ovText").textContent = mastered===allLessons.length ? "🎊 太厲害了！全部達到精熟！" : `已精熟 ${mastered} / ${allLessons.length} 課，繼續加油！`;
+  list.querySelectorAll("button[data-go]").forEach(b=>{
+    b.addEventListener("click",()=>{ const id=b.getAttribute("data-id"); if(b.getAttribute("data-go")==="lesson") openLesson(id); else startQuiz(id); });
+  });
+}
+function findLesson(id){ return allLessons.find(l=>l.id===id); }
+function show(sec){ ["home","lesson","quiz","result"].forEach(s=>document.getElementById(s).classList.toggle("hidden", s!==sec)); window.scrollTo({top:0,behavior:"smooth"}); }
+function goHome(){ renderHome(); show("home"); }
+function openLesson(id){
+  const ls=findLesson(id); const lv=getLevel(id);
+  document.getElementById("lsName").textContent=ls.name;
+  const badge=document.getElementById("lsBadge"); badge.className=badgeClass(lv); badge.textContent=LEVELS[lv];
+  document.getElementById("lsPoints").innerHTML=ls.points.map(p=>`<li>${p}</li>`).join("");
+  document.getElementById("lsReview").innerHTML=ls.review;
+  document.getElementById("lsStart").onclick=()=>startQuiz(id);
+  show("lesson");
+}
+let q={lessonId:null, items:[], idx:0, correct:0, answered:false};
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+function startQuiz(id){ const ls=findLesson(id); const pool=shuffle(ls.questions); q={lessonId:id, items:pool.slice(0,Math.min(ROUND_SIZE,pool.length)), idx:0, correct:0, answered:false}; show("quiz"); renderQuestion(); }
+function renderQuestion(){
+  q.answered=false; const it=q.items[q.idx];
+  document.getElementById("qIdx").textContent=`第 ${q.idx+1} / ${q.items.length} 題`;
+  document.getElementById("qScore").textContent=`✔ ${q.correct}`;
+  document.getElementById("qBar").style.width=Math.round(q.idx/q.items.length*100)+"%";
+  document.getElementById("qText").innerHTML=`<span class="qtype">${it.type==="tf"?"是非題":"選擇題"}</span>${it.q}`;
+  const opts=document.getElementById("qOpts"); opts.innerHTML="";
+  const choices=it.type==="tf"?["⭕ 對","❌ 錯"]:it.options;
+  choices.forEach((c,i)=>{ const b=document.createElement("button"); b.className="opt"; b.innerHTML=c; b.addEventListener("click",()=>answer(i,b)); opts.appendChild(b); });
+  const fb=document.getElementById("qFb"); fb.className="feedback"; fb.innerHTML="";
+  document.getElementById("qNext").classList.add("hidden");
+}
+function answer(i,btn){
+  if(q.answered)return; q.answered=true; const it=q.items[q.idx];
+  const correctIdx=it.type==="tf"?(it.answer?0:1):it.answer; const isRight=(i===correctIdx);
+  if(isRight)q.correct++;
+  const opts=document.getElementById("qOpts").children;
+  for(let k=0;k<opts.length;k++)opts[k].setAttribute("disabled","true");
+  opts[correctIdx].classList.add("correct"); if(!isRight)btn.classList.add("wrong");
+  const fb=document.getElementById("qFb"); fb.className="feedback show "+(isRight?"good":"bad");
+  fb.innerHTML=`<span class="lab">${isRight?"✅ 答對了！":"❌ 答錯了"}</span>${it.explain}`;
+  document.getElementById("qScore").textContent=`✔ ${q.correct}`;
+  const next=document.getElementById("qNext"); next.classList.remove("hidden");
+  next.textContent=(q.idx===q.items.length-1)?"看結果 🎯":"下一題 →";
+}
+document.getElementById("qNext").addEventListener("click",()=>{ if(q.idx<q.items.length-1){q.idx++; renderQuestion();} else finishQuiz(); });
+function quitQuiz(){ goHome(); }
+function finishQuiz(){
+  const total=q.items.length, acc=q.correct/total;
+  const before=getLevel(q.lessonId), earned=tierForAccuracy(acc), after=Math.max(before,earned);
+  setLevel(q.lessonId, after);
+  document.getElementById("qBar").style.width="100%";
+  document.getElementById("rScore").textContent=`答對 ${q.correct} / ${total} 題（${Math.round(acc*100)}%）`;
+  document.getElementById("rEmoji").textContent=acc>=1?"🏆":acc>=0.9?"🥇":acc>=0.75?"🥈":acc>=0.6?"🥉":"💪";
+  const lvBox=document.getElementById("rLevel");
+  if(after>before){ lvBox.className="levelup up"; lvBox.innerHTML=`🎉 升級！本課等級達到 <b>${LEVELS[after]}</b>`; }
+  else if(earned>=4){ lvBox.className="levelup up"; lvBox.innerHTML=`🏆 太棒了！維持 <b>精熟</b> 等級！`; }
+  else{ lvBox.className="levelup same"; lvBox.innerHTML=`目前等級 <b>${LEVELS[after]}</b>。${after<4?`再加油，挑戰 <b>${LADDER[after]}</b>${after<3?"以上":""}！`:""}`; }
+  const ladder=document.getElementById("rLadder"); ladder.innerHTML="";
+  LADDER.forEach((name,k)=>{ const lv=k+1; const r=document.createElement("span"); r.className="rung"+(after>=lv?" on":"")+(after===lv?" cur":""); r.textContent=name; ladder.appendChild(r); });
+  document.getElementById("rRetry").onclick=()=>startQuiz(q.lessonId);
+  document.getElementById("rReview").onclick=()=>openLesson(q.lessonId);
+  show("result");
+}
+function resetAll(){ if(confirm("確定要清除所有課程的等級與進度嗎？")){ localStorage.removeItem(STORE_KEY); goHome(); } }
+goHome();
+</script>
+</body>
+</html>
