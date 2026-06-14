@@ -3,78 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>四下社會 期末複習｜第3～4單元（康軒版）</title>
+<title>四下社會 期末複習｜引導闖關版（康軒）</title>
 <style>
   :root{
-    --bg:#f4f7fb; --card:#ffffff; --ink:#1f2a44; --muted:#64748b;
-    --u3:#2f8f6b; --u3-soft:#e3f5ec;
-    --u4:#c2611f; --u4-soft:#fbeede;
-    --line:#e2e8f0; --shadow:0 6px 20px rgba(31,42,68,.08);
-    --ok:#16a34a; --no:#dc2626; --accent:#2563eb;
+    --bg:#f1f7fb; --card:#ffffff; --ink:#16263a; --muted:#5b7186;
+    --u3:#2f8f6b; --u4:#c2611f; --line:#dde7ef; --shadow:0 6px 20px rgba(16,38,58,.08);
+    --ok:#16a34a; --no:#dc2626; --accent:#2f8f6b; --lock:#b8c4d0;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
     background:var(--bg); color:var(--ink); line-height:1.7; -webkit-text-size-adjust:100%;}
-  .wrap{max-width:880px; margin:0 auto; padding:18px 16px 60px;}
-  header.top{text-align:center; padding:20px 10px 6px;}
-  header.top h1{font-size:1.55rem; margin:0 0 4px;}
-  header.top p{margin:0; color:var(--muted); font-size:.95rem;}
+  .wrap{max-width:840px; margin:0 auto; padding:18px 16px 70px;}
+  header.top{text-align:center; padding:18px 10px 4px;}
+  header.top h1{font-size:1.5rem; margin:0 0 4px;}
+  header.top p{margin:0; color:var(--muted); font-size:.92rem;}
   .hidden{display:none !important;}
-
-  /* progress overview */
   .overview{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:14px 16px; margin:16px 0; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
-  .overview .bar{flex:1; min-width:160px; height:14px; background:#eef2f7; border-radius:99px; overflow:hidden;}
-  .overview .bar > i{display:block; height:100%; width:0; background:linear-gradient(90deg,#34d399,#2563eb); transition:width .5s;}
+  .overview .bar{flex:1; min-width:150px; height:14px; background:#e8eff5; border-radius:99px; overflow:hidden;}
+  .overview .bar > i{display:block; height:100%; width:0; background:linear-gradient(90deg,#5fc6a0,#2f8f6b); transition:width .5s;}
   .overview .pct{font-weight:800; font-size:1.1rem;}
   .overview small{color:var(--muted)}
-
-  .unit{margin:22px 0 6px;}
-  .unit h2{display:flex; align-items:center; gap:10px; font-size:1.2rem; margin:0 0 10px; padding-left:12px; border-left:6px solid var(--u3);}
+  .unit{margin:20px 0 6px;}
+  .unit h2{display:flex; align-items:center; gap:10px; font-size:1.15rem; margin:0 0 10px; padding-left:12px; border-left:6px solid var(--u3);}
   .unit.u4 h2{border-left-color:var(--u4);}
-
   .card{background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); padding:16px; margin:12px 0;}
   .lesson-head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
   .lesson-head .name{font-size:1.08rem; font-weight:800;}
-  .badge{font-size:.92rem; padding:4px 10px; border-radius:99px; background:#eef2f7; color:var(--muted); white-space:nowrap;}
-  .badge.lv1{background:#fdf0e1;color:#a85a17}
-  .badge.lv2{background:#eef1f4;color:#4b5563}
-  .badge.lv3{background:#fff6d6;color:#a07c00}
-  .badge.lv4{background:#e7f9ee;color:#15803d; font-weight:800}
-
+  .badge{font-size:.9rem; padding:4px 10px; border-radius:99px; background:#eef2f7; color:var(--muted); white-space:nowrap;}
+  .badge.s1{background:#eaf1f8;color:#3b6aa0}
+  .badge.s2{background:#fdf0e1;color:#a85a17}
+  .badge.s3{background:#eef1f4;color:#566270}
+  .badge.s4{background:#fff6d6;color:#9a7a00}
+  .badge.s5{background:#e7f9ee;color:#15803d;font-weight:800}
+  .ministars{margin-top:8px; font-size:.95rem; letter-spacing:2px;}
   .btnrow{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;}
   button{font-family:inherit; cursor:pointer; border:0; border-radius:12px; padding:11px 16px; font-size:1rem; font-weight:700; transition:transform .05s, filter .15s;}
   button:active{transform:translateY(1px)}
+  button:disabled{cursor:not-allowed; opacity:.55;}
   .btn-main{background:var(--accent); color:#fff;}
   .btn-soft{background:#eef2f7; color:var(--ink);}
   .btn-u3{background:var(--u3); color:#fff;}
   .btn-u4{background:var(--u4); color:#fff;}
   .btn-ghost{background:transparent; color:var(--accent); padding:8px 4px;}
-  button:hover{filter:brightness(.97)}
+  button:hover:not(:disabled){filter:brightness(.97)}
+  .toplink{display:inline-block; margin:8px 0; color:var(--accent); font-weight:700; cursor:pointer;}
 
-  /* lesson detail */
-  .section-title{font-weight:800; font-size:1.05rem; margin:4px 0 8px; display:flex; align-items:center; gap:8px;}
-  .points{margin:0; padding:0; list-style:none;}
-  .points li{position:relative; padding:8px 10px 8px 30px; border-bottom:1px dashed var(--line);}
-  .points li:last-child{border-bottom:0}
-  .points li::before{content:"📌"; position:absolute; left:6px; top:8px; font-size:.95rem;}
-  .review p{margin:.4rem 0;}
-  .review .kw{background:#fff3cd; padding:0 3px; border-radius:4px; font-weight:700;}
-  details.more{margin-top:10px; background:#f8fafc; border:1px solid var(--line); border-radius:12px; padding:6px 12px;}
-  details.more summary{cursor:pointer; font-weight:700; color:var(--accent);}
+  /* stage map */
+  .stage{display:flex; align-items:center; gap:14px; padding:14px 16px; margin:10px 0; border-radius:14px; background:var(--card); border:1px solid var(--line); box-shadow:var(--shadow);}
+  .stage .ic{font-size:1.7rem; width:40px; text-align:center; flex:none;}
+  .stage .info{flex:1;}
+  .stage .info .t{font-weight:800; font-size:1.05rem;}
+  .stage .info .d{color:var(--muted); font-size:.85rem;}
+  .stage.locked{opacity:.6; background:#f4f7fa;}
+  .stage.done{border-color:#bfe6cd; background:#f1fbf5;}
+  .stage .act{flex:none;}
+  .stage .status{font-size:.85rem; font-weight:700; padding:4px 10px; border-radius:99px;}
+  .status.ok{background:#e7f9ee;color:#15803d}
+  .status.lk{background:#eef2f7;color:#94a3b8}
+
+  /* cards (guided reading) */
+  .tierchip{display:inline-block; font-size:.85rem; font-weight:800; padding:3px 12px; border-radius:99px; margin-bottom:14px;}
+  .tier-基礎{background:#e3f5ec; color:#1c7a4f;}
+  .tier-進階{background:#e1eefb; color:#1d5fa8;}
+  .tier-深入{background:#f4e9da; color:#8a5a1d;}
+  .learncard{min-height:200px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:26px 18px;}
+  .learncard .big{font-size:1.4rem; font-weight:800; line-height:1.8;}
+  .learncard .big .hl{background:#fff3cd; padding:0 4px; border-radius:5px;}
+  .dots{display:flex; gap:6px; justify-content:center; margin:14px 0 4px; flex-wrap:wrap;}
+  .dot{width:9px; height:9px; border-radius:50%; background:#d6e2ee;}
+  .dot.on{background:var(--accent);}
+  .dot.seen{background:#9cc3e8;}
 
   /* quiz */
-  .quizbar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; color:var(--muted); font-size:.95rem;}
+  .quizbar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; color:var(--muted); font-size:.92rem;}
   .qprog{flex:1; height:8px; background:#eef2f7; border-radius:99px; overflow:hidden;}
   .qprog > i{display:block; height:100%; background:var(--accent); width:0; transition:width .3s;}
   .qtext{font-size:1.15rem; font-weight:800; margin:10px 0 14px;}
-  .qtype{font-size:.8rem; font-weight:700; padding:2px 8px; border-radius:6px; background:#eef2f7; color:var(--muted); margin-right:8px;}
+  .qtype{font-size:.78rem; font-weight:700; padding:2px 8px; border-radius:6px; background:#eef2f7; color:var(--muted); margin-right:8px;}
   .opts{display:flex; flex-direction:column; gap:10px;}
-  .opt{display:block; width:100%; text-align:left; background:#f8fafc; border:2px solid var(--line); color:var(--ink); font-weight:600; padding:13px 14px; border-radius:12px;}
-  .opt:hover{border-color:#c7d2fe}
+  .opt{display:block; width:100%; text-align:left; background:#f7fafc; border:2px solid var(--line); color:var(--ink); font-weight:600; padding:13px 14px; border-radius:12px;}
+  .opt:hover{border-color:#bcdcf5}
   .opt.correct{border-color:var(--ok); background:#e7f9ee;}
   .opt.wrong{border-color:var(--no); background:#fde8e8;}
-  .opt[disabled]{cursor:default; opacity:1;}
+  .opt[disabled]{cursor:default;}
   .feedback{margin-top:14px; padding:12px 14px; border-radius:12px; font-weight:600; display:none;}
   .feedback.show{display:block;}
   .feedback.good{background:#e7f9ee; color:#14532d;}
@@ -85,497 +97,259 @@
   .result{text-align:center; padding:10px 6px;}
   .result .big{font-size:3rem; margin:6px 0;}
   .result .score{font-size:1.3rem; font-weight:800;}
-  .levelup{font-size:1.15rem; font-weight:800; margin:10px 0; padding:10px; border-radius:12px;}
-  .levelup.up{background:#e7f9ee; color:#15803d;}
-  .levelup.same{background:#eef2f7; color:#475569;}
-  .ladder{display:flex; justify-content:center; gap:6px; margin:14px 0; flex-wrap:wrap;}
-  .rung{font-size:.85rem; padding:6px 10px; border-radius:10px; background:#eef2f7; color:var(--muted);}
-  .rung.on{background:#fff6d6; color:#a07c00; font-weight:800;}
-  .rung.cur{outline:3px solid #fbbf24;}
-
-  footer{ text-align:center; color:var(--muted); font-size:.82rem; margin-top:30px;}
-  .toplink{display:inline-block; margin:10px 0; color:var(--accent); font-weight:700; cursor:pointer;}
-  @media(max-width:520px){
-    header.top h1{font-size:1.25rem}
-    .qtext{font-size:1.05rem}
-  }
+  .verdict{font-size:1.1rem; font-weight:800; margin:10px 0; padding:12px; border-radius:12px;}
+  .verdict.pass{background:#e7f9ee; color:#15803d;}
+  .verdict.fail{background:#fdf0e1; color:#a85a17;}
+  footer{ text-align:center; color:var(--muted); font-size:.8rem; margin-top:30px;}
+  @media(max-width:520px){ header.top h1{font-size:1.22rem} .qtext{font-size:1.05rem} .learncard .big{font-size:1.2rem} }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- ===== HOME ===== -->
+  <!-- HOME -->
   <section id="home">
     <header class="top">
       <h1>🗺️ 四下社會 期末複習</h1>
-      <p>第三單元 家鄉的交通 ｜ 第四單元 家鄉風情畫（康軒版）</p>
+      <p>引導闖關版 ｜ 第三單元 家鄉的交通・第四單元 家鄉風情畫（康軒）</p>
     </header>
-
     <div class="overview">
-      <div>
-        <div class="pct"><span id="ovPct">0</span>%</div>
-        <small>精熟進度</small>
-      </div>
+      <div><div class="pct"><span id="ovPct">0</span>%</div><small>精熟進度</small></div>
       <div class="bar"><i id="ovBar"></i></div>
-      <div><small id="ovText">完成各課測驗，集滿 🏆 精熟吧！</small></div>
+      <div><small id="ovText"></small></div>
     </div>
-
     <div id="unitList"></div>
-
-    <div style="text-align:center; margin-top:20px;">
+    <div style="text-align:center; margin-top:18px;">
       <button class="btn-ghost" onclick="resetAll()">🗑️ 重置所有進度</button>
     </div>
-
     <footer>
-      內容依康軒版國小社會四下教師手冊整理，供班級複習使用。<br>
-      等級：⚪ 未挑戰 → 🥉 銅牌 → 🥈 銀牌 → 🥇 金牌 → 🏆 精熟（每回合隨機抽 10 題，全對即達精熟）
+      內容依康軒版國小社會四下教師手冊整理。每課先「讀重點小卡」，再一關一關闖：🥉基礎→🥈中等→🥇進階→🏆精熟。<br>
+      每關隨機抽 10 題、選項順序會打散；答對率達標才解鎖下一關，精熟關要全對。共 <span id="ovQ">0</span> 題題庫。
     </footer>
   </section>
 
-  <!-- ===== LESSON DETAIL ===== -->
+  <!-- LESSON MAP -->
   <section id="lesson" class="hidden">
     <span class="toplink" onclick="goHome()">← 回首頁</span>
+    <div class="card"><div class="lesson-head"><span class="name" id="lsName"></span><span class="badge" id="lsBadge"></span></div></div>
+    <div id="stageList"></div>
+  </section>
+
+  <!-- CARDS -->
+  <section id="cards" class="hidden">
+    <span class="toplink" onclick="backToLesson()">← 回闖關地圖</span>
     <div class="card">
-      <div class="lesson-head">
-        <span class="name" id="lsName"></span>
-        <span class="badge" id="lsBadge"></span>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="section-title">🔑 重點提示</div>
-      <ul class="points" id="lsPoints"></ul>
-    </div>
-
-    <div class="card review">
-      <div class="section-title">📖 複習內容</div>
-      <div id="lsReview"></div>
-    </div>
-
-    <div class="card" style="text-align:center;">
-      <div class="section-title" style="justify-content:center;">✏️ 複習測驗</div>
-      <p style="color:var(--muted); margin:.2rem 0 0;">隨機抽題，答對率越高、等級越高，可無限次重做挑戰 <b>🏆 精熟</b>。</p>
-      <div class="btnrow" style="justify-content:center;">
-        <button class="btn-main" id="lsStart">開始測驗</button>
+      <div style="text-align:center"><span class="tierchip" id="cdTier"></span></div>
+      <div class="learncard"><div class="big" id="cdText"></div></div>
+      <div class="dots" id="cdDots"></div>
+      <div class="quizbar"><span id="cdIdx"></span><span></span></div>
+      <div class="btnrow" style="justify-content:space-between;">
+        <button class="btn-soft" id="cdPrev">← 上一張</button>
+        <button class="btn-main" id="cdNext">下一張 →</button>
       </div>
     </div>
   </section>
 
-  <!-- ===== QUIZ ===== -->
+  <!-- QUIZ -->
   <section id="quiz" class="hidden">
-    <span class="toplink" onclick="quitQuiz()">← 結束測驗</span>
+    <span class="toplink" onclick="backToLesson()">← 結束，回地圖</span>
     <div class="card">
-      <div class="quizbar">
-        <span id="qIdx"></span>
-        <div class="qprog"><i id="qBar"></i></div>
-        <span id="qScore"></span>
-      </div>
+      <div class="quizbar"><span id="qLvl"></span><div class="qprog"><i id="qBar"></i></div><span id="qScore"></span></div>
       <div class="qtext" id="qText"></div>
       <div class="opts" id="qOpts"></div>
       <div class="feedback" id="qFb"></div>
-      <div class="btnrow" style="justify-content:flex-end;">
-        <button class="btn-main hidden" id="qNext">下一題 →</button>
-      </div>
+      <div class="btnrow" style="justify-content:flex-end;"><button class="btn-main hidden" id="qNext">下一題 →</button></div>
     </div>
   </section>
 
-  <!-- ===== RESULT ===== -->
+  <!-- RESULT -->
   <section id="result" class="hidden">
     <div class="card result">
       <div class="big" id="rEmoji">🎉</div>
       <div class="score" id="rScore"></div>
-      <div class="levelup" id="rLevel"></div>
-      <div class="ladder" id="rLadder"></div>
+      <div class="verdict" id="rVerdict"></div>
       <div class="btnrow" style="justify-content:center;">
         <button class="btn-main" id="rRetry">再挑戰一次</button>
-        <button class="btn-soft" id="rReview">看重點</button>
-        <button class="btn-soft" onclick="goHome()">回首頁</button>
+        <button class="btn-soft" id="rNext"></button>
+        <button class="btn-soft" onclick="backToLesson()">回地圖</button>
       </div>
     </div>
   </section>
-
 </div>
 
 <script>
-/* ============================================================
-   資料：第3、4單元（重點提示 / 複習內容 / 題庫）
-   題型 type: 'choice'（單選，answer=正解索引） / 'tf'（是非，answer=true/false）
-   ============================================================ */
-const DATA = [
- {
-  id:"u3", title:"第三單元　家鄉的交通", cls:"u3",
-  lessons:[
-   {
-    id:"3-1", name:"3-1　家鄉的運輸",
-    points:[
-      "家鄉的運輸方式分三類：<b>陸上運輸、水上運輸、空中運輸</b>。",
-      "<b>陸上運輸</b>：公路較能因應自然環境、提供各式車輛行駛；鐵路、捷運、高速公路、高鐵則<b>載運量大、速度較快</b>。可用橋梁跨越河流、隧道貫穿山地。",
-      "目前有捷運的都市：<b>臺北、新北、桃園、臺中、高雄</b>。",
-      "<b>水上運輸</b>：家鄉鄰近海洋、湖泊或河流時發展；設施有碼頭、港口；船舶有渡輪（載人與車）、貨輪（運貨）、觀光遊艇。",
-      "<b>空中運輸</b>：主要工具是飛機；需寬廣平地起降、易受天氣影響；載客量多、速度快、可長途跨國；<b>規定與限制較多</b>（液體管制、安全檢查、起降禁用電子產品）以確保飛安。",
-      "運輸發展的影響：正面→便利、促進產業與人口發展；負面→影響行人安全、破壞自然環境。",
-      "<b>永續做法</b>：謹慎評估、適度興建；設生態廊道保護動物（如墾丁陸蟹）；強調行人路權優先。",
-      "偏遠地區交通：政府設置可事先預約的<b>幸福巴士、幸福小黃</b>（DRTS 需求反應式運輸）。"
-    ],
-    review:`<p>家鄉便捷的運輸，讓居民能快速往來各地、運送貨物。依照不同的<span class="kw">自然環境</span>與<span class="kw">人口數量</span>，發展出<b>陸上、水上、空中</b>三種運輸方式。</p>
-    <p><b>陸上運輸</b>中，公路最能因應各種地形、提供各式車輛行駛；而鐵路、捷運、高速公路、高鐵的特性是<span class="kw">載運量大、速度快</span>。遇到河流可蓋橋梁跨越，遇到山地可挖隧道貫穿。</p>
-    <p><b>水上運輸</b>需要碼頭、港口等設施，船舶包括能同時載人與車的<span class="kw">渡輪</span>、專門運貨的<span class="kw">貨輪</span>、休閒觀光的遊艇。<b>空中運輸</b>以飛機為主，速度快、能跨國，但容易受天氣影響，而且為了<span class="kw">飛航安全</span>，有液體管制、安全檢查等較多限制。</p>
-    <p>運輸發展帶來便利、促進產業與人口，但也可能傷害環境與行人安全。因此要追求<span class="kw">人與環境的永續平衡</span>，例如墾丁設立生態廊道保護過馬路的陸蟹；偏遠地區則有可預約的幸福巴士、幸福小黃服務居民。</p>`,
-    questions:[
-      {type:"choice", q:"下列哪一種是「陸上運輸」工具？", options:["渡輪","高鐵","飛機","貨輪"], answer:1, explain:"高鐵屬於陸上運輸；渡輪、貨輪是水上運輸，飛機是空中運輸。"},
-      {type:"tf", q:"公路運輸比鐵路更能因應自然環境，提供各式車輛行駛。", answer:true, explain:"公路較能因應各種地形，提供各式車輛行駛。"},
-      {type:"choice", q:"關於「鐵路、捷運、高鐵」的特性，何者正確？", options:["載運量小","速度很慢","載運量大、速度快","只能載貨"], answer:2, explain:"鐵路、捷運、高鐵的特性是載運量大、速度較快。"},
-      {type:"tf", q:"臺灣目前有捷運的都市包括臺北、新北、桃園、臺中、高雄。", answer:true, explain:"課本列出有捷運的都市為臺北、新北、桃園、臺中、高雄。"},
-      {type:"choice", q:"家鄉鄰近海洋、湖泊或河流時，適合發展哪一種運輸？", options:["陸上運輸","水上運輸","空中運輸","太空運輸"], answer:1, explain:"鄰近海洋、湖泊或河流可發展水上運輸。"},
-      {type:"choice", q:"下列何者是「水上運輸」的設施？", options:["機場","碼頭與港口","高速公路","火車站"], answer:1, explain:"碼頭、港口是水上運輸的設施。"},
-      {type:"choice", q:"可以同時載送人與車輛的船舶是？", options:["貨輪","渡輪","漁船","遊艇"], answer:1, explain:"渡輪能同時載送人與車輛；貨輪專門運貨。"},
-      {type:"tf", q:"飛機需要較寬廣的平地起飛與降落，而且航行時容易受天氣影響。", answer:true, explain:"飛機需寬廣平地起降，且容易受天氣變化影響。"},
-      {type:"choice", q:"為什麼空中運輸的規定和限制比較多？", options:["因為飛機很慢","為了確保飛航安全","因為飛機很便宜","因為都沒有人搭"], answer:1, explain:"為確保飛航安全，有液體管制、安全檢查、起降禁用電子產品等規定。"},
-      {type:"tf", q:"搭飛機時，起飛和降落可以隨意使用電子產品。", answer:false, explain:"起飛、降落時不可使用電子產品，以確保飛安。"},
-      {type:"choice", q:"運輸發展可能帶來的「負面」影響是？", options:["促進產業發展","方便人們往來","破壞自然環境、影響行人安全","運送貨物更方便"], answer:2, explain:"運輸發展也可能破壞自然環境、影響行人用路安全。"},
-      {type:"choice", q:"墾丁為了保護過馬路的陸蟹，採取的措施是？", options:["蓋更多公路","設立告示牌、交通管制、建立生態廊道","禁止居民居住","把陸蟹移到別處"], answer:1, explain:"墾丁國家公園以告示牌、交通管制與生態廊道護蟹過馬路。"},
-      {type:"tf", q:"為了偏遠地區居民的交通需求，政府設置可事先預約的「幸福巴士、幸福小黃」。", answer:true, explain:"幸福巴士、幸福小黃可事前預約，方便偏遠地區居民外出。"},
-      {type:"choice", q:"興建運輸設施時，為了「永續發展」應該怎麼做？", options:["不管環境盡量蓋","謹慎評估、適度興建以降低環境危害","完全不蓋任何設施","只蓋公路就好"], answer:1, explain:"應謹慎評估、適度興建，降低對環境的危害。"},
-      {type:"tf", q:"公路可以透過橋梁跨越河流，也可以興建隧道貫穿山地。", answer:true, explain:"橋梁可跨河、隧道可穿山。"}
-    ]
-   },
-   {
-    id:"3-2", name:"3-2　訊息的傳遞",
-    points:[
-      "人們傳遞訊息是為了<b>溝通、聯繫情感</b>。",
-      "傳遞方式：口耳相傳、書信郵寄、電話聯絡、網路通訊、智慧型手機；早期還有飛鴿傳書、信箭、瓶中信、電報、旗語、烽火、摩斯密碼等。",
-      "智慧型手機、平板電腦方便攜帶又能上網，稱為<b>行動載具</b>。",
-      "各種傳遞方式的共同優點：<b>打破時間與空間的限制</b>。",
-      "<b>網路通訊的功能</b>：即時聯絡、查詢資料、學習知識、休閒娛樂、購物消費。",
-      "<b>網路通訊的影響</b>：帶來便利，但也有網路謠言、訊息難辨真假、網路成癮、使用過長影響身體健康等問題。",
-      "正確使用態度：判斷訊息真假（可查<b>臺灣事實查核中心</b>）、遵守網路禮儀、適時休息（用眼 30 分鐘休息 10 分鐘）、妥善分配時間。",
-      "尊重隱私與<b>肖像權</b>：上傳合照要先經對方同意；不可隨意下載別人的照片來用；不隨意轉傳未經證實的訊息。"
-    ],
-    review:`<p>人們為了<span class="kw">溝通與聯繫情感</span>，發展出各種傳遞訊息的方法：口耳相傳、書信郵寄、電話聯絡、網路通訊、智慧型手機等。早期則有飛鴿傳書、旗語、烽火、摩斯密碼等方式。能方便攜帶又能上網的智慧型手機與平板，稱為<span class="kw">行動載具</span>。</p>
-    <p>各種傳遞方式都能<span class="kw">打破時間與空間的限制</span>。其中網路通訊的功能很多，包括：<b>即時聯絡、查詢資料、學習知識、休閒娛樂、購物消費</b>。</p>
-    <p>不過網路通訊也帶來困擾：網路謠言流傳、訊息真假難辨、容易成癮、使用過長會影響健康。因此面對網路訊息要<span class="kw">先查證、判斷真假</span>（可查臺灣事實查核中心），遵守網路禮儀，<span class="kw">適時休息</span>（用眼 30 分鐘休息 10 分鐘）、妥善分配時間；上傳合照前要先取得對方同意，尊重<span class="kw">肖像權</span>，也不隨意轉傳未經證實的消息。</p>`,
-    questions:[
-      {type:"choice", q:"人們傳遞訊息主要是為了什麼？", options:["浪費時間","溝通、聯繫情感","製造垃圾","比賽輸贏"], answer:1, explain:"傳遞訊息是為了溝通、聯繫情感等需要。"},
-      {type:"choice", q:"下列何者「不是」現代常見的訊息傳遞方式？", options:["電話聯絡","網路通訊","飛鴿傳書","智慧型手機"], answer:2, explain:"飛鴿傳書是早期的傳遞方式，不是現代常見方式。"},
-      {type:"tf", q:"智慧型手機、平板電腦方便攜帶又能上網，稱為「行動載具」。", answer:true, explain:"能方便攜帶又有上網功能的，稱為行動載具。"},
-      {type:"choice", q:"各種傳遞訊息的方式有什麼共同的優點？", options:["只能面對面說","打破時間與空間的限制","速度都很慢","一次只能傳給一個人"], answer:1, explain:"各種傳遞方式都能打破時間與空間的限制。"},
-      {type:"choice", q:"下列何者「不是」網路通訊的功能？", options:["即時聯絡","查詢資料","購物消費","讓人完全不用睡覺"], answer:3, explain:"網路通訊功能有即時聯絡、查詢資料、學習知識、休閒娛樂、購物消費。"},
-      {type:"tf", q:"網路上的訊息都是真的，可以直接相信並轉傳給大家。", answer:false, explain:"網路訊息真假難辨，應先查證判斷，不隨意轉傳。"},
-      {type:"choice", q:"使用網路通訊時間過長，可能造成什麼問題？", options:["身體更健康","網路成癮、視力下降、影響健康","成績一定變好","睡得更好"], answer:1, explain:"長時間使用易造成網路成癮、視力下降、影響身體健康。"},
-      {type:"choice", q:"想把和姐姐的合照上傳到網路，正確的做法是？", options:["直接上傳","先經過姐姐同意才上傳","偷偷上傳","改成別人的名字再傳"], answer:1, explain:"要尊重肖像權，上傳合照前須先取得對方同意。"},
-      {type:"tf", q:"為了保護眼睛，使用螢幕應「用眼 30 分鐘，休息 10 分鐘」。", answer:true, explain:"適時休息可避免影響視力與健康。"},
-      {type:"choice", q:"發現自己或同學成為網路謠言主角時，最適當的做法是？", options:["也上網罵回去","告訴家人師長、在網頁公告澄清、必要時報警","假裝沒看到並一直轉傳","刪掉帳號逃走"], answer:1, explain:"應請師長家人協助澄清、停止散布，必要時可報警。"},
-      {type:"tf", q:"可以隨意下載別人的照片拿來自己使用。", answer:false, explain:"照片有肖像權或著作權，使用前應取得對方同意。"},
-      {type:"choice", q:"下列何者屬於良好的「網路禮儀」？", options:["尊重言論、遵守網站規範","隨意謾罵他人","散布不實謠言","盜用別人帳號"], answer:0, explain:"網路禮儀包含尊重言論、遵守網站規範、謹守法律界線。"},
-      {type:"choice", q:"下列何者是「早期」人們傳遞訊息的方式？", options:["打手機","傳 LINE","飛鴿傳書、旗語、烽火","視訊通話"], answer:2, explain:"飛鴿傳書、旗語、烽火都是早期的傳遞方式。"},
-      {type:"tf", q:"面對沒有根據的訊息，應該先查證，不隨意傳播假訊息。", answer:true, explain:"應保有懷疑精神、學會查證，不隨意散播假訊息。"}
-    ]
-   }
-  ]
- },
- {
-  id:"u4", title:"第四單元　家鄉風情畫", cls:"u4",
-  lessons:[
-   {
-    id:"4-1", name:"4-1　家鄉的風貌",
-    points:[
-      "家鄉的風貌分為<b>自然風貌</b>與<b>人文風貌</b>兩大類。",
-      "<b>自然風貌</b>受到<b>地形、氣候</b>影響。例：宜蘭翠峰湖（高山湖泊）、新北野柳奇岩（女王頭、燭狀岩、蕈狀岩）、苗栗油桐花「五月雪」、臺南七股溼地的黑面琵鷺。",
-      "<b>人文風貌</b>是人類在生活中創造出來的（不是大自然本身形成的），包含<b>產業活動、建築設施、節慶活動</b>。",
-      "人文風貌例子：澎湖七美雙心石滬（先民捕魚智慧）、桃園大溪橋（巴洛克造型）、臺東卑南鄉魯凱族小米收穫祭。",
-      "人文風貌的意義：呈現居民生活面貌、代表歷史文化意義、展現獨特美感。",
-      "發現並記錄家鄉之美的方式：<b>畫圖、攝影、文字</b>。"
-    ],
-    review:`<p>我們的家鄉有豐富的風貌，可分成<b>自然風貌</b>與<b>人文風貌</b>。</p>
-    <p><b>自然風貌</b>受到<span class="kw">地形與氣候</span>的影響而各不相同，例如：宜蘭<span class="kw">翠峰湖</span>是美麗的高山湖泊、新北<span class="kw">野柳</span>有女王頭等海邊奇岩、苗栗山區四、五月盛開的<span class="kw">油桐花</span>像下雪（五月雪）、臺南<span class="kw">七股溼地</span>是黑面琵鷺來臺過冬的地方。</p>
-    <p><b>人文風貌</b>是人類在生活過程中<span class="kw">創造</span>出來的，並非大自然本身形成，包含產業活動、建築設施與節慶活動。例如：澎湖七美的<span class="kw">雙心石滬</span>展現先民捕魚智慧、桃園<span class="kw">大溪橋</span>有特色造型、臺東卑南鄉魯凱族的<span class="kw">小米收穫祭</span>。人文風貌能呈現居民生活、代表歷史文化意義與獨特美感。</p>
-    <p>每個人都可以用<span class="kw">畫圖、攝影、文字</span>等方式，發現並記錄家鄉的美，分享給更多人。</p>`,
-    questions:[
-      {type:"choice", q:"家鄉的風貌可以分為哪兩大類？", options:["自然風貌與人文風貌","山與海","城市與鄉村","白天與晚上"], answer:0, explain:"家鄉風貌分為自然風貌與人文風貌。"},
-      {type:"choice", q:"下列何者屬於「自然風貌」？", options:["原住民族祭典","野柳的奇特岩石","大溪橋","雙心石滬"], answer:1, explain:"野柳奇岩是受地形氣候影響的自然風貌；祭典、橋梁、石滬是人文風貌。"},
-      {type:"tf", q:"家鄉的自然風貌主要受到地形和氣候的影響。", answer:true, explain:"地形、氣候造就不同的自然風貌。"},
-      {type:"choice", q:"苗栗山區四、五月盛開、花落像下雪，被稱為「五月雪」的是？", options:["櫻花","油桐花","梅花","菊花"], answer:1, explain:"油桐花在四、五月盛開，花落如雪，被稱為五月雪。"},
-      {type:"choice", q:"每年到臺南七股溼地過冬的瀕臨絕種候鳥是？", options:["黑面琵鷺","麻雀","老鷹","企鵝"], answer:0, explain:"黑面琵鷺每年九至十月到七股溼地過冬。"},
-      {type:"choice", q:"宜蘭縣翠峰湖屬於哪一種自然風貌？", options:["海邊岩石","高山湖泊","沙漠","溼地"], answer:1, explain:"翠峰湖是臺灣最大的高山湖泊。"},
-      {type:"choice", q:"下列何者屬於「人文風貌」？", options:["高山湖泊","黑面琵鷺","澎湖雙心石滬","油桐花"], answer:2, explain:"石滬是人類創造的人文風貌；其餘為自然風貌。"},
-      {type:"tf", q:"人文風貌是大自然本身形成的，和人類活動無關。", answer:false, explain:"人文風貌是人類在生活中創造出來的，並非大自然本身形成。"},
-      {type:"choice", q:"早期漁民利用海邊礁石排成、用來捕魚的設施稱為？", options:["石滬","碼頭","燈塔","漁網"], answer:0, explain:"石滬是先民利用礁石堆成的捕魚陷阱，展現生活智慧。"},
-      {type:"choice", q:"人文風貌包含哪些內容？", options:["只有產業活動","產業活動、建築設施、節慶活動","只有節慶活動","只有建築設施"], answer:1, explain:"人文風貌包含產業活動、建築設施與節慶活動。"},
-      {type:"tf", q:"臺東卑南鄉魯凱族在小米收成後會舉辦「小米收穫祭」。", answer:true, explain:"魯凱族在小米收成後舉辦小米收穫祭，是節慶活動。"},
-      {type:"choice", q:"想要發現並記錄家鄉之美，可以用什麼方式？", options:["畫圖、攝影、文字","破壞環境","亂丟垃圾","攀折花朵"], answer:0, explain:"可透過畫圖、攝影、文字記錄並分享家鄉之美。"},
-      {type:"tf", q:"桃園大溪橋改建後設計成西式巴洛克風格，成為吸引遊客的景點。", answer:true, explain:"大溪橋改建為巴洛克造型，成為著名觀光景點。"}
-    ]
-   },
-   {
-    id:"4-2", name:"4-2　家鄉的特產",
-    points:[
-      "<b>特產</b>是家鄉居民從事產業活動所生產、具有特色的物品；其形成與當地<b>自然環境、氣候、產業、歷史文化</b>息息相關。",
-      "特產三種類型：①配合自然環境生產的<b>農作物／水產品</b>（宜蘭三星蔥、屏東林邊蓮霧、嘉義布袋虱目魚）。",
-      "②將農作物或水產品<b>加工製作成食品</b>（臺南玉井芒果乾、臺東成功柴魚片）。",
-      "③利用自然資源發展出的<b>生活用品／工藝品</b>（新北鶯歌陶瓷、南投埔里手工紙、高雄美濃油紙傘、屏東三地門皮雕）。",
-      "<b>特產成為家鄉特色</b>：有些反映當地傳統文化；外地遊客採購的家鄉特產叫<b>伴手禮</b>；農漁會會用網站行銷在地農漁產品。",
-      "<b>推廣家鄉特產的活動</b>：結合觀光、節慶（南投世界茶業博覽會、苗栗三義木雕節、新竹米粉體驗），能展現家鄉特色、促進地方經濟發展。"
-    ],
-    review:`<p><b>特產</b>是家鄉居民從事產業活動所生產、具有特色的物品。因為每個家鄉的<span class="kw">自然環境、氣候、產業與歷史文化</span>不同，所以發展出不同的特產。</p>
-    <p>特產大致分三類：第一類是<span class="kw">配合自然環境生產的農作物或水產品</span>，如宜蘭三星蔥、屏東林邊蓮霧、嘉義布袋虱目魚；第二類是<span class="kw">加工製成的食品</span>，如玉井芒果乾、成功柴魚片，加工可延長保存、避免浪費、增加收入；第三類是<span class="kw">利用自然資源做成的生活用品或工藝品</span>，如鶯歌陶瓷、埔里手工紙、美濃油紙傘、三地門皮雕。</p>
-    <p>有些特產反映當地<span class="kw">傳統文化</span>。遊客來觀光時採購的家鄉特產稱為<span class="kw">伴手禮</span>，是居民的收入來源之一；農漁會也會透過網站行銷在地產品。近年居民常結合<span class="kw">觀光與節慶</span>推廣特產（如南投世界茶業博覽會、三義木雕節），不但展現家鄉特色，也促進地方經濟發展。</p>`,
-    questions:[
-      {type:"choice", q:"「特產」是指什麼？", options:["進口的商品","家鄉居民產業活動生產、具特色的物品","每個地方都一樣的東西","工廠的廢棄物"], answer:1, explain:"特產是家鄉居民產業活動所生產、具有特色的物品。"},
-      {type:"tf", q:"各地特產不同，和當地的自然環境、氣候、產業、歷史文化息息相關。", answer:true, explain:"特產的形成與當地自然環境與人文背景密切相關。"},
-      {type:"choice", q:"下列何者是「配合自然環境生產的農作物／水產品」特產？", options:["玉井芒果乾","宜蘭三星蔥","鶯歌陶瓷","美濃油紙傘"], answer:1, explain:"三星蔥是配合當地自然環境生產的農作物。"},
-      {type:"choice", q:"將農作物或水產品「加工製作成食品」的特產是？", options:["三星蔥","林邊蓮霧","臺東成功柴魚片","三地門皮雕"], answer:2, explain:"柴魚片是把鰹魚加工製成的食品。"},
-      {type:"choice", q:"新北市鶯歌區運用當地黏土製作的特產是？", options:["茶葉","陶瓷用品","米粉","醬油"], answer:1, explain:"鶯歌運用當地黏土製作茶壺、碗盤等陶瓷用品。"},
-      {type:"tf", q:"把農漁產品加工製成食品，可以延長保存期限、避免浪費，還能增加居民收入。", answer:true, explain:"加工可延長保存、避免腐爛浪費，並增加收入。"},
-      {type:"choice", q:"外地遊客來家鄉觀光時採購的家鄉特產，稱為？", options:["伴手禮","紀念照","門票","稅金"], answer:0, explain:"遊客觀光時採購的家鄉特產稱為伴手禮。"},
-      {type:"choice", q:"美濃油紙傘、三地門皮雕、埔里手工紙等特產，主要反映了什麼？", options:["進口文化","當地傳統文化特色","工業汙染","外國技術"], answer:1, explain:"這些特產反映當地的傳統文化特色。"},
-      {type:"tf", q:"家鄉特產可以透過交通運輸對外販售，成為居民的收入來源之一。", answer:true, explain:"特產可外送販售，是居民的收入來源之一。"},
-      {type:"choice", q:"下列哪一個是「推廣家鄉特產」結合觀光節慶的活動？", options:["南投世界茶業博覽會","淨灘活動","防災演練","班際運動會"], answer:0, explain:"南投世界茶業博覽會結合觀光與節慶推廣特產。"},
-      {type:"choice", q:"推廣家鄉特產的活動有什麼好處？", options:["破壞環境","展現家鄉特色、促進地方經濟發展","讓特產消失","增加垃圾"], answer:1, explain:"能展現家鄉特色，並促進地方經濟發展。"},
-      {type:"tf", q:"農漁會會透過網站行銷在地的農漁特產。", answer:true, explain:"農漁會負責協助在地農漁產品的生產與銷售，並透過網站行銷。"}
-    ]
-   },
-   {
-    id:"4-3", name:"4-3　愛我家鄉",
-    points:[
-      "愛護家鄉有三個面向：<b>友善環境重視生態、保存文化永續發展、為家鄉盡心力</b>。",
-      "<b>友善環境</b>：參與淨灘（撿垃圾、海廢再利用）；採用友善土地的耕作方式（不用農藥、化肥）。",
-      "案例「<b>老鷹紅豆</b>」：農民改用農機把紅豆種子深埋土裡，小鳥就不吃豆苗，老鷹也不再因吃中毒小鳥而死亡。",
-      "<b>保存文化</b>：用行動記錄家鄉。臺南將軍國小學生拍紀錄片、製作繪本（神明帽老店），守護家鄉文化。",
-      "<b>為家鄉盡心力</b>：主動關心公共事務、以實際行動解決問題。新北野柳國小學生寫信給市長、設置竹叢礁復育軟絲。",
-      "愛護家鄉是<b>每一個人的責任</b>，要主動關心、以實際行動參與解決家鄉的問題。"
-    ],
-    review:`<p>每個人都希望擁有美好的家鄉，因此家鄉的環境汙染、文化保存等問題，需要我們主動關心與解決。愛護家鄉可從三方面著手：</p>
-    <p><b>一、友善環境、重視生態：</b>例如主動參與<span class="kw">淨灘</span>，把撿回的海洋廢棄物再利用做成藝術品；採用<span class="kw">友善土地的耕作方式</span>，不使用農藥與化肥。屏東「<span class="kw">老鷹紅豆</span>」的故事中，農民改用農機把種子深埋土裡，小鳥不再吃豆苗，老鷹也不再中毒，生態逐漸恢復。</p>
-    <p><b>二、保存文化、永續發展：</b>有些傳統文化逐漸消失，居民用各種方式為它注入新活力。臺南<span class="kw">將軍國小</span>學生拍攝紀錄片、製作繪本（如神明帽老店），記錄並守護家鄉文化。</p>
-    <p><b>三、為家鄉盡心力：</b>主動關心公共事務、以實際行動解決問題。新北<span class="kw">野柳國小</span>學生寫信給市長、設置竹叢礁成功復育軟絲。愛護家鄉是<span class="kw">每一個人的責任</span>。</p>`,
-    questions:[
-      {type:"choice", q:"下列何者「不是」愛護家鄉的面向？", options:["友善環境、重視生態","保存文化、永續發展","為家鄉盡心力","亂丟垃圾破壞環境"], answer:3, explain:"亂丟垃圾、破壞環境並不是愛護家鄉的行為。"},
-      {type:"choice", q:"屏東「老鷹紅豆」故事中，農民改用什麼方式種紅豆，讓小鳥不再吃豆苗、老鷹不再中毒？", options:["撒更多農藥","改用農機把種子深埋土裡","放火燒田","乾脆不種了"], answer:1, explain:"改用農機把種子深埋，豆苗長出時已粗壯，小鳥就不吃了。"},
-      {type:"tf", q:"友善土地的耕作方式，不使用農藥和化學肥料。", answer:true, explain:"友善土地的耕作不用農藥、化肥，以保護生態。"},
-      {type:"choice", q:"在海邊撿拾垃圾、維護海洋環境的活動稱為？", options:["淨灘","露營","衝浪","釣魚"], answer:0, explain:"淨灘是在海邊撿拾垃圾、維護環境的行動。"},
-      {type:"tf", q:"把撿回的海洋廢棄物再利用，創作成藝術作品，也是愛護家鄉的方式。", answer:true, explain:"海廢再利用創作，能傳達保育理念，也是愛護家鄉。"},
-      {type:"choice", q:"臺南將軍國小的學生用什麼方式保存與記錄家鄉文化？", options:["拍紀錄片、製作繪本","拆掉老店","搬離家鄉","不理會"], answer:0, explain:"將軍國小學生以拍紀錄片、製作繪本記錄家鄉文化。"},
-      {type:"choice", q:"新北野柳國小的學生為了復育海中的軟絲，做了什麼行動？", options:["寫信給市長、設置竹叢礁復育","大量捕撈軟絲","把海水抽乾","什麼都沒做"], answer:0, explain:"野柳國小學生寫信給市長，並以竹叢礁成功復育軟絲。"},
-      {type:"tf", q:"愛護家鄉是每個人的責任，我們應主動關心並以實際行動參與解決家鄉問題。", answer:true, explain:"愛護家鄉是每個人的責任，要主動關心、實際行動。"},
-      {type:"choice", q:"有些家鄉的傳統文化面臨什麼問題，需要我們保存？", options:["數量太多","逐漸消失","太新潮","太昂貴"], answer:1, explain:"有些傳統文化逐漸消失，需要保存與注入新活力。"},
-      {type:"choice", q:"看到家鄉有閒置已久、年久失修的老房子，適當的行動是？", options:["放火燒掉","請里長幫忙反映給相關單位規畫整修","占為己有","完全不管它"], answer:1, explain:"可請里長反映給相關單位，規畫整修，是關心公共事務的表現。"},
-      {type:"tf", q:"為了改善生態環境，有些農民採用友善土地的耕作方式。", answer:true, explain:"為改善生態，農民採用友善土地、不用農藥的耕作方式。"}
-    ]
-   }
-  ]
- }
+const DATA = [{"id": "u3", "title": "第三單元　家鄉的交通", "cls": "u3", "lessons": [{"id": "3-1", "name": "3-1　家鄉的運輸", "cards": [{"tier": "基礎", "text": "家鄉的運輸分成三類：<br><span class='hl'>陸上運輸、水上運輸、空中運輸</span>。"}, {"tier": "基礎", "text": "居民會依照需求，<br>選擇<span class='hl'>合適的運輸方式</span>。"}, {"tier": "基礎", "text": "陸上運輸：<span class='hl'>公路</span>最能因應各種地形，<br>提供各式車輛行駛。"}, {"tier": "基礎", "text": "陸上運輸：鐵路、捷運、高速公路、高鐵，<br>特性是<span class='hl'>載運量大、速度快</span>。"}, {"tier": "進階", "text": "遇到河流可蓋<span class='hl'>橋梁</span>跨越，<br>遇到山地可挖<span class='hl'>隧道</span>貫穿。"}, {"tier": "進階", "text": "目前有捷運的都市：<br><span class='hl'>臺北、新北、桃園、臺中、高雄</span>。"}, {"tier": "進階", "text": "水上運輸：家鄉鄰近海洋、湖泊或河流時發展，<br>設施有<span class='hl'>碼頭、港口</span>。"}, {"tier": "進階", "text": "水上船舶：<span class='hl'>渡輪</span>（載人與車）、<br><span class='hl'>貨輪</span>（運貨）、觀光遊艇。"}, {"tier": "進階", "text": "空中運輸：主要是<span class='hl'>飛機</span>，<br>載客量多、速度快、能跨國，但易受天氣影響。"}, {"tier": "深入", "text": "空中運輸<span class='hl'>規定多</span>（液體管制、安全檢查、起降禁用電子產品），<br>都是為了<span class='hl'>飛航安全</span>。"}, {"tier": "深入", "text": "運輸發展帶來便利、促進產業與人口，<br>但也可能<span class='hl'>影響行人安全、破壞環境</span>。"}, {"tier": "深入", "text": "為了永續要適度興建，<br>例如墾丁設<span class='hl'>生態廊道</span>保護陸蟹、強調<span class='hl'>行人路權</span>。"}, {"tier": "深入", "text": "偏遠地區有可預約的<br>「<span class='hl'>幸福巴士、幸福小黃</span>」服務居民。"}], "questions": [{"lv": 1, "type": "tf", "q": "家鄉的運輸方式可以分為陸上運輸、水上運輸和空中運輸三大類。", "answer": true, "explain": "課本指出居民因應不同自然環境，發展出陸上、水上或空中等運輸方式。"}, {"lv": 1, "type": "tf", "q": "居民可以依照不同的需求，選擇合適的運輸方式。", "answer": true, "explain": "課本提到居民可依不同需求，選擇合適的運輸方式進行就學、上班、探訪親人等活動。"}, {"lv": 1, "type": "tf", "q": "公路、鐵路、捷運都屬於陸上運輸。", "answer": true, "explain": "公路、鐵路、捷運、高速公路、高鐵都是陸上運輸的設施。"}, {"lv": 1, "type": "tf", "q": "渡輪、貨輪、觀光遊艇都屬於水上運輸的船舶。", "answer": true, "explain": "水上運輸利用船舶運送人與貨物，包含渡輪、貨輪、觀光遊艇等。"}, {"lv": 1, "type": "tf", "q": "空中運輸主要的運輸工具是飛機。", "answer": true, "explain": "課本指出空中運輸主要的運輸工具是飛機。"}, {"lv": 1, "type": "tf", "q": "渡輪可以同時載送人與車輛。", "answer": true, "explain": "渡輪能同時載送人與車輛，例如旗津到鼓山的渡輪可運送人、自行車與機車。"}, {"lv": 1, "type": "tf", "q": "貨輪是專門用來運送貨物的船舶。", "answer": true, "explain": "貨輪專門用來運送貨物，可載運大量貨物往來世界各地。"}, {"lv": 1, "type": "tf", "q": "碼頭和大型港口是常見的水上運輸設施。", "answer": true, "explain": "課本指出常見的水上運輸設施有碼頭、大型港口等。"}, {"lv": 1, "type": "tf", "q": "飛機起飛、降落時不可以使用電子產品。", "answer": true, "explain": "課本明確指出飛機起飛、降落時不可使用電子產品。"}, {"lv": 1, "type": "tf", "q": "公路和鐵路都是空中運輸的設施。", "answer": false, "explain": "公路和鐵路屬於陸上運輸，不是空中運輸。"}, {"lv": 1, "type": "tf", "q": "飛機可以提供長途與跨國往來的功能。", "answer": true, "explain": "課本指出空中運輸能提供長途與跨國往來的功能。"}, {"lv": 1, "type": "tf", "q": "火車既可以載運旅客，也可以載運貨物。", "answer": true, "explain": "課本指出火車可以載運旅客與貨物，有客運列車也有貨運列車。"}, {"lv": 1, "type": "tf", "q": "飛機航行時容易受到天氣變化的影響。", "answer": true, "explain": "課本指出飛機航行時容易受天氣變化的影響，天候不佳會取消或延遲班機。"}, {"lv": 1, "type": "tf", "q": "公路只能讓汽車行駛，行人和機車都不能使用。", "answer": false, "explain": "公路可供行人、汽車、機慢車混合使用。"}, {"lv": 1, "type": "tf", "q": "觀光遊艇可以提供遊客休閒觀光的功能。", "answer": true, "explain": "課本指出日月潭的遊艇提供遊客休閒觀光的功能，觀光遊艇輕便快速航行。"}, {"lv": 1, "type": "tf", "q": "家鄉鄰近海洋、有湖泊或河流時，可以發展水上運輸。", "answer": true, "explain": "課本指出家鄉鄰近海洋或有湖泊、河流時，可以發展水上運輸。"}, {"lv": 1, "type": "tf", "q": "飛機需要較寬廣的平地才能起飛與降落。", "answer": true, "explain": "課本指出飛機需要較寬廣的平地起飛與降落。"}, {"lv": 1, "type": "tf", "q": "公路可以透過橋梁跨越河流，也可以興建隧道貫穿山地。", "answer": true, "explain": "課本指出公路和鐵路可以透過橋梁跨越河流，也可以興建隧道貫穿山地。"}, {"lv": 1, "type": "choice", "q": "下列哪一種運輸方式主要的運輸工具是飛機？", "options": ["陸上運輸", "水上運輸", "空中運輸", "鐵路運輸"], "answer": 2, "explain": "空中運輸主要的運輸工具是飛機。"}, {"lv": 1, "type": "choice", "q": "下列哪一項屬於水上運輸的船舶？", "options": ["渡輪", "火車", "捷運", "飛機"], "answer": 0, "explain": "渡輪屬於水上運輸的船舶；火車、捷運是陸上運輸，飛機是空中運輸。"}, {"lv": 1, "type": "choice", "q": "運輸方式主要分為哪三大類？", "options": ["陸上、水上、空中運輸", "公路、鐵路、捷運", "客運、貨運、觀光", "橋梁、隧道、車站"], "answer": 0, "explain": "運輸方式主要分為陸上運輸、水上運輸、空中運輸三大類。"}, {"lv": 1, "type": "choice", "q": "專門用來運送貨物的船舶是下列哪一種？", "options": ["渡輪", "觀光遊艇", "貨輪", "郵輪"], "answer": 2, "explain": "貨輪是專門用來運送貨物的船舶。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是常見的水上運輸設施？", "options": ["車站", "隧道", "碼頭", "機場"], "answer": 2, "explain": "碼頭是常見的水上運輸設施；車站、隧道屬陸上運輸，機場屬空中運輸。"}, {"lv": 1, "type": "choice", "q": "火車屬於下列哪一類運輸方式？", "options": ["空中運輸", "水上運輸", "陸上運輸", "海上運輸"], "answer": 2, "explain": "火車使用鐵軌行駛，屬於陸上運輸。"}, {"lv": 1, "type": "choice", "q": "下列哪一種運輸方式能提供長途與跨國往來的功能，速度最快？", "options": ["公路運輸", "水上運輸", "鐵路運輸", "空中運輸"], "answer": 3, "explain": "空中運輸速度快、載客量多，能提供長途與跨國往來的功能。"}, {"lv": 1, "type": "choice", "q": "能同時載送人與車輛的船舶是下列哪一種？", "options": ["渡輪", "貨輪", "軍艦", "破冰船"], "answer": 0, "explain": "渡輪能同時載送人與車輛。"}, {"lv": 1, "type": "choice", "q": "陸上運輸可以用什麼方式跨越河流？", "options": ["碼頭", "港口", "遊艇", "橋梁"], "answer": 3, "explain": "公路和鐵路可以透過橋梁跨越河流。"}, {"lv": 1, "type": "choice", "q": "陸上運輸可以用什麼方式貫穿山地？", "options": ["隧道", "渡輪", "飛機", "碼頭"], "answer": 0, "explain": "公路和鐵路可以興建隧道貫穿山地。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是空中運輸的特色？", "options": ["需要興建碼頭", "只能短程往來", "速度快、載客量多", "不受天氣影響"], "answer": 2, "explain": "空中運輸速度快、載客量多，能長途與跨國往來。"}, {"lv": 1, "type": "choice", "q": "下列哪一種運輸工具屬於陸上運輸？", "options": ["渡輪", "飛機", "捷運", "貨輪"], "answer": 2, "explain": "捷運屬於陸上運輸；渡輪、貨輪是水上運輸，飛機是空中運輸。"}, {"lv": 1, "type": "choice", "q": "飛機起飛、降落時，乘客應該怎麼做？", "options": ["可以自由使用手機", "可以站起來走動", "可以攜帶大量液體", "不可以使用電子產品"], "answer": 3, "explain": "課本指出飛機起飛、降落時不可使用電子產品，以確保飛航安全。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是水上運輸的特色？", "options": ["利用船舶運送人與貨物", "需要寬廣平地起降", "使用鐵軌行駛", "靠飛機長途跨國"], "answer": 0, "explain": "水上運輸利用碼頭、港口等設施，以船舶運送人與貨物。"}, {"lv": 1, "type": "choice", "q": "觀光遊艇主要提供下列哪一種功能？", "options": ["運送大量貨櫃", "跨國載客", "載運火車", "休閒觀光"], "answer": 3, "explain": "觀光遊艇輕便快速，提供遊客休閒觀光的功能。"}, {"lv": 1, "type": "choice", "q": "下列哪一項屬於空中運輸？", "options": ["渡輪", "飛機", "火車", "貨輪"], "answer": 1, "explain": "飛機屬於空中運輸；渡輪、貨輪是水上運輸，火車是陸上運輸。"}, {"lv": 1, "type": "choice", "q": "家鄉的居民發展出不同的運輸方式，主要是為了什麼？", "options": ["往來各地與運送貨物", "比賽誰的車快", "收集各種交通工具", "破壞自然環境"], "answer": 0, "explain": "居民為了往來各地與運送貨物，因應不同的自然環境與人口數量，發展出各種運輸方式。"}, {"lv": 1, "type": "tf", "q": "鐵路、捷運、高速公路和高鐵具有載運量大、速度較快的特性。", "answer": true, "explain": "課本指出鐵路、捷運、高速公路和高鐵等具有載運量大、速度較快的特性。"}, {"lv": 1, "type": "tf", "q": "搭乘飛機出入境時要接受嚴格的檢查。", "answer": true, "explain": "課本指出搭乘飛機出入境時要接受嚴格的檢查才能確保飛航安全。"}, {"lv": 2, "type": "tf", "q": "和公路運輸相比，鐵路具有載運量大、速度較快的特性。", "answer": true, "explain": "鐵路、捷運、高速公路、高鐵載運量大、速度較快；公路則較能因應自然環境。"}, {"lv": 2, "type": "tf", "q": "公路運輸比鐵路更能因應自然環境，提供各式車輛行駛。", "answer": true, "explain": "課本指出公路運輸較能因應自然環境，提供各式車輛行駛。"}, {"lv": 2, "type": "tf", "q": "碼頭屬於陸上運輸的設施。", "answer": false, "explain": "碼頭是水上運輸的設施，不是陸上運輸。"}, {"lv": 2, "type": "tf", "q": "空中運輸的規定和限制比其他運輸方式多，是為了確保飛航安全。", "answer": true, "explain": "飛機在高空飛行需精密設備確保安全，因此規定和限制較多。"}, {"lv": 2, "type": "tf", "q": "飛機的載客量比觀光遊艇少。", "answer": false, "explain": "飛機載客量多、速度快；觀光遊艇輕便快速但主要用於休閒觀光，飛機載客量並非比遊艇少。"}, {"lv": 2, "type": "tf", "q": "目前臺灣有捷運的都市包括臺北、新北、桃園、臺中、高雄。", "answer": true, "explain": "課本指出目前有捷運的都市為臺北、新北、桃園、臺中、高雄。"}, {"lv": 2, "type": "tf", "q": "如果要從高雄到綠島探望奶奶，可以坐火車到臺東後再換飛機。", "answer": true, "explain": "課本情境提到從高雄坐火車到臺東，再換飛機回綠島，結合陸上與空中運輸。"}, {"lv": 2, "type": "tf", "q": "人口眾多的都市會興建大眾捷運系統，方便人們往來。", "answer": true, "explain": "課本指出人口眾多的都市會興建大眾捷運系統，方便人們往來。"}, {"lv": 2, "type": "tf", "q": "捷運可以載運許多旅客，且速度比公車快。", "answer": true, "explain": "課本指出捷運可以載運許多旅客，且速度較公車快。"}, {"lv": 2, "type": "tf", "q": "丘陵或山地地區因為地形限制，多以公路作為運輸方式。", "answer": true, "explain": "課本指出丘陵或山地地區多以公路作為運輸方式，公路較能順應地形。"}, {"lv": 2, "type": "tf", "q": "飛機是不受任何天氣影響、隨時都能起飛的運輸工具。", "answer": false, "explain": "飛機航行時容易受天氣變化影響，天候不佳時航空公司會取消或延遲班機。"}, {"lv": 2, "type": "tf", "q": "一個港口裡只能有一座碼頭。", "answer": false, "explain": "一個港口可以有許多碼頭，例如基隆港約有56座碼頭，高雄港有139座碼頭。"}, {"lv": 2, "type": "tf", "q": "渡輪在臺灣主要用於離島聯外交通與短程運輸。", "answer": true, "explain": "課本指出臺灣運用渡輪運送人與貨物，主要在離島聯外交通與短程運輸。"}, {"lv": 2, "type": "tf", "q": "在臺東念書的學生，可以搭船回綠島，這屬於水上運輸。", "answer": true, "explain": "搭船往來屬於水上運輸，課本情境提到在臺東念書可搭船回綠島。"}, {"lv": 2, "type": "choice", "q": "下列哪一組運輸方式都具有「載運量大、速度較快」的特性？", "options": ["公路、渡輪", "觀光遊艇、貨輪", "鐵路、高鐵、捷運", "飛機、橋梁"], "answer": 2, "explain": "鐵路、高鐵、捷運、高速公路具有載運量大、速度較快的特性。"}, {"lv": 2, "type": "choice", "q": "下列哪一項設施「不」屬於水上運輸？", "options": ["碼頭", "大型港口", "隧道", "渡輪停靠處"], "answer": 2, "explain": "隧道是陸上運輸貫穿山地的設施，不屬於水上運輸。"}, {"lv": 2, "type": "choice", "q": "下列哪一種運輸方式「較能因應自然環境，提供各式車輛行駛」？", "options": ["公路運輸", "高速鐵路", "空中運輸", "水上運輸"], "answer": 0, "explain": "課本指出公路運輸較能因應自然環境，提供各式車輛行駛。"}, {"lv": 2, "type": "choice", "q": "小明住在旗津，姐姐每天搭渡輪到對岸的鼓山上學。這屬於哪一類運輸？", "options": ["空中運輸", "陸上運輸", "鐵路運輸", "水上運輸"], "answer": 3, "explain": "搭渡輪往來屬於水上運輸。"}, {"lv": 2, "type": "choice", "q": "下列哪一個都市目前「沒有」捷運？", "options": ["臺北", "臺中", "臺南", "高雄"], "answer": 2, "explain": "課本指出目前有捷運的都市為臺北、新北、桃園、臺中、高雄，臺南不在其中。"}, {"lv": 2, "type": "choice", "q": "想從臺灣本島快速跨國到其他國家，最適合選擇下列哪一種運輸方式？", "options": ["公路", "渡輪", "飛機", "捷運"], "answer": 2, "explain": "空中運輸速度快、可長途跨國往來，最適合快速跨國。"}, {"lv": 2, "type": "choice", "q": "下列哪一項是「空中運輸」相較於其他運輸方式的限制？", "options": ["可以隨意攜帶大量液體", "起降不受平地限制", "規定與檢查較多、易受天氣影響", "完全不需要安全檢查"], "answer": 2, "explain": "空中運輸需寬廣平地、易受天氣影響、規定與安全檢查較多。"}, {"lv": 2, "type": "choice", "q": "要運送大量的貨物往來世界各地，最適合使用下列哪一種船舶？", "options": ["觀光遊艇", "渡輪", "貨輪", "風帆"], "answer": 2, "explain": "貨輪可以載運大量貨物往來世界各地。"}, {"lv": 2, "type": "choice", "q": "下列關於公路和鐵路的比較，何者正確？", "options": ["公路較能因應自然環境，鐵路載運量大速度快", "鐵路較能因應自然環境，公路載運量大", "兩者都只能載人不能載貨", "兩者都屬於水上運輸"], "answer": 0, "explain": "公路較能因應自然環境、提供各式車輛行駛；鐵路載運量大、速度較快。"}, {"lv": 2, "type": "choice", "q": "下列哪一種情況最適合發展水上運輸？", "options": ["家鄉鄰近海洋、有湖泊或河流", "家鄉位於內陸高山，沒有河流", "家鄉只有寬廣平地適合起降", "家鄉人口眾多需要捷運"], "answer": 0, "explain": "家鄉鄰近海洋或有湖泊、河流時，才適合發展水上運輸。"}, {"lv": 2, "type": "choice", "q": "下列哪一項「不是」陸上運輸用來克服地形的設施？", "options": ["橋梁", "隧道", "車站", "碼頭"], "answer": 3, "explain": "碼頭是水上運輸設施；橋梁、隧道用來克服河流與山地，車站是陸上運輸設施。"}, {"lv": 2, "type": "choice", "q": "古亭捷運站可以載運許多旅客，且速度較公車快。捷運屬於哪一類運輸？", "options": ["水上運輸", "空中運輸", "陸上運輸", "海上運輸"], "answer": 2, "explain": "捷運使用軌道在陸地上行駛，屬於陸上運輸。"}, {"lv": 2, "type": "choice", "q": "從高雄出發，要回到綠島探望親人，最後一段最可能使用下列哪些運輸方式？", "options": ["只用公路就能直達", "只能搭高鐵", "只能騎機車", "飛機或船"], "answer": 3, "explain": "綠島是離島，與臺灣本島往來主要靠飛機（空中）或船（水上）。"}, {"lv": 2, "type": "choice", "q": "下列哪一句話最能說明「居民如何選擇運輸方式」？", "options": ["一定要選最貴的", "依照不同需求選擇合適的運輸方式", "只能選空中運輸", "由政府指定不能改變"], "answer": 1, "explain": "課本指出居民可依不同需求，選擇合適的運輸方式。"}, {"lv": 2, "type": "tf", "q": "貨輪在碼頭上下貨時，會配備裝卸起重機來加速貨櫃上下船。", "answer": true, "explain": "課本補充提到碼頭配備裝卸起重機，能加速貨櫃上下船。"}, {"lv": 2, "type": "tf", "q": "空中運輸雖然速度快，但起降地點受到限制，需要寬廣的平地。", "answer": true, "explain": "飛機需要較寬廣的平地起飛與降落，起降地點受到限制。"}, {"lv": 2, "type": "choice", "q": "下列哪一種運輸方式最能「順應山區地形環繞而上」，施作較為簡易？", "options": ["高速鐵路", "空中運輸", "水上運輸", "公路"], "answer": 3, "explain": "公路施作較為簡易，也能順應山區地形環繞而上。"}, {"lv": 2, "type": "choice", "q": "日月潭的遊艇提供遊客休閒觀光，它屬於下列哪一類運輸？", "options": ["水上運輸", "陸上運輸", "空中運輸", "鐵路運輸"], "answer": 0, "explain": "遊艇航行於湖面，屬於水上運輸。"}, {"lv": 2, "type": "choice", "q": "下列哪一種運輸方式「最容易因為天氣不佳而被取消或延誤」？", "options": ["捷運", "公路客運", "空中運輸（飛機）", "渡輪短程接駁"], "answer": 2, "explain": "飛機航行易受天氣影響，天候不佳時航空公司會取消或延遲班機。"}, {"lv": 2, "type": "choice", "q": "基隆港約有56座碼頭，高雄港有139座碼頭。這說明了什麼？", "options": ["一個港口只能有一座碼頭", "一個港口可以有許多碼頭", "碼頭屬於空中運輸", "碼頭是用來停飛機的"], "answer": 1, "explain": "課本指出一個港口可以有許多碼頭，並以基隆港、高雄港為例。"}, {"lv": 2, "type": "choice", "q": "下列哪一組「運輸工具與其所屬類別」配對正確？", "options": ["渡輪—陸上運輸", "高鐵—水上運輸", "飛機—空中運輸", "貨輪—空中運輸"], "answer": 2, "explain": "飛機屬於空中運輸；渡輪、貨輪是水上運輸，高鐵是陸上運輸。"}, {"lv": 2, "type": "choice", "q": "人口眾多的大都市為了方便人們大量往來，最常興建下列哪一種設施？", "options": ["渡輪碼頭", "機場跑道", "觀光遊艇碼頭", "大眾捷運系統"], "answer": 3, "explain": "課本指出人口眾多的都市會興建大眾捷運系統，方便人們往來。"}, {"lv": 2, "type": "tf", "q": "觀光遊艇的主要功能是運送大量貨櫃到世界各地。", "answer": false, "explain": "運送大量貨櫃是貨輪的功能；觀光遊艇輕便快速，主要提供休閒觀光。"}, {"lv": 2, "type": "tf", "q": "從高雄到綠島，全程都可以只靠陸上運輸（如開車）直接抵達。", "answer": false, "explain": "綠島是離島，必須搭飛機（空中）或船（水上）才能往來，無法只靠陸上運輸直達。"}, {"lv": 3, "type": "tf", "q": "運輸發展只會帶來便利，完全不會造成不好的影響。", "answer": false, "explain": "運輸發展雖帶來便利，但也可能影響行人安全、破壞自然環境，是雙面的影響。"}, {"lv": 3, "type": "tf", "q": "為了人們生活與環境的永續平衡，興建運輸設施前應該謹慎評估、適度興建。", "answer": true, "explain": "課本指出為達成永續平衡，應謹慎評估、適度興建，降低對環境的危害。"}, {"lv": 3, "type": "tf", "q": "墾丁設立生態廊道是為了保護陸蟹能安全抵達海邊產卵。", "answer": true, "explain": "陸蟹橫跨公路常遭車輛輾壓，墾丁國家公園設生態廊道等護蟹措施保護陸蟹。"}, {"lv": 3, "type": "tf", "q": "政府制定車輛行經路口要停讓行人的規定，是為了維護行人的安全。", "answer": true, "explain": "考量車輛增加及部分駕駛不遵守規定，政府制定停讓行人規定以維護行人安全。"}, {"lv": 3, "type": "tf", "q": "偏遠地區因公車班次及路線少，政府設置可事先預約的幸福巴士、幸福小黃。", "answer": true, "explain": "課本指出政府設置幸福巴士、幸福小黃，居民可透過事前預約搭乘，滿足交通需求。"}, {"lv": 3, "type": "tf", "q": "飛機規定和限制比較多，是因為飛機便宜又不重要，所以隨便規定。", "answer": false, "explain": "是因為飛機在高空飛行需精密設備確保飛航安全，一旦出事會危及全機乘客與地面，故規定多。"}, {"lv": 3, "type": "tf", "q": "國道6號水沙連高速公路多以高架橋梁建造，是為了盡量保留原有地貌、減少對環境的破壞。", "answer": true, "explain": "課本指出國道6號多以高架橋梁為主，盡可能保留原有地貌與自然景觀，減少破壞。"}, {"lv": 3, "type": "tf", "q": "開發道路、橋梁或隧道完全不會影響自然環境。", "answer": false, "explain": "開發道路、橋梁或隧道多少都會影響自然環境，造成樹木、草地、動植物消失。"}, {"lv": 3, "type": "tf", "q": "市區道路車輛增加，可能會影響行人的用路安全。", "answer": true, "explain": "課本指出市區道路車輛增加可能會影響行人的用路安全，是運輸發展的負面影響之一。"}, {"lv": 3, "type": "tf", "q": "山區的農產品可以透過公路運送到市區，使山區產業得以發展，這是運輸發展的正面影響。", "answer": true, "explain": "課本以拉拉山水蜜桃為例，說明公路使山區農產品外送、促進產業發展。"}, {"lv": 3, "type": "tf", "q": "強調「行人路權優先」，是因為行人是所有用路人中較為弱勢的族群。", "answer": true, "explain": "課本指出行人是較弱勢的族群，為減少傷亡而強調行人路權優先。"}, {"lv": 3, "type": "tf", "q": "幸福巴士、幸福小黃和一般固定班次公車一樣，乘客不可以事先預約。", "answer": false, "explain": "幸福巴士、幸福小黃可透過事前預約搭乘，較有彈性，與固定班次公車不同。"}, {"lv": 3, "type": "tf", "q": "車站的增建為周邊帶來便利，也可能吸引人口移入。", "answer": true, "explain": "課本以新北三重區為例，說明車站增建帶來便利並吸引人口移入。"}, {"lv": 3, "type": "choice", "q": "墾丁國家公園設立告示牌、交通管制及生態廊道，主要的目的是什麼？", "options": ["增加觀光收入", "加快車輛通行速度", "保護陸蟹安全抵達海邊產卵", "興建更多公路"], "answer": 2, "explain": "這些措施是為了保護陸蟹，讓牠們能安全橫越公路抵達海邊產卵。"}, {"lv": 3, "type": "choice", "q": "為什麼空中運輸的規定和限制比其他運輸方式多？", "options": ["因為飛機速度太慢", "因為飛機不能載貨", "因為飛機不受天氣影響", "因為要確保飛航安全，避免危及全機與地面人員"], "answer": 3, "explain": "飛機高空飛行需精密設備確保安全，一旦出事會危及全機乘客與地面，故規定限制較多。"}, {"lv": 3, "type": "choice", "q": "政府在偏遠地區設置「幸福巴士、幸福小黃」，最主要是為了解決什麼問題？", "options": ["偏遠地區公車班次與路線少、居民外出不便", "都市捷運太擁擠", "海邊陸蟹被輾壓", "飛機班機常延誤"], "answer": 0, "explain": "偏遠地區公車班次及行經路線少，政府設置幸福巴士、幸福小黃方便居民外出上學、就醫與購物。"}, {"lv": 3, "type": "choice", "q": "下列哪一項是運輸發展可能帶來的「負面」影響？", "options": ["促進產業發展", "方便居民往來各地", "破壞自然環境、影響行人安全", "交流訊息更便利"], "answer": 2, "explain": "運輸發展的負面影響包括破壞自然環境、影響行人的用路安全。"}, {"lv": 3, "type": "choice", "q": "國道6號水沙連高速公路多以高架橋梁建造，最主要的考量是什麼？", "options": ["節省建造經費", "讓車速更快", "方便陸蟹爬行", "保留原有地貌、減少對環境的破壞"], "answer": 3, "explain": "課本指出以高架橋梁為主是為了盡可能保留原有地貌與自然景觀，減少對環境破壞。"}, {"lv": 3, "type": "choice", "q": "要達成「人們生活與環境的永續平衡」，興建運輸設施時應該怎麼做？", "options": ["謹慎評估、適度興建", "盡量多建，越多越好", "完全不要興建任何設施", "只考慮人不考慮環境"], "answer": 0, "explain": "課本指出應謹慎評估、適度興建運輸設施，以降低對環境的危害。"}, {"lv": 3, "type": "choice", "q": "住在偏遠地區的阿嬤想去診所看病，但公車班次很少，下列哪一個方法最能幫助她？", "options": ["請她自己走路三小時", "事先預約幸福巴士或幸福小黃", "等飛機來載她", "在家裡等公車自然變多"], "answer": 1, "explain": "政府在偏遠地區設置幸福巴士、幸福小黃，可事先預約，方便居民就醫、購物。"}, {"lv": 3, "type": "choice", "q": "下列哪一項做法最符合「兼顧自然生態的運輸設計」？", "options": ["把樹林全部砍掉拓寬道路", "在陸蟹路線上設立生態廊道讓牠們安全通行", "禁止所有人使用道路", "加快車速縮短時間"], "answer": 1, "explain": "設立生態廊道、告示牌等可減少道路建設對動物的傷害，兼顧自然生態。"}, {"lv": 3, "type": "choice", "q": "開通公路會把原本的樹林切割成兩半，這說明了什麼？", "options": ["運輸發展完全沒有壞處", "樹林越多車越快", "公路一定要蓋在樹林中央", "運輸建設可能破壞動植物的生存環境"], "answer": 3, "explain": "道路開發會切割棲地、造成樹木與動植物消失，是運輸發展對環境的負面影響。"}, {"lv": 3, "type": "choice", "q": "下列哪一項最能說明「運輸發展的正面影響」？", "options": ["影響行人用路安全", "破壞當地自然環境", "促進產業與人口的發展、生活更便利", "造成空氣汙染"], "answer": 2, "explain": "運輸發展的正面影響是讓生活更便利、促進產業或人口的發展。"}, {"lv": 3, "type": "choice", "q": "為了減少行人遭汽機車撞擊傷亡，政府強調行人在使用穿越道時擁有什麼？", "options": ["優先付費權", "路權（行人路權優先）", "停車權", "開車權"], "answer": 1, "explain": "課本強調行人路權優先，行人使用穿越道時即擁有路權，汽機車須禮讓。"}, {"lv": 3, "type": "choice", "q": "下列哪一種情況最能看出「同一段路程需要結合多種運輸方式」？", "options": ["在同一條馬路上來回散步", "從高雄坐火車到臺東，再換飛機或船到綠島", "在家裡看交通影片", "只在社區內騎自行車"], "answer": 1, "explain": "前往離島綠島需結合陸上（火車）與空中或水上（飛機或船）運輸，是多種方式的結合。"}, {"lv": 3, "type": "choice", "q": "小華家住山區，農產品要運到市區銷售。下列敘述何者最正確？", "options": ["山區完全無法運送農產品", "可透過公路將農產品運送到市區，促進產業發展", "只能靠飛機運送農產品", "運送農產品對產業沒有幫助"], "answer": 1, "explain": "課本指出山區農產品可透過公路運送到市區，使山區產業得以發展。"}, {"lv": 3, "type": "choice", "q": "屏東縣雖然多平原，卻沒有像大都市一樣興建高密集度的捷運，最主要的原因是什麼？", "options": ["屏東沒有平地", "屏東禁止興建捷運", "屏東只能發展水上運輸", "屏東沒有高密集度人口需要捷運來載送"], "answer": 3, "explain": "興建運輸設施也要考量人口與經濟需求，屏東縣沒有高密集度人口需要捷運來載送。"}, {"lv": 3, "type": "choice", "q": "下列哪一項做法最能「同時兼顧運輸便利與保護環境」？", "options": ["興建道路時完全不考慮動物棲地", "以高架橋梁或生態工法減少對環境的破壞", "把所有山地都剷平蓋路", "禁止任何運輸建設"], "answer": 1, "explain": "如水沙連高速公路以高架橋梁、生態工法減少水泥用量與環境破壞，兼顧便利與環保。"}, {"lv": 3, "type": "tf", "q": "我們應該了解每個地方交通條件的差異，並尊重不同的生活方式。", "answer": true, "explain": "課本指出各地環境與條件不同，居民生活差異大，我們應了解差異並尊重不同生活方式。"}, {"lv": 3, "type": "tf", "q": "鼓勵民眾多使用大眾運輸、減少一人一車，有助於減少空氣汙染與交通擁擠。", "answer": true, "explain": "課本指出民眾多使用大眾運輸、減少一人一車的駕駛，可避免更擁擠的交通並減少空氣汙染。"}, {"lv": 3, "type": "choice", "q": "市區車輛增加後，政府制定「路口停讓行人」的規定，這反映了運輸發展的哪一面？", "options": ["只看到便利的一面", "必須兼顧安全、處理運輸帶來的負面影響", "運輸發展沒有任何問題", "行人不需要被保護"], "answer": 1, "explain": "車輛增加會影響行人安全，政府制定停讓規定正是為了處理運輸發展帶來的負面影響、兼顧安全。"}, {"lv": 3, "type": "choice", "q": "墾丁的陸蟹媽媽要到海邊產卵時，常遇到什麼危險？牠最需要的是什麼幫助？", "options": ["橫越公路時被車輛輾壓；需要生態廊道等護蟹措施", "海水太冷；需要加熱器", "沒有食物；需要餵食站", "太陽太大；需要遮陽棚"], "answer": 0, "explain": "陸蟹橫跨人為開發的公路時常遭車輛輾壓，墾丁設生態廊道、告示與交通管制保護牠們。"}, {"lv": 3, "type": "choice", "q": "下列哪一種選擇運輸方式的做法最合適？", "options": ["不管去哪都一定要搭飛機", "依目的地、時間等情形選擇合適的運輸工具", "只搭最貴的交通工具才安全", "隨便亂選反正都會到"], "answer": 1, "explain": "居民外出會考量目的地、時間等情形，選擇合適的運輸工具。"}, {"lv": 3, "type": "choice", "q": "環狀線捷運優點是縮短站距、省時，缺點是噪音干擾居民。從這個例子可以學到什麼？", "options": ["捷運完全沒有缺點", "運輸設施有優點也有缺點，設計時要評估與改善", "噪音越大越好", "應該禁止興建所有捷運"], "answer": 1, "explain": "課本以環狀捷運說明運輸設施有優缺點，設計時應評估並思考改善方式（如氣密窗、地下化）。"}, {"lv": 3, "type": "choice", "q": "水沙連高速公路採用生態工法、減少水泥用量，主要帶來下列哪一種好處？", "options": ["讓道路變得更貴", "減少二氧化碳排放、降低對環境的危害", "讓車子開得更快更危險", "增加水泥工廠的生意"], "answer": 1, "explain": "以生態工法施作可減少水泥用量與二氧化碳排放，並縮短對外道路、減少碳排放。"}, {"lv": 3, "type": "choice", "q": "下列哪一項「同時」說明了運輸發展的正面與負面影響？", "options": ["只會帶來便利", "公路讓農產品外送促進產業，但開路也可能破壞樹林棲地", "只會破壞環境", "和居民生活完全無關"], "answer": 1, "explain": "運輸發展既能促進產業、便利生活（正面），也可能破壞自然環境、影響安全（負面）。"}, {"lv": 3, "type": "tf", "q": "如果一個地方設置運輸設施後使用頻率不高、造成營運虧損，也會影響要不要興建的決定。", "answer": true, "explain": "課本補充指出興建運輸設施會考量人口與經濟需求，使用率低、虧損也會影響興建與否。"}, {"lv": 3, "type": "tf", "q": "陸蟹遭公路車輛輾壓，是運輸建設可能對野生動物造成傷害的例子。", "answer": true, "explain": "墾丁陸蟹橫越公路常遭輾壓，正是運輸建設影響野生動物的例子，故需護蟹措施。"}]}, {"id": "3-2", "name": "3-2　訊息的傳遞", "cards": [{"tier": "基礎", "text": "人們傳遞訊息，<br>是為了<span class='hl'>溝通、聯繫情感</span>。"}, {"tier": "基礎", "text": "現在的傳遞方式：口耳相傳、書信郵寄、<br>電話、<span class='hl'>網路通訊</span>、智慧型手機。"}, {"tier": "基礎", "text": "早期的傳遞方式：<br><span class='hl'>飛鴿傳書、旗語、烽火、電報、摩斯密碼</span>。"}, {"tier": "基礎", "text": "智慧型手機、平板能攜帶又能上網，<br>叫做「<span class='hl'>行動載具</span>」。"}, {"tier": "進階", "text": "各種傳遞方式的共同優點：<br><span class='hl'>打破時間與空間的限制</span>。"}, {"tier": "進階", "text": "網路通訊的功能：即時聯絡、查詢資料、<br>學習知識、休閒娛樂、購物消費。"}, {"tier": "進階", "text": "網路通訊也有壞處：網路謠言、<br>難辨真假、<span class='hl'>網路成癮</span>、用太久傷身體。"}, {"tier": "深入", "text": "面對網路訊息要<span class='hl'>先查證、判斷真假</span><br>（可查臺灣事實查核中心）。"}, {"tier": "深入", "text": "護眼：用眼 <span class='hl'>30 分鐘</span>，休息 <span class='hl'>10 分鐘</span>；<br>妥善分配使用時間。"}, {"tier": "深入", "text": "尊重<span class='hl'>肖像權</span>：上傳合照要先經對方同意；<br>不可隨意下載別人的照片來用。"}, {"tier": "深入", "text": "不隨意轉傳沒有根據的訊息，<br>遵守<span class='hl'>網路禮儀</span>。"}], "questions": [{"lv": 1, "type": "tf", "q": "人們為了溝通、聯繫情感等需要，發展出各種傳遞訊息的方法。", "answer": true, "explain": "課本指出，人們為了溝通、聯繫情感等需要，才發展出各種傳遞訊息的方法。"}, {"lv": 1, "type": "tf", "q": "口耳相傳是傳遞訊息的方式之一。", "answer": true, "explain": "生活中的溝通可以運用口耳相傳、書信郵寄、電話聯絡、網路通訊、智慧型手機等方式進行。"}, {"lv": 1, "type": "tf", "q": "書信郵寄屬於傳遞訊息的方式。", "answer": true, "explain": "課本列出的傳遞訊息方式包含口耳相傳、書信郵寄、電話聯絡、網路通訊、智慧型手機等。"}, {"lv": 1, "type": "tf", "q": "飛鴿傳書是現代人最常用的傳遞訊息方式。", "answer": false, "explain": "飛鴿傳書是早期傳遞訊息的方式，現代人較常用電話、網路通訊等。"}, {"lv": 1, "type": "tf", "q": "瓶中信是早期人們傳遞訊息的方式之一。", "answer": true, "explain": "課本提到早期傳遞訊息的方式還有飛鴿傳書、信箭、瓶中信、電報、旗語等。"}, {"lv": 1, "type": "tf", "q": "智慧型手機和平板電腦方便攜帶又能上網，這些都稱為「行動載具」。", "answer": true, "explain": "課本說明，智慧型手機、平板電腦不僅方便攜帶，還具有基本的上網功能，這些都稱為「行動載具」。"}, {"lv": 1, "type": "tf", "q": "豐富的訊息傳遞方式可以打破時間與空間的限制。", "answer": true, "explain": "課本指出豐富的訊息傳遞方式不僅打破時間與空間限制，也逐漸改變人們的生活。"}, {"lv": 1, "type": "tf", "q": "豐富的訊息傳遞方式逐漸改變人們的生活。", "answer": true, "explain": "課本指出豐富的訊息傳遞方式打破時間與空間限制，也逐漸改變人們的生活。"}, {"lv": 1, "type": "tf", "q": "即時聯絡是網路通訊的功能之一。", "answer": true, "explain": "人們運用網路通訊可進行即時聯絡、查詢資料、學習知識、休閒娛樂與購物消費等。"}, {"lv": 1, "type": "tf", "q": "利用網路通訊可以查詢資料。", "answer": true, "explain": "查詢資料是網路通訊的功能之一。"}, {"lv": 1, "type": "tf", "q": "購物消費是網路通訊的功能之一。", "answer": true, "explain": "人們運用網路通訊可進行即時聯絡、查詢資料、學習知識、休閒娛樂與購物消費等。"}, {"lv": 1, "type": "tf", "q": "網路通訊只能用來玩遊戲，不能用來學習知識。", "answer": false, "explain": "網路通訊可以學習知識，也能即時聯絡、查詢資料、休閒娛樂與購物消費。"}, {"lv": 1, "type": "tf", "q": "使用網路通訊的時間過長，會影響身體健康。", "answer": true, "explain": "課本提醒，使用網路通訊的時間過長會影響身體健康，應該適時休息。"}, {"lv": 1, "type": "tf", "q": "使用電腦、手機等網路通訊設備要適時休息，才不會影響身體健康。", "answer": true, "explain": "課本明確指出使用電腦、手機等網路通訊設備要適時休息，才不會影響身體健康。"}, {"lv": 1, "type": "tf", "q": "用眼30分鐘，就要休息10分鐘。", "answer": true, "explain": "課本提醒「用眼30分鐘，要休息10分鐘唷」。"}, {"lv": 1, "type": "tf", "q": "網路謠言的流傳會造成大家不安與困擾。", "answer": true, "explain": "課本指出網路謠言的流傳，會造成大家不安與困擾。"}, {"lv": 1, "type": "tf", "q": "上傳和姐姐的合照到網路上，要先經過姐姐同意。", "answer": true, "explain": "課本提到要先經過姐姐的同意，才可以上傳合照。"}, {"lv": 1, "type": "tf", "q": "我們可以隨意下載別人的照片拿來自己使用。", "answer": false, "explain": "別人的照片擁有肖像權或著作權，使用前都應該獲得對方同意，不可隨意下載使用。"}, {"lv": 1, "type": "tf", "q": "面對網路上的資訊，應該學習判斷訊息的真假。", "answer": true, "explain": "課本指出有些訊息讓人難以判斷事實真假，應該學習判斷訊息的真假。"}, {"lv": 1, "type": "tf", "q": "在網路世界裡，不需要遵守任何禮儀和規範。", "answer": false, "explain": "課本指出在網路上如同現實生活一樣，都需要遵守禮儀和規範。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是課本提到的傳遞訊息方式？", "options": ["口耳相傳", "蓋房子", "種田", "煮飯"], "answer": 0, "explain": "口耳相傳是課本列出的傳遞訊息方式之一。"}, {"lv": 1, "type": "choice", "q": "智慧型手機、平板電腦方便攜帶又能上網，這些被稱為什麼？", "options": ["交通工具", "運輸設施", "行動載具", "休閒設施"], "answer": 2, "explain": "智慧型手機、平板電腦方便攜帶又能上網，這些都稱為「行動載具」。"}, {"lv": 1, "type": "choice", "q": "人們發展出各種傳遞訊息方法的主要原因是什麼？", "options": ["為了賺錢", "為了比賽", "為了運動", "為了溝通、聯繫情感"], "answer": 3, "explain": "人們為了溝通、聯繫情感等需要，發展出各種傳遞訊息的方法。"}, {"lv": 1, "type": "choice", "q": "豐富的訊息傳遞方式可以打破什麼限制？", "options": ["時間與空間", "金錢與數量", "年齡與性別", "距離與重量"], "answer": 0, "explain": "豐富的訊息傳遞方式不僅打破時間與空間限制，也逐漸改變人們的生活。"}, {"lv": 1, "type": "choice", "q": "下列何者不是網路通訊的功能？", "options": ["即時聯絡", "查詢資料", "耕種稻米", "購物消費"], "answer": 2, "explain": "網路通訊的功能包含即時聯絡、查詢資料、學習知識、休閒娛樂與購物消費，不包含耕種稻米。"}, {"lv": 1, "type": "choice", "q": "使用網路通訊時間過長，會造成什麼問題？", "options": ["變得更聰明", "影響身體健康", "增加金錢", "縮短時間"], "answer": 1, "explain": "使用網路通訊的時間過長會影響身體健康，所以要適時休息。"}, {"lv": 1, "type": "choice", "q": "課本提醒用眼多久就要休息10分鐘？", "options": ["10分鐘", "20分鐘", "30分鐘", "60分鐘"], "answer": 2, "explain": "課本提醒「用眼30分鐘，要休息10分鐘」。"}, {"lv": 1, "type": "choice", "q": "上傳和姐姐的合照到網路上，應該先做什麼？", "options": ["經過姐姐同意", "告訴老師", "存到電腦", "列印出來"], "answer": 0, "explain": "課本提到要先經過姐姐的同意，才可以上傳合照。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是早期人們傳遞訊息的方式？", "options": ["智慧型手機", "網路視訊", "飛鴿傳書", "電子郵件"], "answer": 2, "explain": "飛鴿傳書是早期傳遞訊息的方式，智慧型手機、網路視訊、電子郵件都是現代方式。"}, {"lv": 1, "type": "choice", "q": "網路謠言的流傳會造成什麼結果？", "options": ["大家很開心", "賺很多錢", "身體更健康", "大家不安與困擾"], "answer": 3, "explain": "網路謠言的流傳會造成大家不安與困擾。"}, {"lv": 1, "type": "choice", "q": "面對網路上難以判斷真假的資訊，我們應該怎麼做？", "options": ["全部相信", "學習判斷訊息真假", "趕快轉傳", "通通不看"], "answer": 1, "explain": "對於網路上的資訊，應該學習判斷訊息的真假。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是課本提到使用網路通訊應有的態度？", "options": ["判斷訊息真假", "隨意轉傳訊息", "熬夜上網", "下載別人照片"], "answer": 0, "explain": "應有的態度包含判斷網路訊息的真假、遵守網路禮儀、妥善分配使用時間。"}, {"lv": 1, "type": "choice", "q": "為了不影響身體健康，使用網路通訊設備時應該怎麼做？", "options": ["連續使用不休息", "適時休息", "越晚用越好", "不要喝水"], "answer": 1, "explain": "使用電腦、手機等網路通訊設備要適時休息，才不會影響身體健康。"}, {"lv": 1, "type": "choice", "q": "下列何者屬於「行動載具」？", "options": ["收音機", "平板電腦", "桌上型電腦", "電視機"], "answer": 1, "explain": "智慧型手機、平板電腦方便攜帶又能上網，都稱為行動載具。"}, {"lv": 1, "type": "choice", "q": "網路通訊功能中，「即時和遠方家人聯絡」屬於哪一項功能？", "options": ["購物消費", "休閒娛樂", "查詢資料", "即時聯絡"], "answer": 3, "explain": "透過通訊軟體可以即時和遠方的家人聯絡，屬於即時聯絡功能。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是課本列出的傳遞訊息方式？", "options": ["電話聯絡", "跑步", "畫畫", "唱歌"], "answer": 0, "explain": "電話聯絡是課本列出的傳遞訊息方式之一。"}, {"lv": 1, "type": "tf", "q": "電話聯絡是課本提到的訊息傳遞方式之一。", "answer": true, "explain": "生活中的溝通可以運用口耳相傳、書信郵寄、電話聯絡、網路通訊、智慧型手機等方式進行。"}, {"lv": 1, "type": "tf", "q": "網路通訊可以用來休閒娛樂。", "answer": true, "explain": "休閒娛樂是網路通訊的功能之一。"}, {"lv": 1, "type": "tf", "q": "學習知識是網路通訊的功能之一。", "answer": true, "explain": "人們運用網路通訊可進行即時聯絡、查詢資料、學習知識、休閒娛樂與購物消費等。"}, {"lv": 2, "type": "tf", "q": "「電報」和「智慧型手機」都是現代才出現的傳遞訊息方式。", "answer": false, "explain": "電報是早期的傳遞訊息方式，智慧型手機才是現代的方式，兩者出現時期不同。"}, {"lv": 2, "type": "tf", "q": "「即時聯絡、查詢資料、學習知識」都屬於網路通訊的功能。", "answer": true, "explain": "網路通訊的功能包含即時聯絡、查詢資料、學習知識、休閒娛樂與購物消費。"}, {"lv": 2, "type": "tf", "q": "「飛鴿傳書」和「旗語」都是早期人們傳遞訊息的方式。", "answer": true, "explain": "課本提到早期傳遞方式還有飛鴿傳書、信箭、瓶中信、電報、旗語等。"}, {"lv": 2, "type": "tf", "q": "網路通訊只會帶來便利，不會帶來任何問題。", "answer": false, "explain": "網路通訊帶來便利，但也有網路謠言、訊息真假難辨、影響身體健康等問題。"}, {"lv": 2, "type": "tf", "q": "利用網路買到家附近沒有賣的物品，這是屬於網路通訊「購物消費」的功能。", "answer": true, "explain": "利用網路消費買到需要的物品，屬於網路通訊購物消費的功能。"}, {"lv": 2, "type": "tf", "q": "「適時休息、妥善分配使用時間」都是正確使用網路通訊應有的態度。", "answer": true, "explain": "課本指出應適時休息、妥善分配使用時間，養成良好的使用習慣。"}, {"lv": 2, "type": "tf", "q": "和表哥連線競賽屬於網路通訊「學習知識」的功能。", "answer": false, "explain": "和表哥連線競賽是屬於休閒娛樂的功能，不是學習知識。"}, {"lv": 2, "type": "tf", "q": "利用手機電子地圖快速查找地點，屬於網路通訊「查詢資料」的功能。", "answer": true, "explain": "利用手機電子地圖快速查找地點，屬於查詢資料的功能。"}, {"lv": 2, "type": "tf", "q": "不論哪一種傳遞訊息的方式，都可以打破時間和空間的距離，將訊息傳給另一人。", "answer": true, "explain": "課本指出不論哪一種傳遞訊息的方式，都可以打破時間和空間的距離，達到訊息交流的目的。"}, {"lv": 2, "type": "tf", "q": "現代生活中，已經完全不會再使用口耳相傳和書信郵寄了。", "answer": false, "explain": "課本提醒，現代生活中仍會運用口耳相傳及書信郵寄來傳遞訊息。"}, {"lv": 2, "type": "tf", "q": "利用雲端書庫借閱電子書學習，屬於網路通訊「學習知識」的功能。", "answer": true, "explain": "利用雲端書庫借閱電子書，讓閱讀、學習不受限制，屬於學習知識的功能。"}, {"lv": 2, "type": "tf", "q": "網路謠言屬於網路通訊帶來的便利之一。", "answer": false, "explain": "網路謠言是網路通訊帶來的問題，不是便利。"}, {"lv": 2, "type": "choice", "q": "下列哪一組「都是」早期人們傳遞訊息的方式？", "options": ["飛鴿傳書、瓶中信", "網路通訊、智慧型手機", "視訊、電子郵件", "電話、平板電腦"], "answer": 0, "explain": "飛鴿傳書、瓶中信都是早期方式；網路通訊、智慧型手機、視訊、電子郵件等是現代方式。"}, {"lv": 2, "type": "choice", "q": "「使用網路消費，買到家附近沒有賣的物品」屬於網路通訊哪一項功能？", "options": ["即時聯絡", "學習知識", "購物消費", "休閒娛樂"], "answer": 2, "explain": "利用網路買到需要的物品，屬於購物消費功能。"}, {"lv": 2, "type": "choice", "q": "「和表哥連線競賽，讓娛樂有更多選擇」屬於網路通訊哪一項功能？", "options": ["查詢資料", "購物消費", "休閒娛樂", "即時聯絡"], "answer": 2, "explain": "和表哥連線競賽屬於休閒娛樂功能。"}, {"lv": 2, "type": "choice", "q": "下列哪一項「不是」網路通訊帶來的問題？", "options": ["網路謠言", "訊息真假難辨", "網路成癮", "即時聯絡很方便"], "answer": 3, "explain": "即時聯絡方便是網路通訊的優點，網路謠言、訊息真假難辨、網路成癮才是問題。"}, {"lv": 2, "type": "choice", "q": "「透過網路視訊和各地的人討論、互相學習」屬於網路通訊哪一項功能？", "options": ["購物消費", "學習知識", "休閒娛樂", "即時聯絡"], "answer": 1, "explain": "透過網路視訊進行討論、互相學習，屬於學習知識功能。"}, {"lv": 2, "type": "choice", "q": "下列哪一項屬於現代的傳遞訊息方式，而不是早期的方式？", "options": ["烽火", "旗語", "網路通訊", "飛鴿傳書"], "answer": 2, "explain": "網路通訊是現代方式；烽火、旗語、飛鴿傳書都是早期方式。"}, {"lv": 2, "type": "choice", "q": "小明說「我用手機電子地圖查找去公園的路」，這是運用網路通訊的哪一項功能？", "options": ["休閒娛樂", "購物消費", "即時聯絡", "查詢資料"], "answer": 3, "explain": "利用手機電子地圖快速查找地點，屬於查詢資料功能。"}, {"lv": 2, "type": "choice", "q": "關於「行動載具」，下列敘述何者正確？", "options": ["只能打電話不能上網", "方便攜帶又具有上網功能", "只有大型機器才算", "不能用來傳遞訊息"], "answer": 1, "explain": "行動載具如智慧型手機、平板電腦，方便攜帶又具有基本上網功能。"}, {"lv": 2, "type": "choice", "q": "下列關於各種傳遞訊息方式的共同優點，何者正確？", "options": ["都需要很多錢", "都只能傳給一個人", "都能打破時間和空間的距離", "都不需要工具"], "answer": 2, "explain": "不論哪一種傳遞訊息方式，都可以打破時間和空間的距離。"}, {"lv": 2, "type": "choice", "q": "下列哪一組「都是」網路通訊的功能？", "options": ["即時聯絡、購物消費", "網路謠言、網路成癮", "影響健康、視力下降", "網路霸凌、網路犯罪"], "answer": 0, "explain": "即時聯絡、購物消費都是網路通訊的功能；其餘各組屬於網路通訊的問題或影響。"}, {"lv": 2, "type": "choice", "q": "關於現代與早期傳遞訊息方式的比較，下列何者正確？", "options": ["電報比智慧型手機晚出現", "智慧型手機是現代方式，電報是早期方式", "兩者都是早期方式", "兩者都是現代方式"], "answer": 1, "explain": "電報是早期方式，智慧型手機是現代方式。"}, {"lv": 2, "type": "choice", "q": "下列哪一項做法符合「正確使用網路通訊的態度」？", "options": ["連續上網不休息", "判斷訊息真假再決定要不要相信", "看到訊息馬上轉傳", "隨意下載別人照片"], "answer": 1, "explain": "判斷訊息真假再決定要不要相信，符合正確使用網路通訊的態度。"}, {"lv": 2, "type": "choice", "q": "下列哪一項「不屬於」課本提到的訊息傳遞方式？", "options": ["口耳相傳", "書信郵寄", "電話聯絡", "開車兜風"], "answer": 3, "explain": "口耳相傳、書信郵寄、電話聯絡都是傳遞訊息方式，開車兜風不是。"}, {"lv": 2, "type": "choice", "q": "小華想和住在日本的叔叔分享好消息，下列哪一種方式可以打破空間限制即時聯絡？", "options": ["寫信慢慢寄過去", "等叔叔回臺灣再說", "用網路視訊通話", "託人轉達"], "answer": 2, "explain": "網路視訊通話可以即時聯絡，打破時間與空間的限制。"}, {"lv": 2, "type": "choice", "q": "關於網路通訊帶來的改變，下列敘述何者正確？", "options": ["完全沒有改變人們生活", "逐漸改變人們的生活", "只改變有錢人的生活", "只在學校才有用"], "answer": 1, "explain": "豐富的訊息傳遞方式打破時間與空間限制，也逐漸改變人們的生活。"}, {"lv": 2, "type": "tf", "q": "「網路成癮」和「使用時間過長影響健康」都是網路通訊可能帶來的問題。", "answer": true, "explain": "網路通訊帶來便利，但也有網路成癮、使用時間過長影響身體健康等問題。"}, {"lv": 2, "type": "tf", "q": "「遵守網路禮儀」和「妥善分配使用時間」都是正確使用網路通訊的態度。", "answer": true, "explain": "課本指出應有的態度包含判斷訊息真假、遵守網路禮儀、妥善分配使用時間。"}, {"lv": 2, "type": "tf", "q": "網路視訊通話既能即時聯絡，又能看見對方，是現代的傳遞訊息方式。", "answer": true, "explain": "網路視訊是現代的傳遞訊息方式，可以即時聯絡又能看見彼此。"}, {"lv": 2, "type": "tf", "q": "「當面跟爺爺說」屬於口耳相傳的方式。", "answer": true, "explain": "當面跟人說話屬於口耳相傳的傳遞訊息方式。"}, {"lv": 2, "type": "tf", "q": "網路通訊的功能多元，可以同時跟不同地區、遠方的人聯絡。", "answer": true, "explain": "課本提到網路通訊的優點之一是可以同時跟不同地區、遠方的人聯絡。"}, {"lv": 2, "type": "choice", "q": "「寫信給在日本的叔叔」屬於下列哪一種傳遞訊息方式？", "options": ["電話聯絡", "網路通訊", "口耳相傳", "書信郵寄"], "answer": 3, "explain": "寫信給叔叔屬於書信郵寄的傳遞訊息方式。"}, {"lv": 2, "type": "choice", "q": "下列哪一項「不是」課本提到網路通訊帶來的問題？", "options": ["快速傳遞訊息很方便", "網路謠言流傳", "訊息真假難辨", "使用時間過長影響健康"], "answer": 0, "explain": "快速傳遞訊息方便是優點；網路謠言、訊息真假難辨、使用時間過長影響健康才是問題。"}, {"lv": 2, "type": "tf", "q": "「打電話」和「網路通訊」都屬於現代常用的傳遞訊息方式。", "answer": true, "explain": "打電話與網路通訊都是課本列出的現代傳遞訊息方式。"}, {"lv": 2, "type": "tf", "q": "「視訊通話」和「飛鴿傳書」都是現代才發展出來的傳遞訊息方式。", "answer": false, "explain": "視訊通話是現代方式，但飛鴿傳書是早期方式，兩者出現時期不同。"}, {"lv": 3, "type": "tf", "q": "看到「吃香菇和茄子會中毒」這類沒有根據的訊息，最好的做法是趕快轉傳給大家。", "answer": false, "explain": "這類訊息可能是網路謠言，應先查證真假，不應隨意轉傳，以免散布假訊息。"}, {"lv": 3, "type": "tf", "q": "如果不確定網路訊息是不是真的，可以到「臺灣事實查核中心」查查看。", "answer": true, "explain": "課本提到可以到臺灣事實查核中心查查看訊息是不是真的。"}, {"lv": 3, "type": "tf", "q": "因為網路上的人不知道我是誰，所以可以隨意罵人沒有關係。", "answer": false, "explain": "在網路上如同現實生活，都需要遵守禮儀和規範，謾罵他人甚至須負法律責任。"}, {"lv": 3, "type": "tf", "q": "想把和姐姐的合照上傳網路前先問過姐姐，是因為每個人都有肖像權。", "answer": true, "explain": "因為人們有肖像權，沒有經過本人同意就公開散布在網頁上是違法行為，所以要先取得同意。"}, {"lv": 3, "type": "tf", "q": "長時間使用網路若不休息，可能造成視力下降、肌肉痠痛、睡眠不足等問題。", "answer": true, "explain": "課本指出長時間使用網路易造成網路成癮、視力下降、肌肉痠痛、睡眠不足、焦慮等。"}, {"lv": 3, "type": "tf", "q": "發現自己成為網路謠言的主角時，應該自己默默承受，不要告訴任何人。", "answer": false, "explain": "應先告訴家人和師長，請他們出面澄清，必要時可以報警，而不是默默承受。"}, {"lv": 3, "type": "tf", "q": "為了避免影響身體健康，使用網路通訊時應適時休息並妥善分配使用時間。", "answer": true, "explain": "使用時間過長會影響健康，所以要適時休息、妥善分配使用時間，養成良好習慣。"}, {"lv": 3, "type": "tf", "q": "收到朋友傳來「未經證實」的好玩訊息，立刻全部轉傳給其他人是正確的做法。", "answer": false, "explain": "應避免將未經證實的消息隨意散播，以免造成誤會或傷害。"}, {"lv": 3, "type": "tf", "q": "在網路上看到似是而非、難以判斷真假的訊息，應該加以區辨並小心處理。", "answer": true, "explain": "網路訊息常來自未經實證的分享，面對似是而非的訊息應加以區辨並小心處理。"}, {"lv": 3, "type": "tf", "q": "使用別人拍攝的照片前不需要經過對方同意，因為網路上的照片大家都能用。", "answer": false, "explain": "別人的照片擁有肖像權或著作權，使用前都應該獲得對方同意。"}, {"lv": 3, "type": "choice", "q": "在群組看到「某種食物一起吃會中毒」的訊息，最適當的做法是什麼？", "options": ["馬上轉傳提醒大家", "先查證訊息是不是真的", "刪掉手機", "相信並照做"], "answer": 1, "explain": "面對網路訊息應先查證真假，可到臺灣事實查核中心查看，不應隨意轉傳未證實的訊息。"}, {"lv": 3, "type": "choice", "q": "為什麼上傳和姐姐的合照前要先經過姐姐同意？", "options": ["因為照片太大", "因為網路很慢", "因為要省錢", "因為人們有肖像權"], "answer": 3, "explain": "因為人們有肖像權，沒有經過本人同意就公開散布在網頁上是違反法律的行為。"}, {"lv": 3, "type": "choice", "q": "小明每天上網超過4小時，眼睛痠、睡眠不足、成績下滑，他最需要改善的是什麼？", "options": ["買更貴的手機", "適時休息、妥善分配使用時間", "換更快的網路", "上網時間再加長"], "answer": 1, "explain": "使用時間過長會影響身體健康，應適時休息、妥善分配使用時間，養成良好習慣。"}, {"lv": 3, "type": "choice", "q": "如果發現自己成為網路謠言的主角，下列哪一個做法最恰當？", "options": ["告訴家人師長，請他們出面澄清", "自己也去散布謠言報復", "完全不理會", "刪掉所有朋友"], "answer": 0, "explain": "應先告訴家人和師長，請師長或家人出面澄清，必要時可以報警。"}, {"lv": 3, "type": "choice", "q": "想確認一則網路新聞是不是假的，下列哪個方法最適合？", "options": ["問問運氣", "直接相信標題", "到臺灣事實查核中心查證", "看誰轉傳的人多就相信"], "answer": 2, "explain": "課本提到可以到臺灣事實查核中心查查看訊息是不是真的。"}, {"lv": 3, "type": "choice", "q": "同學想下載你拍的照片拿去自己用，正確的觀念是什麼？", "options": ["照片放網路上就能隨便用", "只要不賣錢就可以", "誰先看到誰就能用", "使用前應該先獲得拍攝者同意"], "answer": 3, "explain": "別人拍攝的照片擁有肖像權或著作權，使用前都應該獲得對方同意。"}, {"lv": 3, "type": "choice", "q": "為什麼網路謠言容易快速流傳、造成大家恐慌？", "options": ["因為謠言都是真的", "因為大家都很謹慎", "因為訊息傳遞方便又立即，人們基於分享迅速轉發", "因為謠言很無聊沒人看"], "answer": 2, "explain": "網路通訊訊息傳遞方便且立即，有些假訊息看似合理，人們基於分享迅速轉發，反而引起恐慌。"}, {"lv": 3, "type": "choice", "q": "小群每天花很多時間上網打遊戲，一天不上網就煩躁生氣，這可能是什麼現象？", "options": ["身體變健康", "學習進步", "視力變好", "網路成癮"], "answer": 3, "explain": "長時間使用網路易造成網路成癮，一旦停止會出現坐立不安、煩躁等狀況。"}, {"lv": 3, "type": "choice", "q": "收到朋友傳來一則未經證實的驚人消息，下列哪個做法最正確？", "options": ["先查證真假，不隨意轉傳", "立刻轉傳給全班", "加油添醋再轉傳", "當作真的到處說"], "answer": 0, "explain": "應避免將未經證實的消息隨意散播，先查證真假，以免造成誤會或傷害。"}, {"lv": 3, "type": "choice", "q": "關於在網路上發言，下列哪個觀念最正確？", "options": ["反正別人不知道我是誰可以亂罵", "越兇越好", "在網路上也要遵守禮儀和規範", "可以隨便公開別人隱私"], "answer": 2, "explain": "在網路上如同現實生活，都需要遵守禮儀和規範，謾罵他人甚至須負法律責任。"}, {"lv": 3, "type": "choice", "q": "為什麼使用網路通訊要「妥善分配使用時間」？", "options": ["因為網路要收費", "因為網路只能白天用", "因為手機會壞掉", "因為使用時間過長會影響身體健康"], "answer": 3, "explain": "使用網路通訊時間過長會影響身體健康，所以要適時休息、妥善分配使用時間。"}, {"lv": 3, "type": "choice", "q": "小美想把全班出遊的合照上傳到社群網站，最恰當的做法是什麼？", "options": ["先取得合照同學的同意再上傳", "直接上傳不用問", "上傳後再通知大家", "把不喜歡的人裁掉就好"], "answer": 0, "explain": "上傳照片前要取得合照者的同意，因為每個人都有肖像權。"}, {"lv": 3, "type": "choice", "q": "下列哪一種使用網路的態度最值得學習？", "options": ["保有懷疑精神，學習判斷訊息真偽", "看到什麼都相信", "沒根據也隨意傳播", "只看自己想看的不查證"], "answer": 0, "explain": "課本總結：對看到、聽到的訊息保有懷疑精神，學習判斷真偽，沒有根據時不隨意傳播。"}, {"lv": 3, "type": "choice", "q": "長時間盯著電腦螢幕，眼睛很痠，最適當的做法是什麼？", "options": ["繼續看完再說", "把螢幕調更亮", "用眼30分鐘就休息10分鐘", "戴墨鏡繼續看"], "answer": 2, "explain": "課本提醒用眼30分鐘要休息10分鐘，才不會影響身體健康。"}, {"lv": 3, "type": "choice", "q": "想把好消息一次分享給住在不同地方的多位親友，又不用一直重複說，下列哪個方法最方便？", "options": ["一個一個打電話說", "寫很多封信寄出", "等大家聚在一起再說", "錄影後用網路傳送給家人"], "answer": 3, "explain": "錄影後用網路傳送給家人，就不用一直重複說同樣的話，還可發送給不同親友。"}, {"lv": 3, "type": "choice", "q": "為什麼面對網路上的訊息要學習判斷真假？", "options": ["因為網路訊息都是對的", "因為訊息越多越好", "因為有些訊息來自未經實證的分享，不見得正確", "因為查證很浪費時間"], "answer": 2, "explain": "網路訊息常來自未經實證的分享，有時不見得正確，所以要學習判斷真假。"}, {"lv": 3, "type": "choice", "q": "下列哪一個行為「不符合」正確使用網路的態度？", "options": ["遵守網路禮儀", "判斷訊息真假", "隨意轉傳未證實的訊息", "適時休息"], "answer": 2, "explain": "隨意轉傳未證實的訊息可能散布謠言，不符合正確使用網路的態度。"}, {"lv": 3, "type": "choice", "q": "網路通訊很方便，但為什麼還是要小心使用？", "options": ["因為完全沒有缺點", "因為網路一定會壞", "因為大家都不用", "因為可能有網路謠言、訊息真假難辨、影響健康等問題"], "answer": 3, "explain": "網路通訊帶來便利，但也有網路謠言、訊息真假難辨、影響身體健康等問題，要小心使用。"}, {"lv": 3, "type": "tf", "q": "在網路上謾罵他人，可能須負法律責任。", "answer": true, "explain": "課本指出在網路上謾罵他人須負法律責任，網路上也要遵守禮儀和規範。"}, {"lv": 3, "type": "tf", "q": "把自己的網路帳號、密碼借給同學使用是恰當的行為。", "answer": false, "explain": "借帳號、密碼給他人是課本指出的不適宜行為之一。"}, {"lv": 3, "type": "tf", "q": "對於自己看到、聽到、感受到的訊息，應保有懷疑精神並學習查證。", "answer": true, "explain": "課本總結，對訊息保有懷疑精神，學習判斷真偽及查證的能力，沒有根據時不隨意傳播。"}, {"lv": 3, "type": "tf", "q": "網路成癮後，容易產生焦慮等情緒問題。", "answer": true, "explain": "課本指出網路成癮後容易產生焦慮，長時間使用網路也易造成焦慮、憂鬱等。"}, {"lv": 3, "type": "tf", "q": "上傳照片前取得合照者同意，是因為網路上的照片可能被歹徒擷取偽造身分。", "answer": true, "explain": "網路上的照片往往會讓歹徒有機可趁，擷取照片偽造身分詐財，所以上傳前要取得同意。"}, {"lv": 3, "type": "tf", "q": "看到沒有事實根據卻看起來合理的圖片或影片，可以放心轉發。", "answer": false, "explain": "有些假訊息會用看起來合理卻沒有事實根據的圖片或影片，不應隨意轉發以免引起恐慌。"}]}]}, {"id": "u4", "title": "第四單元　家鄉風情畫", "cls": "u4", "lessons": [{"id": "4-1", "name": "4-1　家鄉的風貌", "cards": [{"tier": "基礎", "text": "家鄉的風貌分兩大類：<br><span class='hl'>自然風貌</span>、<span class='hl'>人文風貌</span>。"}, {"tier": "基礎", "text": "自然風貌受<span class='hl'>地形、氣候</span>影響。"}, {"tier": "基礎", "text": "人文風貌是<span class='hl'>人類</span>在生活中創造的，<br>不是大自然本身形成的。"}, {"tier": "進階", "text": "自然風貌例子：宜蘭翠峰湖（高山湖泊）、<br>新北野柳奇岩（<span class='hl'>女王頭</span>）。"}, {"tier": "進階", "text": "自然風貌例子：苗栗油桐花「<span class='hl'>五月雪</span>」、<br>臺南七股溼地的<span class='hl'>黑面琵鷺</span>。"}, {"tier": "進階", "text": "人文風貌包含：<br><span class='hl'>產業活動、建築設施、節慶活動</span>。"}, {"tier": "進階", "text": "人文風貌例子：澎湖七美<span class='hl'>雙心石滬</span>、<br>桃園大溪橋、臺東魯凱族小米收穫祭。"}, {"tier": "深入", "text": "人文風貌的意義：呈現居民生活、<br>代表歷史文化、展現獨特美感。"}, {"tier": "深入", "text": "發現並記錄家鄉之美的方式：<br><span class='hl'>畫圖、攝影、文字</span>。"}], "questions": [{"lv": 1, "type": "choice", "q": "家鄉的風貌可以分為哪兩大類？", "options": ["自然風貌與人文風貌", "海邊風貌與高山風貌", "古代風貌與現代風貌", "城市風貌與鄉村風貌"], "answer": 0, "explain": "課本將家鄉的風貌分為自然風貌與人文風貌兩大類。"}, {"lv": 1, "type": "choice", "q": "下列哪一項屬於影響家鄉「自然風貌」的因素？", "options": ["居民的職業", "建築風格", "地形與氣候", "節慶活動"], "answer": 2, "explain": "家鄉受到地形、氣候的影響，呈現出獨特的自然風貌。"}, {"lv": 1, "type": "choice", "q": "宜蘭縣翠峰湖屬於下列哪一種自然景觀？", "options": ["平原稻田", "奇特岩石", "高山湖泊", "海邊溼地"], "answer": 2, "explain": "翠峰湖是一座高山湖泊，湖水清澈，是臺灣最大的高山湖泊。"}, {"lv": 1, "type": "choice", "q": "被稱為「五月雪」的是哪一種植物的花？", "options": ["櫻花", "梅花", "桐油樹的果實", "油桐花"], "answer": 3, "explain": "油桐花在四、五月盛開，花落時彷彿下雪般，被稱為五月雪。"}, {"lv": 1, "type": "choice", "q": "黑面琵鷺每年會到臺灣哪個地點過冬？", "options": ["新北野柳", "宜蘭翠峰湖", "澎湖七美", "臺南七股溼地"], "answer": 3, "explain": "黑面琵鷺每年九月至十月會從北方來到臺南七股溼地過冬。"}, {"lv": 1, "type": "choice", "q": "新北市野柳地質公園以下列哪一項聞名？", "options": ["小米收穫祭", "高山湖泊", "造型奇特的岩石", "油桐花"], "answer": 2, "explain": "野柳地質公園內有許多造型奇特的岩石，如女王頭、燭狀岩、蕈狀岩等。"}, {"lv": 1, "type": "choice", "q": "下列哪一個是野柳常見的奇特岩石名稱？", "options": ["雙心石滬", "大溪橋", "翠峰湖", "女王頭"], "answer": 3, "explain": "野柳的奇特岩石包括女王頭、燭狀岩、蕈狀岩等。"}, {"lv": 1, "type": "choice", "q": "人文風貌主要是由誰創造出來的？", "options": ["人類", "大自然", "政府機關", "外國人"], "answer": 0, "explain": "人文風貌是人類在生活過程中所創造出來的，並非大自然本身形成。"}, {"lv": 1, "type": "choice", "q": "下列哪一項屬於人文風貌的內容？", "options": ["產業活動、建築設施與節慶活動", "候鳥生態", "奇特岩石", "高山湖泊"], "answer": 0, "explain": "人文風貌包含產業活動、建築設施與節慶活動等。"}, {"lv": 1, "type": "choice", "q": "澎湖縣七美鄉的「雙心石滬」是早期居民用來做什麼的？", "options": ["捕撈魚類", "儲存雨水", "舉辦祭典", "種植作物"], "answer": 0, "explain": "早期漁民利用海邊礁石排成石滬來捕撈魚類，展現先民的生活智慧。"}, {"lv": 1, "type": "choice", "q": "桃園市大溪橋改建後設計成哪一種造型？", "options": ["中式宮殿造型", "現代玻璃帷幕", "西式巴洛克造型", "日式神社造型"], "answer": 2, "explain": "大溪橋改建時採用西式巴洛克建築風格，成為吸引遊客的美麗景點。"}, {"lv": 1, "type": "choice", "q": "臺東縣卑南鄉魯凱族在小米收成後會舉辦什麼活動？", "options": ["小米收穫祭", "賞鯨祭", "賞花節", "油桐花季"], "answer": 0, "explain": "魯凱族會在小米收成後舉辦小米收穫祭，並在祭典中舉行盪秋千儀式。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是發現並記錄家鄉之美的方式？", "options": ["破壞自然環境", "畫圖、攝影、文字", "拆除舊建築", "禁止遊客來訪"], "answer": 1, "explain": "我們可以用畫圖、攝影、文字等方式記錄並介紹家鄉的美。"}, {"lv": 1, "type": "choice", "q": "油桐花大約在每年的哪幾個月盛開？", "options": ["一、二月", "十一、十二月", "七、八月", "四、五月"], "answer": 3, "explain": "油桐花在四到五月盛開於山區，花落時被稱為五月雪。"}, {"lv": 1, "type": "choice", "q": "黑面琵鷺因為數量非常稀少，被列為什麼動物？", "options": ["家禽", "瀕臨絕種動物", "常見留鳥", "外來入侵動物"], "answer": 1, "explain": "黑面琵鷺的數量非常稀少，被列為瀕臨絕種動物。"}, {"lv": 1, "type": "choice", "q": "下列哪一個景點與「奇特岩石」有關？", "options": ["臺東卑南鄉", "新北野柳", "宜蘭翠峰湖", "桃園大溪橋"], "answer": 1, "explain": "新北市野柳地質公園以造型奇特的岩石聞名。"}, {"lv": 1, "type": "choice", "q": "翠峰湖、野柳奇岩、油桐花、黑面琵鷺生態，都屬於家鄉的什麼風貌？", "options": ["人文風貌", "產業活動", "節慶活動", "自然風貌"], "answer": 3, "explain": "各地獨特的岩石、溼地與動植物生態等，都是家鄉的自然風貌。"}, {"lv": 1, "type": "choice", "q": "雙心石滬、大溪橋、小米收穫祭，都屬於家鄉的什麼風貌？", "options": ["自然風貌", "氣候景觀", "人文風貌", "地形景觀"], "answer": 2, "explain": "產業活動、建築設施、節慶活動都屬於人文風貌。"}, {"lv": 1, "type": "choice", "q": "下列哪一個縣市與翠峰湖有關？", "options": ["臺東縣", "臺南市", "宜蘭縣", "澎湖縣"], "answer": 2, "explain": "翠峰湖位於宜蘭縣，是臺灣最大的高山湖泊。"}, {"lv": 1, "type": "choice", "q": "小米收穫祭是哪一個原住民族的祭典？", "options": ["魯凱族", "阿美族", "賽夏族", "泰雅族"], "answer": 0, "explain": "課本中介紹臺東縣卑南鄉魯凱族會舉辦小米收穫祭。"}, {"lv": 1, "type": "choice", "q": "我們可以從哪些方面認識家鄉的「自然風貌」？", "options": ["政治與經濟", "語言與文字", "地形與氣候", "人口與交通"], "answer": 2, "explain": "課本說明家鄉的自然風貌受到地形、氣候的影響。"}, {"lv": 1, "type": "choice", "q": "下列哪一項可以代表人文風貌的意義？", "options": ["只是用來賺錢", "沒有任何意義", "破壞自然環境", "呈現居民生活面貌、代表歷史文化意義、展現獨特美感"], "answer": 3, "explain": "人文風貌呈現居民生活面貌、代表歷史文化意義並展現獨特美感。"}, {"lv": 1, "type": "choice", "q": "雙心石滬位於哪一個縣市？", "options": ["桃園市", "澎湖縣", "宜蘭縣", "臺南市"], "answer": 1, "explain": "雙心石滬位於澎湖縣七美鄉，是早期漁民的捕魚智慧。"}, {"lv": 1, "type": "choice", "q": "大溪橋位於哪一個縣市？", "options": ["桃園市", "苗栗縣", "新北市", "臺東縣"], "answer": 0, "explain": "大溪橋位於桃園市大溪區。"}, {"lv": 1, "type": "choice", "q": "油桐花盛開的山區位於哪一個縣市？", "options": ["臺南市", "苗栗縣", "宜蘭縣", "澎湖縣"], "answer": 1, "explain": "苗栗縣銅鑼鄉山區每年四、五月盛開油桐花。"}, {"lv": 1, "type": "choice", "q": "下列哪一種動物每年會從北方飛到臺灣過冬，是一種候鳥？", "options": ["黑面琵鷺", "魯凱族", "螃蟹", "海豚"], "answer": 0, "explain": "黑面琵鷺每年九至十月從北方來到七股溼地過冬，是候鳥。"}, {"lv": 1, "type": "choice", "q": "野柳奇特的岩石主要是受到下列哪一種力量長時間作用而形成的？", "options": ["海浪拍打與侵蝕", "人工雕刻", "地震搖動", "火山爆發"], "answer": 0, "explain": "課本說明這些奇特岩石是經過海浪長時間拍打、侵蝕所造成的。"}, {"lv": 1, "type": "choice", "q": "下列哪一項屬於「節慶活動」這類的人文風貌？", "options": ["小米收穫祭", "候鳥生態", "高山湖泊", "奇特岩石"], "answer": 0, "explain": "小米收穫祭屬於節慶活動，是人文風貌的一種。"}, {"lv": 1, "type": "choice", "q": "下列哪一項屬於「建築設施」這類的人文風貌？", "options": ["油桐花", "大溪橋", "翠峰湖", "黑面琵鷺"], "answer": 1, "explain": "造型獨特的大溪橋屬於建築設施，是人文風貌的一種。"}, {"lv": 1, "type": "choice", "q": "下列哪一項屬於「產業活動」這類的人文風貌？", "options": ["奇特岩石", "油桐花生態", "雙心石滬的捕魚活動", "高山湖泊"], "answer": 2, "explain": "早期漁民利用石滬捕魚屬於產業活動，是人文風貌的一種。"}, {"lv": 1, "type": "choice", "q": "翠峰湖是臺灣最大的什麼湖泊？", "options": ["火山湖泊", "海邊湖泊", "高山湖泊", "人工湖泊"], "answer": 2, "explain": "翠峰湖海拔約1840公尺，是臺灣最大的高山湖泊。"}, {"lv": 1, "type": "choice", "q": "我們透過攝影主要可以為家鄉做什麼？", "options": ["驅趕候鳥", "破壞自然生態", "拆除舊建築", "記錄家鄉的美景與風貌"], "answer": 3, "explain": "透過攝影，我們可以記錄自己看到的家鄉美景，保留家鄉真實的面貌。"}, {"lv": 1, "type": "choice", "q": "魯凱族在小米收穫祭的祭典中會舉行什麼特別的儀式？", "options": ["採油桐花", "賽龍舟", "盪秋千", "放天燈"], "answer": 2, "explain": "魯凱族會在小米收穫祭中舉行盪秋千儀式。"}, {"lv": 1, "type": "choice", "q": "下列哪一個地點以高山湖泊的自然風貌聞名？", "options": ["宜蘭縣翠峰湖", "桃園市大溪橋", "澎湖縣七美", "臺東縣卑南鄉"], "answer": 0, "explain": "宜蘭縣翠峰湖是一座高山湖泊，自然生態豐富。"}, {"lv": 1, "type": "choice", "q": "下列哪一項不是用來記錄、介紹家鄉特色的方式？", "options": ["破壞景觀", "畫圖", "文字", "攝影"], "answer": 0, "explain": "畫圖、攝影、文字都是介紹家鄉特色的方式，破壞景觀並非記錄方式。"}, {"lv": 1, "type": "choice", "q": "野柳地質公園位於新北市的哪一個區？", "options": ["卑南區", "大溪區", "七美區", "萬里區"], "answer": 3, "explain": "野柳地質公園位於新北市萬里區。"}, {"lv": 1, "type": "choice", "q": "下列哪一項是黑面琵鷺過冬地點七股溼地的氣候特色？", "options": ["高山寒冷", "乾燥沙漠", "終年下雪", "氣候溫暖少雨"], "answer": 3, "explain": "臺南市七股溼地氣候溫暖少雨，是黑面琵鷺來臺度冬的地點之一。"}, {"lv": 1, "type": "tf", "q": "家鄉的風貌可以分為自然風貌與人文風貌兩大類。", "answer": true, "explain": "課本將家鄉的風貌分為自然風貌與人文風貌兩大類。"}, {"lv": 1, "type": "tf", "q": "家鄉的自然風貌主要受到地形和氣候的影響。", "answer": true, "explain": "課本說明家鄉受到地形、氣候影響，呈現獨特的自然風貌。"}, {"lv": 1, "type": "tf", "q": "宜蘭縣翠峰湖是一座海邊的溼地。", "answer": false, "explain": "翠峰湖是一座高山湖泊，並不是海邊的溼地。"}, {"lv": 1, "type": "tf", "q": "油桐花盛開後花落時像下雪一樣，被稱為「五月雪」。", "answer": true, "explain": "油桐花在四、五月盛開，花落時彷彿下雪，被稱為五月雪。"}, {"lv": 1, "type": "tf", "q": "黑面琵鷺是一年四季都住在臺灣不會遷移的留鳥。", "answer": false, "explain": "黑面琵鷺是候鳥，每年九至十月飛來七股溼地過冬，隔年才飛離。"}, {"lv": 1, "type": "tf", "q": "野柳的女王頭、燭狀岩、蕈狀岩都是奇特的岩石。", "answer": true, "explain": "野柳地質公園有女王頭、燭狀岩、蕈狀岩等造型奇特的岩石。"}, {"lv": 1, "type": "tf", "q": "人文風貌是大自然本身自己形成的，與人類無關。", "answer": false, "explain": "人文風貌是人類在生活過程中所創造出來的，並非大自然本身形成。"}, {"lv": 1, "type": "tf", "q": "產業活動、建築設施、節慶活動都屬於人文風貌。", "answer": true, "explain": "課本說明人文風貌包含產業活動、建築設施與節慶活動。"}, {"lv": 1, "type": "tf", "q": "澎湖七美的雙心石滬是早期漁民用來捕魚的設施。", "answer": true, "explain": "早期漁民利用海邊礁石排成石滬來捕撈魚類。"}, {"lv": 1, "type": "tf", "q": "桃園大溪橋改建後是中國宮殿式的造型。", "answer": false, "explain": "大溪橋改建後是西式巴洛克建築風格的造型。"}, {"lv": 1, "type": "tf", "q": "魯凱族會在小米收成後舉辦小米收穫祭。", "answer": true, "explain": "魯凱族在小米收成後舉辦小米收穫祭，祭典中有盪秋千儀式。"}, {"lv": 1, "type": "tf", "q": "小米收穫祭屬於節慶活動，是一種人文風貌。", "answer": true, "explain": "節慶活動屬於人文風貌，小米收穫祭即為其中之一。"}, {"lv": 1, "type": "tf", "q": "我們可以用畫圖、攝影和文字來記錄家鄉之美。", "answer": true, "explain": "課本說明可以用畫圖、攝影、文字等方式記錄並介紹家鄉。"}, {"lv": 1, "type": "tf", "q": "翠峰湖是臺灣最大的高山湖泊。", "answer": true, "explain": "翠峰湖海拔約1840公尺，是臺灣最大的高山湖泊。"}, {"lv": 1, "type": "tf", "q": "黑面琵鷺數量很多，是常見的動物。", "answer": false, "explain": "黑面琵鷺數量非常稀少，被列為瀕臨絕種動物。"}, {"lv": 1, "type": "tf", "q": "野柳的奇特岩石是人工用機器雕刻出來的。", "answer": false, "explain": "野柳的奇特岩石是經過海浪長時間拍打、侵蝕而自然形成的。"}, {"lv": 1, "type": "tf", "q": "油桐花盛開的山區在苗栗縣。", "answer": true, "explain": "苗栗縣銅鑼鄉山區每年四、五月盛開油桐花。"}, {"lv": 1, "type": "tf", "q": "雙心石滬位於臺東縣。", "answer": false, "explain": "雙心石滬位於澎湖縣七美鄉。"}, {"lv": 1, "type": "tf", "q": "大溪橋位於桃園市大溪區。", "answer": true, "explain": "大溪橋位於桃園市大溪區，跨越大漢溪。"}, {"lv": 1, "type": "tf", "q": "人文風貌可以呈現居民的生活面貌，也具有歷史文化的意義。", "answer": true, "explain": "人文風貌呈現居民生活面貌、代表歷史文化意義並展現獨特美感。"}, {"lv": 1, "type": "tf", "q": "高山湖泊、奇特岩石、候鳥生態都屬於家鄉的自然風貌。", "answer": true, "explain": "各地獨特的岩石、溼地與動植物生態等，都是家鄉的自然風貌。"}, {"lv": 1, "type": "tf", "q": "我們應該隨意觸碰、踩踏野柳的奇特岩石。", "answer": false, "explain": "課本提醒我們要好好保護奇特岩石，不可以隨意觸碰、踩踏。"}, {"lv": 1, "type": "tf", "q": "魯凱族在小米收穫祭中會舉行盪秋千的儀式。", "answer": true, "explain": "魯凱族會在小米收穫祭的祭典中舉行盪秋千儀式。"}, {"lv": 1, "type": "tf", "q": "黑面琵鷺主要在臺南市七股溼地過冬。", "answer": true, "explain": "黑面琵鷺在臺灣主要度冬棲地為臺南市七股溼地。"}, {"lv": 1, "type": "tf", "q": "造型獨特的橋梁屬於人文風貌中的「建築設施」。", "answer": true, "explain": "造型具有特色的橋梁屬於建築設施，是人文風貌的一種。"}, {"lv": 2, "type": "choice", "q": "下列哪一個景點屬於「自然風貌」？", "options": ["澎湖雙心石滬", "桃園大溪橋", "宜蘭翠峰湖", "臺東小米收穫祭"], "answer": 2, "explain": "翠峰湖是高山湖泊，屬於自然風貌；其餘三項皆為人文風貌。"}, {"lv": 2, "type": "choice", "q": "下列哪一個項目屬於「人文風貌」？", "options": ["臺南的黑面琵鷺", "苗栗的油桐花", "野柳的奇特岩石", "澎湖的雙心石滬"], "answer": 3, "explain": "雙心石滬是人類創造的捕魚設施，屬於人文風貌；其餘為自然風貌。"}, {"lv": 2, "type": "choice", "q": "「黑面琵鷺—臺南七股溼地」的配對中，黑面琵鷺主要受到下列哪一項自然環境影響而前來？", "options": ["氣候溫暖少雨", "土壤肥沃", "河流湍急", "地形高聳"], "answer": 0, "explain": "七股溼地氣候溫暖少雨、生態豐富，吸引黑面琵鷺前來度冬。"}, {"lv": 2, "type": "choice", "q": "下列景點與縣市的配對，哪一個是正確的？", "options": ["大溪橋—澎湖縣", "油桐花—臺南市", "翠峰湖—宜蘭縣", "雙心石滬—桃園市"], "answer": 2, "explain": "翠峰湖位於宜蘭縣，配對正確；其餘配對皆有誤。"}, {"lv": 2, "type": "choice", "q": "下列「景點與所在縣市」的配對，哪一組是正確的？", "options": ["奇特岩石—臺東縣", "油桐花—苗栗縣", "黑面琵鷺—宜蘭縣", "小米收穫祭—澎湖縣"], "answer": 1, "explain": "油桐花盛開於苗栗縣銅鑼鄉，配對正確；其餘配對皆有誤。"}, {"lv": 2, "type": "choice", "q": "小明想介紹一處「受氣候影響、季節限定」的自然風貌，下列何者最合適？", "options": ["魯凱族小米收穫祭", "早期漁民的雙心石滬", "西式造型的大溪橋", "四、五月盛開的油桐花"], "answer": 3, "explain": "油桐花受氣候影響，在四、五月盛開，是季節限定的自然風貌。"}, {"lv": 2, "type": "choice", "q": "下列哪一組「都是」自然風貌？", "options": ["黑面琵鷺、雙心石滬、奇特岩石", "翠峰湖、野柳奇岩、黑面琵鷺", "翠峰湖、大溪橋、油桐花", "大溪橋、雙心石滬、小米收穫祭"], "answer": 1, "explain": "翠峰湖、野柳奇岩、黑面琵鷺皆為自然風貌，其餘各組混入了人文風貌。"}, {"lv": 2, "type": "choice", "q": "下列哪一組「都是」人文風貌？", "options": ["小米收穫祭、翠峰湖、油桐花", "大溪橋、奇特岩石、雙心石滬", "雙心石滬、大溪橋、小米收穫祭", "翠峰湖、油桐花、黑面琵鷺"], "answer": 2, "explain": "雙心石滬、大溪橋、小米收穫祭皆為人文風貌，其餘各組混入了自然風貌。"}, {"lv": 2, "type": "choice", "q": "判斷一項景觀是「自然風貌」還是「人文風貌」，最關鍵的依據是什麼？", "options": ["是否在山上", "是否要花錢參觀", "是否有名", "是否由人類創造出來"], "answer": 3, "explain": "人文風貌是人類所創造，自然風貌則由大自然形成，是否由人類創造是關鍵。"}, {"lv": 2, "type": "choice", "q": "「澎湖七美的雙心石滬」最能代表人文風貌中的哪一類？", "options": ["自然景觀", "產業活動", "建築設施", "節慶活動"], "answer": 1, "explain": "雙心石滬是早期漁民的捕魚活動，屬於產業活動類的人文風貌。"}, {"lv": 2, "type": "choice", "q": "「桃園大溪橋」最能代表人文風貌中的哪一類？", "options": ["產業活動", "氣候景觀", "建築設施", "節慶活動"], "answer": 2, "explain": "造型獨特的橋梁屬於建築設施類的人文風貌。"}, {"lv": 2, "type": "choice", "q": "「魯凱族小米收穫祭」最能代表人文風貌中的哪一類？", "options": ["地形景觀", "節慶活動", "建築設施", "產業活動"], "answer": 1, "explain": "小米收穫祭是祭典，屬於節慶活動類的人文風貌。"}, {"lv": 2, "type": "choice", "q": "下列哪一項配對「不正確」？", "options": ["大溪橋—自然風貌", "翠峰湖—自然風貌", "油桐花—自然風貌", "小米收穫祭—人文風貌"], "answer": 0, "explain": "大溪橋是人類興建的橋梁，屬於人文風貌，配對為自然風貌是錯誤的。"}, {"lv": 2, "type": "choice", "q": "下列哪一組「風貌分類」是錯誤的？", "options": ["大溪橋—人文風貌", "雙心石滬—人文風貌", "黑面琵鷺—人文風貌", "小米收穫祭—人文風貌"], "answer": 2, "explain": "黑面琵鷺是動物生態，屬於自然風貌，分類為人文風貌是錯誤的。"}, {"lv": 2, "type": "choice", "q": "想欣賞「奇特岩石」的自然風貌，應該到下列哪一個縣市？", "options": ["桃園市大溪", "澎湖縣七美", "新北市萬里", "臺東縣卑南"], "answer": 2, "explain": "新北市萬里的野柳地質公園以奇特岩石聞名。"}, {"lv": 2, "type": "choice", "q": "想參加原住民族「小米收穫祭」，應該到下列哪一個縣市？", "options": ["苗栗縣", "臺東縣", "澎湖縣", "宜蘭縣"], "answer": 1, "explain": "臺東縣卑南鄉魯凱族會舉辦小米收穫祭。"}, {"lv": 2, "type": "choice", "q": "一位同學說：「這是大自然形成的，不是人造的。」他描述的最可能是下列何者？", "options": ["澎湖的雙心石滬", "七股溼地的黑面琵鷺生態", "桃園的大溪橋", "臺東的小米收穫祭"], "answer": 1, "explain": "黑面琵鷺生態是大自然形成的自然風貌，其餘皆為人類創造的人文風貌。"}, {"lv": 2, "type": "choice", "q": "一位同學說：「這是人類創造的，呈現居民的生活智慧。」他描述的最可能是下列何者？", "options": ["宜蘭翠峰湖", "澎湖雙心石滬", "苗栗油桐花", "新北野柳奇岩"], "answer": 1, "explain": "雙心石滬是先民創造、展現生活智慧的人文風貌，其餘皆為自然風貌。"}, {"lv": 2, "type": "choice", "q": "下列哪一個景點「不是」靠近海邊的？", "options": ["宜蘭翠峰湖", "臺南七股溼地", "新北野柳", "澎湖雙心石滬"], "answer": 0, "explain": "翠峰湖是高山湖泊，並不靠海；其餘景點都與海邊有關。"}, {"lv": 2, "type": "choice", "q": "承上題概念，下列哪一個景點與「高山」的地形最有關？", "options": ["野柳奇岩", "雙心石滬", "七股溼地", "翠峰湖"], "answer": 3, "explain": "翠峰湖是高山湖泊，與高山地形最有關。"}, {"lv": 2, "type": "choice", "q": "關於人文風貌的意義，下列敘述何者「正確」？", "options": ["只是自然形成沒有意義", "呈現居民生活面貌、代表歷史文化意義並展現獨特美感", "無法吸引遊客", "與居民生活無關"], "answer": 1, "explain": "人文風貌能呈現居民生活面貌、代表歷史文化意義並展現獨特美感。"}, {"lv": 2, "type": "choice", "q": "若要拍一組「自然風貌」的照片，下列哪一個主題最不適合？", "options": ["翠峰湖的湖光", "七股的黑面琵鷺", "野柳的奇岩", "大溪橋的巴洛克造型"], "answer": 3, "explain": "大溪橋是人類興建的建築，屬於人文風貌，不適合作為自然風貌主題。"}, {"lv": 2, "type": "choice", "q": "若要拍一組「人文風貌」的照片，下列哪一個主題最不適合？", "options": ["雙心石滬", "大溪橋", "翠峰湖的高山湖泊", "小米收穫祭"], "answer": 2, "explain": "翠峰湖是自然形成的高山湖泊，屬於自然風貌，不適合作為人文風貌主題。"}, {"lv": 2, "type": "choice", "q": "下列哪一個景點與「溼地、候鳥」的自然風貌有關？", "options": ["桃園大溪", "臺東卑南", "臺南七股", "澎湖七美"], "answer": 2, "explain": "臺南七股溼地是黑面琵鷺等候鳥度冬的地點。"}, {"lv": 2, "type": "choice", "q": "小米收穫祭中大家穿著傳統服飾、唱傳統歌謠、跳舞，這最能展現人文風貌的哪一項意義？", "options": ["破壞自然環境", "與生活無關", "代表歷史文化意義", "只是為了賺錢"], "answer": 2, "explain": "祭典展現原住民族傳統文化之美，代表歷史文化意義。"}, {"lv": 2, "type": "tf", "q": "野柳的奇特岩石和澎湖的雙心石滬，都屬於自然風貌。", "answer": false, "explain": "野柳奇岩屬於自然風貌，但雙心石滬是人類創造的人文風貌。"}, {"lv": 2, "type": "tf", "q": "翠峰湖屬於自然風貌，大溪橋屬於人文風貌。", "answer": true, "explain": "翠峰湖是自然形成的高山湖泊，大溪橋是人類興建的橋梁。"}, {"lv": 2, "type": "tf", "q": "判斷風貌是自然還是人文，可以看它是不是由人類創造出來的。", "answer": true, "explain": "人文風貌由人類創造，自然風貌由大自然形成，是否人造是判斷關鍵。"}, {"lv": 2, "type": "tf", "q": "雙心石滬位於澎湖縣，這個配對是正確的。", "answer": true, "explain": "雙心石滬位於澎湖縣七美鄉，配對正確。"}, {"lv": 2, "type": "tf", "q": "黑面琵鷺位於宜蘭縣翠峰湖，這個配對是正確的。", "answer": false, "explain": "黑面琵鷺主要在臺南市七股溼地度冬，並非宜蘭翠峰湖。"}, {"lv": 2, "type": "tf", "q": "油桐花是受氣候影響、在四、五月才盛開的自然風貌。", "answer": true, "explain": "油桐花受氣候影響，在四、五月盛開於山區。"}, {"lv": 2, "type": "tf", "q": "小米收穫祭屬於人文風貌中的產業活動。", "answer": false, "explain": "小米收穫祭是祭典，屬於節慶活動，不是產業活動。"}, {"lv": 2, "type": "tf", "q": "大溪橋屬於人文風貌中的建築設施。", "answer": true, "explain": "造型獨特的橋梁屬於建築設施類的人文風貌。"}, {"lv": 2, "type": "tf", "q": "雙心石滬的捕魚活動屬於人文風貌中的產業活動。", "answer": true, "explain": "早期漁民利用石滬捕魚屬於產業活動類的人文風貌。"}, {"lv": 2, "type": "tf", "q": "翠峰湖和野柳奇岩都是受到地形或氣候影響而形成的自然風貌。", "answer": true, "explain": "高山湖泊與海邊奇岩都是受地形、氣候等自然因素影響形成。"}, {"lv": 2, "type": "tf", "q": "想欣賞高山湖泊的自然風貌，可以到宜蘭縣翠峰湖。", "answer": true, "explain": "翠峰湖位於宜蘭縣，是臺灣最大的高山湖泊。"}, {"lv": 2, "type": "tf", "q": "想參加魯凱族小米收穫祭，應該到澎湖縣。", "answer": false, "explain": "小米收穫祭在臺東縣卑南鄉舉辦，並非澎湖縣。"}, {"lv": 2, "type": "tf", "q": "七股溼地氣候溫暖少雨、生態豐富，因此吸引黑面琵鷺前來過冬。", "answer": true, "explain": "七股溼地氣候溫暖少雨、魚蝦貝類豐富，成為黑面琵鷺度冬棲地。"}, {"lv": 2, "type": "tf", "q": "人文風貌只是用來賺錢，沒有任何歷史文化的意義。", "answer": false, "explain": "人文風貌代表歷史文化意義，並能呈現居民生活面貌與獨特美感。"}, {"lv": 2, "type": "tf", "q": "黑面琵鷺生態屬於自然風貌，小米收穫祭屬於人文風貌。", "answer": true, "explain": "動物生態為自然風貌，祭典為人文風貌，兩者分類正確。"}, {"lv": 2, "type": "tf", "q": "大溪橋是大自然自己形成的奇特地形。", "answer": false, "explain": "大溪橋是人類興建的橋梁，屬於人文風貌，並非自然地形。"}, {"lv": 2, "type": "tf", "q": "野柳的奇特岩石屬於自然風貌，是受海浪侵蝕等自然力量形成。", "answer": true, "explain": "野柳奇岩受海浪拍打、海蝕、風化等自然作用形成，屬自然風貌。"}, {"lv": 2, "type": "tf", "q": "油桐花和黑面琵鷺都屬於同一類風貌——自然風貌。", "answer": true, "explain": "油桐花與黑面琵鷺都是受自然環境影響的自然風貌。"}, {"lv": 2, "type": "tf", "q": "造型獨特的橋梁可以與周遭自然景色相互輝映，吸引人們欣賞拍照。", "answer": true, "explain": "課本說明造型獨特的橋梁與周遭自然景色相互輝映，吸引人們欣賞與拍照。"}, {"lv": 2, "type": "tf", "q": "小米收穫祭中穿傳統服飾、唱傳統歌謠，能展現原住民族的傳統文化之美。", "answer": true, "explain": "祭典中的傳統服飾、歌謠與舞蹈呈現原住民族的傳統文化之美。"}, {"lv": 2, "type": "tf", "q": "七股溼地、野柳、翠峰湖都是人類建造出來的人文風貌。", "answer": false, "explain": "這三者都是大自然形成的自然風貌，不是人類建造的人文風貌。"}, {"lv": 3, "type": "choice", "q": "小芳到了一個地方，看到漁民利用海邊礁石堆成弧形捕魚，導遊說這有好幾百年歷史。她最可能在哪裡，看到的是哪一類風貌？", "options": ["臺南七股，自然風貌", "宜蘭翠峰湖，自然風貌", "新北野柳，自然風貌", "澎湖七美，人文風貌"], "answer": 3, "explain": "利用礁石堆成石滬捕魚是澎湖七美雙心石滬，屬於人類創造的人文風貌。"}, {"lv": 3, "type": "choice", "q": "為什麼黑面琵鷺只在每年特定季節出現在臺南七股，而不是全年都看得到？", "options": ["因為牠是人類飼養的", "因為七股的岩石季節變化", "因為牠是候鳥，會隨季節遷移過冬", "因為當地居民會趕走牠"], "answer": 2, "explain": "黑面琵鷺是候鳥，九至十月飛來七股過冬，隔年三至五月才飛離。"}, {"lv": 3, "type": "choice", "q": "同樣是「花」，為什麼大自然山坡上野生盛開的油桐花算自然風貌，而人類闢建花園舉辦的賞花節卻算人文風貌？", "options": ["因為花園裡的花是假的", "因為人文風貌是人類創造、舉辦出來的", "因為兩者其實都是自然風貌", "因為油桐花比較漂亮"], "answer": 1, "explain": "自然盛開的花是自然景觀，人類闢建花園、舉辦節慶則是人類創造的人文風貌。"}, {"lv": 3, "type": "choice", "q": "小傑想規畫一趟「只看自然風貌」的旅行，下列哪一條路線最符合？", "options": ["宜蘭翠峰湖→新北野柳→臺南七股溼地", "澎湖雙心石滬→新北野柳→臺南七股溼地", "澎湖雙心石滬→桃園大溪橋→臺東小米收穫祭", "宜蘭翠峰湖→桃園大溪橋→臺東小米收穫祭"], "answer": 0, "explain": "翠峰湖、野柳、七股溼地都是自然風貌，符合只看自然風貌的需求。"}, {"lv": 3, "type": "choice", "q": "小婷想規畫一趟「只看人文風貌」的旅行，下列哪一條路線最符合？", "options": ["臺南七股溼地→澎湖雙心石滬→宜蘭翠峰湖", "澎湖雙心石滬→桃園大溪橋→臺東小米收穫祭", "宜蘭翠峰湖→新北野柳→臺南七股溼地", "苗栗油桐花→新北野柳→桃園大溪橋"], "answer": 1, "explain": "雙心石滬、大溪橋、小米收穫祭都是人類創造的人文風貌。"}, {"lv": 3, "type": "choice", "q": "為什麼大溪橋從原本方便通行的吊橋，後來變成吸引遊客的景點，可以說它具有人文風貌的意義？", "options": ["因為它呈現居民生活面貌並具有歷史文化與獨特美感", "因為它和居民生活完全無關", "因為它沒有任何造型特色", "因為它是大自然形成的"], "answer": 0, "explain": "大溪橋反映居民往來生活、改建後的巴洛克造型展現美感與歷史文化意義。"}, {"lv": 3, "type": "choice", "q": "老師說：「這個風貌受地形和氣候影響，每到春夏交替山頭就像下雪。」最符合的是下列何者？", "options": ["苗栗山區的油桐花", "桃園的大溪橋", "臺東的小米收穫祭", "澎湖的雙心石滬"], "answer": 0, "explain": "油桐花受地形與氣候影響，四、五月盛開時山頭像下雪，稱五月雪。"}, {"lv": 3, "type": "choice", "q": "小安想介紹一個「同時能看到自然風貌與人文風貌」的概念，下列說法最正確的是？", "options": ["人文風貌不算家鄉的特色", "家鄉只能有自然風貌", "家鄉同時擁有自然與人文風貌，兩者共同形成家鄉特色", "自然風貌必須由人類創造"], "answer": 2, "explain": "課本指出家鄉具有豐富的自然與人文風貌，共同形成家鄉的特色。"}, {"lv": 3, "type": "choice", "q": "為什麼我們觀賞黑面琵鷺時要「遠遠觀察、不驚擾」牠們？", "options": ["因為牠們會攻擊人", "因為要保護瀕臨絕種的候鳥，讓牠們有安全的棲息處", "因為靠近要付錢", "因為牠們是人類飼養的"], "answer": 1, "explain": "黑面琵鷺是瀕臨絕種動物，遠遠觀察才能讓牠們安全棲息。"}, {"lv": 3, "type": "choice", "q": "小華拍了一張照片：海邊的奇岩經海浪長期拍打而成。這張照片呈現的是哪一種風貌，受什麼影響？", "options": ["人文風貌，受居民創造", "自然風貌，受地形與氣候（海浪侵蝕）影響", "自然風貌，受人類建造影響", "人文風貌，受節慶影響"], "answer": 1, "explain": "海邊奇岩受海浪侵蝕等自然作用形成，是受地形、氣候影響的自然風貌。"}, {"lv": 3, "type": "choice", "q": "下列哪一種情況「最能說明」人文風貌與自然風貌的差別？", "options": ["兩者都是大自然形成", "看花的季節不同而已", "天然草原的野花是自然風貌，人類闢建花園辦賞花節是人文風貌", "兩者都是人類創造"], "answer": 2, "explain": "自然形成者為自然風貌，人類創造者為人文風貌，賞花節即典型人文風貌。"}, {"lv": 3, "type": "choice", "q": "魯凱族在小米收成後舉辦祭典感謝豐收。為什麼這屬於人文風貌而不是自然風貌？", "options": ["因為祭典是大自然形成的", "因為小米是野生的", "因為它和文化無關", "因為祭典是人類在生活中創造、舉辦的活動"], "answer": 3, "explain": "祭典是人類為生活與信仰而舉辦的活動，屬人類創造的人文風貌。"}, {"lv": 3, "type": "choice", "q": "小宇想用最能「保留家鄉真實面貌」的方式記錄家鄉，下列何者最合適？", "options": ["拆掉舊房子重蓋", "攝影", "用想像力編故事", "只用口頭轉述"], "answer": 1, "explain": "課本說明攝影能保留家鄉真實的面貌，記錄看到的家鄉美景。"}, {"lv": 3, "type": "choice", "q": "同樣位於海邊，為什麼野柳被歸為自然風貌，而澎湖雙心石滬被歸為人文風貌？", "options": ["兩者其實都是自然風貌", "野柳奇岩是自然侵蝕形成，石滬是漁民人工堆砌建造", "因為它們在不同的海", "兩者其實都是人文風貌"], "answer": 1, "explain": "判斷關鍵在於是否人造：奇岩自然形成屬自然風貌，石滬人工堆砌屬人文風貌。"}, {"lv": 3, "type": "choice", "q": "班上要把家鄉景點分成「自然」與「人文」兩組，下列哪一種分法完全正確？", "options": ["自然：小米收穫祭、油桐花；人文：翠峰湖、大溪橋", "自然：大溪橋、油桐花；人文：翠峰湖、小米收穫祭", "自然：雙心石滬、翠峰湖；人文：油桐花、大溪橋", "自然：翠峰湖、油桐花；人文：大溪橋、小米收穫祭"], "answer": 3, "explain": "翠峰湖、油桐花為自然風貌；大溪橋、小米收穫祭為人文風貌，分類正確。"}, {"lv": 3, "type": "choice", "q": "為什麼說產業活動、建築設施、節慶活動可以成為吸引遊客的人文風貌？", "options": ["因為它們都免費", "因為它們都是大自然形成的", "因為它們和居民生活無關", "因為它們呈現當地居民生活面貌、歷史文化與獨特美感"], "answer": 3, "explain": "這些人文風貌呈現居民生活、歷史文化意義與獨特美感，因此吸引遊客。"}, {"lv": 3, "type": "choice", "q": "一位遊客說：「我來這裡看的是受氣候影響、季節限定的候鳥。」他最可能去的是？", "options": ["臺南七股溼地", "桃園大溪橋", "澎湖雙心石滬", "臺東小米收穫祭"], "answer": 0, "explain": "七股溼地是黑面琵鷺等候鳥受氣候影響、季節性度冬的地點。"}, {"lv": 3, "type": "choice", "q": "小玲說她家鄉農民種稻，稻熟時形成黃金稻海。依課本的概念，這比較接近哪一類風貌？", "options": ["奇特岩石", "候鳥生態", "純粹的自然風貌", "人文風貌（人類耕種營造的景觀）"], "answer": 3, "explain": "課本參考解答將農民耕種形成的稻海視為人類營造的人文風貌。"}, {"lv": 3, "type": "choice", "q": "想完整介紹家鄉之美，下列哪一種做法最符合課本建議？", "options": ["結合畫圖、攝影與文字一起記錄與分享", "禁止任何人來訪", "完全不讓別人知道", "只破壞後重建"], "answer": 0, "explain": "課本建議用畫圖、攝影、文字等方式記錄並與更多人分享家鄉之美。"}, {"lv": 3, "type": "choice", "q": "為什麼同樣在山區，油桐花算自然風貌，而客家庄的桐花季活動偏向人文風貌？", "options": ["桐花是自然盛開，桐花季活動是人類舉辦的節慶", "因為地點不同", "兩者都是自然風貌", "兩者都是人文風貌"], "answer": 0, "explain": "自然盛開的桐花屬自然風貌，人類舉辦的桐花季節慶則屬人文風貌。"}, {"lv": 3, "type": "choice", "q": "小強想拍「人類生活智慧」主題的照片，下列哪一個最適合？", "options": ["宜蘭的高山湖泊", "澎湖漁民排成的雙心石滬", "臺南過冬的黑面琵鷺", "苗栗野生的油桐花"], "answer": 1, "explain": "雙心石滬展現先民捕魚的生活智慧，最符合人類生活智慧主題。"}, {"lv": 3, "type": "choice", "q": "下列推論何者「正確」？", "options": ["因為都漂亮，所以黑面琵鷺算人文風貌", "因為人文風貌由人類創造，所以雙心石滬、大溪橋都算人文風貌", "因為人造，所以野柳奇岩算人文風貌", "因為都在戶外，所以翠峰湖也算人文風貌"], "answer": 1, "explain": "人文風貌的關鍵在人類創造，雙心石滬與大溪橋皆為人造，推論正確。"}, {"lv": 3, "type": "choice", "q": "假如一個家鄉同時有「奇特岩石」和「巴洛克造型的橋」，下列描述最正確的是？", "options": ["兩者都是人文風貌", "前者是人文風貌，後者是自然風貌", "兩者都是自然風貌", "前者是自然風貌，後者是人文風貌"], "answer": 3, "explain": "奇特岩石是自然形成的自然風貌，巴洛克造型的橋是人造的人文風貌。"}, {"lv": 3, "type": "choice", "q": "為什麼課本提醒遊客賞油桐花時不要攀折花枝？", "options": ["因為花有毒", "因為攀折要罰錢", "因為花是私人的", "為了愛惜花朵、保護家鄉的自然風貌"], "answer": 3, "explain": "課本提醒愛惜花朵、不攀折花枝，以保護家鄉的自然風貌。"}, {"lv": 3, "type": "choice", "q": "小米收穫祭、大溪橋、雙心石滬三者的「共同點」是什麼？", "options": ["都是人類創造、能呈現歷史文化意義的人文風貌", "都是動植物生態", "都是大自然形成的", "都受氣候影響季節限定"], "answer": 0, "explain": "三者都是人類創造的人文風貌，能呈現居民生活與歷史文化意義。"}, {"lv": 3, "type": "tf", "q": "小芳看到漁民用海邊礁石堆成弧形捕魚、據說有幾百年歷史，這屬於人文風貌。", "answer": true, "explain": "這是澎湖雙心石滬，由漁民人工堆砌而成，屬於人文風貌。"}, {"lv": 3, "type": "tf", "q": "黑面琵鷺只在特定季節出現在七股，是因為牠是會隨季節遷移的候鳥。", "answer": true, "explain": "黑面琵鷺是候鳥，九至十月飛來度冬，隔年三至五月飛離。"}, {"lv": 3, "type": "tf", "q": "天然山坡上野生的油桐花和人類闢建花園辦的賞花節，都屬於自然風貌。", "answer": false, "explain": "野生油桐花是自然風貌，但人類闢建花園、辦賞花節屬於人文風貌。"}, {"lv": 3, "type": "tf", "q": "「翠峰湖→野柳→七股溼地」這條路線看到的都是自然風貌。", "answer": true, "explain": "翠峰湖、野柳奇岩、七股溼地生態皆為自然風貌。"}, {"lv": 3, "type": "tf", "q": "「雙心石滬→大溪橋→小米收穫祭」這條路線看到的都是人文風貌。", "answer": true, "explain": "這三個景點都是人類創造的人文風貌。"}, {"lv": 3, "type": "tf", "q": "同樣在海邊，野柳奇岩是自然侵蝕形成，澎湖石滬是人工堆砌，所以分屬不同風貌。", "answer": true, "explain": "奇岩自然形成屬自然風貌，石滬人工堆砌屬人文風貌，分類不同。"}, {"lv": 3, "type": "tf", "q": "大溪橋從吊橋改建成巴洛克造型後吸引遊客，可看出人文風貌具有歷史文化與美感意義。", "answer": true, "explain": "大溪橋的改建反映居民生活並展現獨特美感與歷史文化意義。"}, {"lv": 3, "type": "tf", "q": "判斷一處風貌是自然或人文，只要看它漂不漂亮就能決定。", "answer": false, "explain": "判斷關鍵是否由人類創造，而非美醜；人造為人文，自然形成為自然風貌。"}, {"lv": 3, "type": "tf", "q": "魯凱族小米收穫祭是人類為感謝豐收而舉辦的活動，所以屬於人文風貌。", "answer": true, "explain": "祭典是人類創造、舉辦的節慶活動，屬於人文風貌。"}, {"lv": 3, "type": "tf", "q": "我們遠遠觀察黑面琵鷺、不攀折油桐花，都是為了保護家鄉的自然風貌。", "answer": true, "explain": "課本提醒這些做法是為了保護候鳥與花朵等自然風貌。"}, {"lv": 3, "type": "tf", "q": "家鄉只能擁有自然風貌或人文風貌其中一種，不可能同時擁有。", "answer": false, "explain": "課本指出家鄉同時具有豐富的自然與人文風貌，共同形成特色。"}, {"lv": 3, "type": "tf", "q": "攝影能保留家鄉真實的面貌，是記錄家鄉之美的好方式。", "answer": true, "explain": "課本說明透過攝影可以保留家鄉真實的面貌，記錄家鄉美景。"}, {"lv": 3, "type": "tf", "q": "油桐花受地形與氣候影響、四五月盛開像下雪，是受自然環境影響的自然風貌。", "answer": true, "explain": "油桐花受地形、氣候影響盛開，被稱五月雪，屬自然風貌。"}, {"lv": 3, "type": "tf", "q": "因為雙心石滬和大溪橋都在戶外，所以兩者都應該算自然風貌。", "answer": false, "explain": "是否在戶外不是判斷依據；兩者皆人造，屬於人文風貌。"}, {"lv": 3, "type": "tf", "q": "產業活動、建築設施、節慶活動能呈現居民生活與歷史文化，因此可吸引遊客來訪。", "answer": true, "explain": "這些人文風貌呈現居民生活與歷史文化意義，因而吸引遊客。"}, {"lv": 3, "type": "tf", "q": "農民耕種使稻田形成黃金稻海，依課本概念較接近人類營造的人文風貌。", "answer": true, "explain": "課本參考解答將農民耕種形成的稻海視為人類營造的人文風貌。"}, {"lv": 3, "type": "tf", "q": "小米收穫祭、大溪橋、雙心石滬的共同點是都由人類創造、屬人文風貌。", "answer": true, "explain": "三者都是人類創造的人文風貌，能呈現居民生活與歷史文化。"}, {"lv": 3, "type": "tf", "q": "野柳的奇特岩石和七股的黑面琵鷺，雖然一個是岩石、一個是動物，但都屬於自然風貌。", "answer": true, "explain": "奇特岩石與候鳥生態都是大自然形成，皆屬自然風貌。"}, {"lv": 3, "type": "tf", "q": "要完整介紹家鄉之美，可以同時運用畫圖、攝影與文字並與他人分享。", "answer": true, "explain": "課本建議結合畫圖、攝影、文字記錄家鄉，並與更多人分享。"}, {"lv": 3, "type": "tf", "q": "客家庄舉辦的桐花季活動和山上野生盛開的油桐花，屬於完全相同的一類風貌。", "answer": false, "explain": "野生油桐花是自然風貌，人類舉辦的桐花季活動則是人文風貌。"}]}, {"id": "4-2", "name": "4-2　家鄉的特產", "cards": [{"tier": "基礎", "text": "特產是家鄉居民生產、<br><span class='hl'>具有特色</span>的物品。"}, {"tier": "基礎", "text": "各地特產不同，和當地的<br><span class='hl'>自然環境、氣候、產業、歷史文化</span>有關。"}, {"tier": "進階", "text": "特產類型①：配合自然環境生產的<span class='hl'>農作物／水產品</span><br>（三星蔥、林邊蓮霧、布袋虱目魚）。"}, {"tier": "進階", "text": "特產類型②：加工製成的<span class='hl'>食品</span><br>（玉井芒果乾、成功柴魚片）。"}, {"tier": "進階", "text": "特產類型③：利用自然資源做的<span class='hl'>生活用品／工藝品</span><br>（鶯歌陶瓷、埔里手工紙、美濃油紙傘、三地門皮雕）。"}, {"tier": "進階", "text": "加工的好處：<span class='hl'>延長保存、避免浪費、增加收入</span>。"}, {"tier": "深入", "text": "遊客來觀光採購的家鄉特產，叫「<span class='hl'>伴手禮</span>」，<br>是居民的收入來源之一。"}, {"tier": "深入", "text": "<span class='hl'>農漁會</span>會用網站行銷在地的農漁產品。"}, {"tier": "深入", "text": "推廣特產常結合<span class='hl'>觀光、節慶</span><br>（南投世界茶業博覽會、三義木雕節），促進地方經濟。"}], "questions": [{"lv": 1, "type": "choice", "q": "關於「特產」的意思，下列哪一項說法正確？", "options": ["特產是從外國進口的稀有物品", "特產是家鄉居民從事產業活動所生產、具有特色的物品", "特產是政府配發給每戶人家的物品", "特產是工廠隨意大量製造的普通商品"], "answer": 1, "explain": "特產是家鄉居民從事產業活動所生產的特色物品。"}, {"lv": 1, "type": "choice", "q": "宜蘭縣三星鄉最有名的特色農作物是什麼？", "options": ["蓮霧", "虱目魚", "青蔥（三星蔥）", "芒果"], "answer": 2, "explain": "三星鄉雨量多、水質良好，生長的青蔥蔥白長、香味濃郁。"}, {"lv": 1, "type": "choice", "q": "屏東縣林邊鄉氣候溫暖，生長的哪一種水果甜度很高？", "options": ["草莓", "蓮霧", "葡萄", "梅子"], "answer": 1, "explain": "林邊鄉氣候溫暖，生長的蓮霧甜度高。"}, {"lv": 1, "type": "choice", "q": "嘉義縣布袋鎮鄰近海邊，當地開闢魚塭養殖的水產品是什麼？", "options": ["鰹魚", "虱目魚", "太陽餅", "葡萄"], "answer": 1, "explain": "布袋鎮鄰近海邊，開闢魚塭養殖虱目魚。"}, {"lv": 1, "type": "choice", "q": "臺南市玉井區的居民把當地種植的芒果，用什麼方式製作成芒果乾？", "options": ["冷凍", "油炸", "烘烤", "醃漬"], "answer": 2, "explain": "玉井區居民將當地種植的芒果，以烘烤方式製作成芒果乾。"}, {"lv": 1, "type": "choice", "q": "臺東縣成功鎮的居民，把出海捕捉到的鰹魚加工製作成什麼特產？", "options": ["蓮霧", "陶瓷", "三星蔥", "柴魚片"], "answer": 3, "explain": "成功鎮居民將捕捉到的鰹魚，透過蒸熟、燒烤、刨削等方式加工製作成柴魚片。"}, {"lv": 1, "type": "choice", "q": "新北市鶯歌區的居民運用當地的黏土，主要製作出哪一類特產？", "options": ["陶瓷用品", "油紙傘", "手工紙", "皮雕"], "answer": 0, "explain": "鶯歌區居民運用當地黏土，製作成茶壺、碗盤等陶瓷用品。"}, {"lv": 1, "type": "choice", "q": "南投縣埔里鎮為了保存傳統產業，努力推廣哪一種工藝的文化教育？", "options": ["陶瓷", "木雕", "皮雕", "手工造紙"], "answer": 3, "explain": "埔里鎮的造紙業者為了保存傳統的手工造紙產業，推廣紙藝文化教育。"}, {"lv": 1, "type": "choice", "q": "高雄市美濃區的油紙傘，是當地哪一個族群文化的傳統工藝品？", "options": ["閩南文化", "客家文化", "原住民族文化", "外省文化"], "answer": 1, "explain": "美濃區油紙傘是當地客家文化的傳統工藝品，象徵幸福、吉祥。"}, {"lv": 1, "type": "choice", "q": "屏東縣三地門鄉的皮雕工藝師，把哪一種圖紋結合創意製作成手工藝品？", "options": ["客家花布圖紋", "日本浮世繪圖紋", "原住民族圖紋", "西洋幾何圖紋"], "answer": 2, "explain": "三地門鄉的皮雕工藝師將原住民族圖紋結合創意，製作出有特色的手工藝品。"}, {"lv": 1, "type": "choice", "q": "外地遊客來到家鄉觀光時所採購的家鄉特產，稱為什麼？", "options": ["紀念章", "入場券", "土產券", "伴手禮"], "answer": 3, "explain": "外地遊客在觀光時所採購的家鄉特產，稱為伴手禮。"}, {"lv": 1, "type": "choice", "q": "把農作物或水產品加工製成食品，有什麼好處？", "options": ["可以延長食物的保存期限", "會讓食物更快腐爛", "會減少居民的收入", "會讓食物失去特色"], "answer": 0, "explain": "加工後可以延長食物的保存期限，避免腐爛浪費，並增加居民收入。"}, {"lv": 1, "type": "choice", "q": "南投縣政府舉辦的世界茶業博覽會，主要是在推廣哪一種特產？", "options": ["米粉", "茶葉", "木雕", "油紙傘"], "answer": 1, "explain": "南投縣政府舉辦世界茶業博覽會，讓民眾品嘗交流不同的茶種。"}, {"lv": 1, "type": "choice", "q": "苗栗縣三義舉辦的藝術節，是在推廣下列哪一項特產？", "options": ["陶瓷", "柴魚片", "蓮霧", "木雕"], "answer": 3, "explain": "苗栗縣三義舉辦木雕藝術節，透過雕刻體驗、文創市集等活動推廣家鄉特色。"}, {"lv": 1, "type": "choice", "q": "新竹市的觀光農場舉辦的體驗活動，讓民眾了解哪一種特產的製作過程？", "options": ["醬油", "米粉", "太陽餅", "貢糖"], "answer": 1, "explain": "新竹市觀光農場舉辦米粉製作體驗活動，讓民眾了解當地特產的製作過程。"}, {"lv": 1, "type": "choice", "q": "由當地農民與漁民組成、負責用網站行銷在地農漁產品的團體是什麼？", "options": ["旅行社", "學校", "農漁會", "村里辦公室"], "answer": 2, "explain": "農漁會是當地農民與漁民組成的團體，會透過網站行銷在地農漁特產。"}, {"lv": 1, "type": "choice", "q": "特產的形成與發展，和下列哪些因素息息相關？", "options": ["人口的多少", "自然環境、氣候、產業、歷史文化", "學校的數量", "馬路的寬窄"], "answer": 1, "explain": "地方特產的形成與發展，與各地的自然環境、氣候、產業特性、歷史文化等息息相關。"}, {"lv": 1, "type": "choice", "q": "特產可以分成三種類型，下列哪一項「不是」課本所介紹的類型？", "options": ["配合自然環境生產的農作物或水產品", "加工製成的食品", "從外國大量進口的零食", "利用自然資源發展的生活用品或工藝品"], "answer": 2, "explain": "課本介紹的三種特產類型為：農作物或水產品、加工食品、生活用品或工藝品，並不包含外國進口零食。"}, {"lv": 1, "type": "choice", "q": "家鄉居民積極推廣特產時，常會結合哪些活動？", "options": ["考試、補習活動", "選舉、開會活動", "觀光、節慶活動", "蓋房子、修馬路"], "answer": 2, "explain": "家鄉居民推廣特產時會結合觀光、節慶活動，展現家鄉特色並促進地方經濟。"}, {"lv": 1, "type": "choice", "q": "臺東縣的漁會用什麼方式來介紹並銷售當地的漁產品？", "options": ["建置網站", "挨家挨戶推銷", "在電視上演戲", "寄送傳單到國外"], "answer": 0, "explain": "臺東縣漁會建置網站，介紹並銷售當地漁產品。"}, {"lv": 1, "type": "tf", "q": "特產是家鄉居民從事產業活動所生產、具有特色的物品。", "answer": true, "explain": "這正是課本對特產的定義。"}, {"lv": 1, "type": "tf", "q": "宜蘭縣三星鄉因為雨量多、水質良好，生長的青蔥蔥白長、香味濃郁。", "answer": true, "explain": "三星蔥的特色正是來自當地多雨、水質良好的環境。"}, {"lv": 1, "type": "tf", "q": "屏東縣林邊鄉氣候寒冷，所以無法生長蓮霧。", "answer": false, "explain": "林邊鄉氣候溫暖，生長的蓮霧甜度高。"}, {"lv": 1, "type": "tf", "q": "嘉義縣布袋鎮鄰近海邊，居民開闢魚塭養殖虱目魚。", "answer": true, "explain": "布袋鎮鄰近海邊，當地以魚塭養殖虱目魚。"}, {"lv": 1, "type": "tf", "q": "臺南市玉井區的芒果乾，是用油炸的方式製作而成的。", "answer": false, "explain": "玉井區是以烘烤方式把芒果製作成芒果乾，不是油炸。"}, {"lv": 1, "type": "tf", "q": "臺東縣成功鎮的柴魚片，是用鰹魚加工製作而成的。", "answer": true, "explain": "成功鎮居民把鰹魚蒸熟、燒烤、刨削，加工製成柴魚片。"}, {"lv": 1, "type": "tf", "q": "新北市鶯歌區的居民利用當地的黏土，製作成茶壺、碗盤等陶瓷用品。", "answer": true, "explain": "鶯歌區運用當地黏土製作陶瓷用品。"}, {"lv": 1, "type": "tf", "q": "高雄市美濃區的油紙傘是當地客家文化的傳統工藝品。", "answer": true, "explain": "美濃油紙傘是客家文化的傳統工藝品，象徵幸福、吉祥。"}, {"lv": 1, "type": "tf", "q": "屏東縣三地門鄉的皮雕，是把原住民族的圖紋結合創意製作而成的。", "answer": true, "explain": "三地門鄉的皮雕工藝師將原住民族圖紋結合創意製作手工藝品。"}, {"lv": 1, "type": "tf", "q": "南投縣埔里鎮的造紙業者努力推廣紙藝文化教育，是為了保存傳統的手工造紙產業。", "answer": true, "explain": "埔里鎮造紙業者推廣紙藝文化教育，正是為了保存傳統手工造紙產業。"}, {"lv": 1, "type": "tf", "q": "外地遊客來家鄉觀光時所採購的家鄉特產，稱為「伴手禮」。", "answer": true, "explain": "外地遊客觀光時採購的家鄉特產，就稱為伴手禮。"}, {"lv": 1, "type": "tf", "q": "把農作物加工製成食品，會讓農產品更快腐爛、更容易浪費。", "answer": false, "explain": "加工反而能延長保存期限、避免農漁產腐爛浪費。"}, {"lv": 1, "type": "tf", "q": "不同的家鄉通常都會生產一模一樣的特產。", "answer": false, "explain": "不同的家鄉因自然環境不同，通常會有自己不同的特產。"}, {"lv": 1, "type": "tf", "q": "南投縣政府舉辦的世界茶業博覽會，是在推廣當地的茶葉。", "answer": true, "explain": "南投世界茶業博覽會推廣的是當地特產茶葉。"}, {"lv": 1, "type": "tf", "q": "苗栗縣三義舉辦的是「木雕」藝術節。", "answer": true, "explain": "三義木雕藝術節透過雕刻體驗、文創市集推廣家鄉特色。"}, {"lv": 1, "type": "tf", "q": "新竹市的觀光農場舉辦的是「米粉」製作體驗活動。", "answer": true, "explain": "新竹市觀光農場舉辦米粉製作體驗活動。"}, {"lv": 1, "type": "tf", "q": "家鄉特產是家鄉居民的收入來源之一。", "answer": true, "explain": "家鄉特產可對外販售、被遊客當伴手禮購買，是居民收入來源之一。"}, {"lv": 1, "type": "tf", "q": "農漁會會透過網站來行銷在地的農漁產品。", "answer": true, "explain": "透過網站行銷在地農漁特產，是家鄉農漁會的主要工作之一。"}, {"lv": 1, "type": "tf", "q": "陶瓷、手工紙、油紙傘都屬於利用自然資源發展出來的工藝品。", "answer": true, "explain": "這些都是利用自然資源發展出來的生活用品或工藝品。"}, {"lv": 1, "type": "tf", "q": "推廣家鄉特產的活動可以促進地方經濟的發展。", "answer": true, "explain": "推廣特產能展現家鄉特色，也能促進地方經濟發展。"}, {"lv": 2, "type": "choice", "q": "下列哪一項特產屬於「配合自然環境生產的農作物或水產品」？", "options": ["臺南玉井芒果乾", "宜蘭三星蔥", "臺東成功柴魚片", "新北鶯歌陶瓷"], "answer": 1, "explain": "三星蔥是直接配合自然環境生長的農作物；芒果乾、柴魚片是加工食品，陶瓷是工藝品。"}, {"lv": 2, "type": "choice", "q": "下列哪一項特產屬於「將農作物或水產品加工製成的食品」？", "options": ["屏東林邊蓮霧", "嘉義布袋虱目魚", "臺東成功柴魚片", "南投埔里手工紙"], "answer": 2, "explain": "柴魚片是把鰹魚加工製成的食品；蓮霧、虱目魚是未加工的農漁產，手工紙是工藝品。"}, {"lv": 2, "type": "choice", "q": "下列哪一項特產屬於「利用自然資源發展出來的生活用品或工藝品」？", "options": ["宜蘭三星蔥", "臺南玉井芒果乾", "屏東林邊蓮霧", "高雄美濃油紙傘"], "answer": 3, "explain": "油紙傘是工藝品；三星蔥、蓮霧是農作物，芒果乾是加工食品。"}, {"lv": 2, "type": "choice", "q": "「臺南玉井芒果乾」和「臺東成功柴魚片」這兩項特產，有什麼共同點？", "options": ["都是未經加工的新鮮水產", "都是加工製成的食品", "都是陶瓷類工藝品", "都是進口的舶來品"], "answer": 1, "explain": "芒果乾與柴魚片都是把農漁產加工製成的食品。"}, {"lv": 2, "type": "choice", "q": "小明想找「同樣是工藝品」的特產做報告，下列哪一組最合適？", "options": ["三星蔥、林邊蓮霧、布袋虱目魚", "鶯歌陶瓷、埔里手工紙、美濃油紙傘", "玉井芒果乾、成功柴魚片、布袋虱目魚", "三星蔥、玉井芒果乾、美濃油紙傘"], "answer": 1, "explain": "陶瓷、手工紙、油紙傘都是利用自然資源發展的工藝品，屬同一類型。"}, {"lv": 2, "type": "choice", "q": "「青蔥」是哪一個鄉鎮最有名的特產？", "options": ["屏東縣林邊鄉", "宜蘭縣三星鄉", "臺南市玉井區", "新北市鶯歌區"], "answer": 1, "explain": "宜蘭縣三星鄉以青蔥（三星蔥）聞名。"}, {"lv": 2, "type": "choice", "q": "「陶瓷」是哪一個地方最具代表性的特產？", "options": ["南投縣埔里鎮", "高雄市美濃區", "新北市鶯歌區", "屏東縣三地門鄉"], "answer": 2, "explain": "新北市鶯歌區運用當地黏土製作陶瓷，是著名的陶瓷產地。"}, {"lv": 2, "type": "choice", "q": "「手工紙」是哪一個地方致力保存與推廣的傳統工藝？", "options": ["臺東縣成功鎮", "嘉義縣布袋鎮", "臺南市玉井區", "南投縣埔里鎮"], "answer": 3, "explain": "南投縣埔里鎮致力保存傳統手工造紙產業，推廣紙藝文化。"}, {"lv": 2, "type": "choice", "q": "下列特產與產地的配對，哪一組「正確」？", "options": ["柴魚片－臺東縣成功鎮", "蓮霧－嘉義縣布袋鎮", "芒果乾－宜蘭縣三星鄉", "陶瓷－高雄市美濃區"], "answer": 0, "explain": "柴魚片產自臺東成功鎮；蓮霧在屏東林邊、芒果乾在臺南玉井、陶瓷在新北鶯歌。"}, {"lv": 2, "type": "choice", "q": "下列特產與產地的配對，哪一組「錯誤」？", "options": ["三星蔥－宜蘭縣三星鄉", "虱目魚－嘉義縣布袋鎮", "油紙傘－新北市鶯歌區", "皮雕－屏東縣三地門鄉"], "answer": 2, "explain": "油紙傘的產地是高雄市美濃區，不是新北市鶯歌區（鶯歌的特產是陶瓷）。"}, {"lv": 2, "type": "choice", "q": "屏東縣三地門鄉有「工藝原鄉」的美稱，當地最具特色的工藝品是什麼？", "options": ["柴魚片", "皮雕", "三星蔥", "太陽餅"], "answer": 1, "explain": "三地門鄉以原住民族圖紋的皮雕工藝聞名，有「工藝原鄉」美稱。"}, {"lv": 2, "type": "choice", "q": "「虱目魚」屬於哪一種類型的特產？", "options": ["加工製成的食品", "配合自然環境養殖的水產品", "利用自然資源做成的工藝品", "進口的零食"], "answer": 1, "explain": "虱目魚是在魚塭養殖的水產品，屬於配合自然環境生產的類型。"}, {"lv": 2, "type": "choice", "q": "南投縣魚池鄉所產、香氣十足深受喜愛的特產是什麼？", "options": ["米粉", "木雕", "茶葉", "醬油"], "answer": 2, "explain": "南投縣魚池鄉所產的茶葉香氣十足，深受許多人喜愛。"}, {"lv": 2, "type": "choice", "q": "「千人揉茶」是哪一個推廣特產活動中的體驗項目？", "options": ["苗栗三義木雕節", "南投世界茶業博覽會", "新竹米粉製作體驗", "臺中十大伴手禮活動"], "answer": 1, "explain": "千人揉茶是南投世界茶業博覽會中體驗製茶過程的活動。"}, {"lv": 2, "type": "choice", "q": "新竹縣農會把在地新鮮的農產品，做了什麼來幫助銷售？", "options": ["直接丟棄", "送到國外種植", "包裝成商品販售", "做成肥料"], "answer": 2, "explain": "新竹縣農會將在地新鮮農產品包裝成商品販售。"}, {"lv": 2, "type": "choice", "q": "下列哪一項「不是」用來推廣或行銷家鄉特產的做法？", "options": ["農漁會建置網站銷售農漁產品", "政府舉辦十大伴手禮活動", "結合節慶舉辦特產體驗活動", "把特產藏起來不讓外地人知道"], "answer": 3, "explain": "把特產藏起來不利於推廣；前三項都是行銷與推廣家鄉特產的做法。"}, {"lv": 2, "type": "choice", "q": "美濃油紙傘象徵「幸福、吉祥」，這反映出特產可能具有什麼特色？", "options": ["可以無限期保存", "反映當地的傳統文化", "完全不需要原料", "不需要任何技術"], "answer": 1, "explain": "有些家鄉特產反映當地傳統文化的特色，如客家油紙傘的吉祥象徵。"}, {"lv": 2, "type": "choice", "q": "下列哪一組特產，全部都屬於「農作物或水產品」？", "options": ["芒果乾、柴魚片、陶瓷", "手工紙、油紙傘、皮雕", "三星蔥、林邊蓮霧、布袋虱目魚", "柴魚片、油紙傘、三星蔥"], "answer": 2, "explain": "三星蔥、蓮霧、虱目魚都是直接生產的農作物或水產品。"}, {"lv": 2, "type": "choice", "q": "臺中市政府為了推廣家鄉特產，指導舉辦了什麼活動？", "options": ["世界茶業博覽會", "木雕藝術節", "米粉製作體驗", "十大伴手禮活動"], "answer": 3, "explain": "臺中市政府指導舉辦十大伴手禮活動，推廣家鄉特產。"}, {"lv": 2, "type": "tf", "q": "宜蘭三星蔥屬於「配合自然環境生產的農作物」這一類特產。", "answer": true, "explain": "三星蔥是直接配合當地自然環境生長的農作物。"}, {"lv": 2, "type": "tf", "q": "臺南玉井芒果乾屬於「將農作物加工製成的食品」這一類特產。", "answer": true, "explain": "芒果乾是把芒果烘烤加工製成的食品。"}, {"lv": 2, "type": "tf", "q": "新北鶯歌的陶瓷屬於「利用自然資源發展出來的工藝品」這一類特產。", "answer": true, "explain": "鶯歌陶瓷是利用當地黏土發展出來的工藝品。"}, {"lv": 2, "type": "tf", "q": "臺東成功柴魚片和臺南玉井芒果乾，都屬於加工製成的食品。", "answer": true, "explain": "柴魚片與芒果乾都是把農漁產加工製成的食品。"}, {"lv": 2, "type": "tf", "q": "「蓮霧」是臺東縣成功鎮最有名的特產。", "answer": false, "explain": "蓮霧是屏東縣林邊鄉的特產；成功鎮的特產是柴魚片。"}, {"lv": 2, "type": "tf", "q": "「柴魚片」是把鰹魚加工製成的，產地在臺東縣成功鎮。", "answer": true, "explain": "成功鎮把鰹魚蒸熟、燒烤、刨削加工成柴魚片。"}, {"lv": 2, "type": "tf", "q": "「油紙傘」是新北市鶯歌區的代表性特產。", "answer": false, "explain": "油紙傘的產地是高雄市美濃區；鶯歌區的特產是陶瓷。"}, {"lv": 2, "type": "tf", "q": "「皮雕」是屏東縣三地門鄉的特色工藝品。", "answer": true, "explain": "三地門鄉以結合原住民族圖紋的皮雕聞名。"}, {"lv": 2, "type": "tf", "q": "虱目魚和蓮霧都屬於「加工製成的食品」這一類特產。", "answer": false, "explain": "虱目魚是水產品、蓮霧是農作物，兩者都是未加工的農漁產，不屬於加工食品。"}, {"lv": 2, "type": "tf", "q": "手工紙、油紙傘、陶瓷都屬於利用自然資源發展出來的工藝品。", "answer": true, "explain": "這三項都是利用自然資源發展的工藝品。"}, {"lv": 2, "type": "tf", "q": "南投世界茶業博覽會推廣的特產是「米粉」。", "answer": false, "explain": "南投世界茶業博覽會推廣的是茶葉；米粉是新竹的特產。"}, {"lv": 2, "type": "tf", "q": "苗栗三義木雕節是用來推廣當地「木雕」特產的活動。", "answer": true, "explain": "三義木雕藝術節透過雕刻體驗、文創市集推廣木雕特色。"}, {"lv": 2, "type": "tf", "q": "新竹市觀光農場舉辦米粉製作體驗活動，是在推廣當地的米粉特產。", "answer": true, "explain": "新竹米粉製作體驗活動讓民眾了解當地特產的製作過程。"}, {"lv": 2, "type": "tf", "q": "南投縣魚池鄉所產的茶葉香氣十足，深受許多人喜愛。", "answer": true, "explain": "魚池鄉的茶葉香氣十足，是當地特產。"}, {"lv": 2, "type": "tf", "q": "臺東縣漁會和新竹縣農會，都會幫忙行銷或銷售在地的農漁產品。", "answer": true, "explain": "臺東漁會建置網站銷售漁產品，新竹農會把農產品包裝成商品販售。"}, {"lv": 2, "type": "tf", "q": "「三星蔥」和「林邊蓮霧」都是直接生產、未加工的農作物。", "answer": true, "explain": "三星蔥、蓮霧都是直接配合自然環境生產的農作物。"}, {"lv": 2, "type": "tf", "q": "美濃油紙傘象徵幸福、吉祥，反映出當地的客家傳統文化。", "answer": true, "explain": "有些特產反映當地傳統文化，美濃油紙傘的吉祥象徵即為一例。"}, {"lv": 2, "type": "tf", "q": "臺中市政府舉辦的是「世界茶業博覽會」。", "answer": false, "explain": "臺中市政府舉辦的是十大伴手禮活動；世界茶業博覽會是南投縣舉辦的。"}, {"lv": 2, "type": "tf", "q": "埔里手工紙曾被登錄為傳統工藝，是值得保存的珍貴技藝。", "answer": true, "explain": "埔里手工紙被公告登錄為傳統工藝，是珍貴的傳統技藝。"}, {"lv": 3, "type": "choice", "q": "為什麼各個家鄉會生產出不同的特色農作物或水產品？", "options": ["因為各個家鄉的自然環境（土地與氣候）不同，適合生產的東西也不同", "因為政府規定每個家鄉只能種一種作物", "因為居民比賽看誰種得多", "因為外國人指定要買的東西不同"], "answer": 0, "explain": "各家鄉以其獨特的自然環境，包含土地與氣候，會有適合生產的不同農作物與水產品。"}, {"lv": 3, "type": "choice", "q": "家鄉居民為什麼要把農作物和水產品「加工」製成食品？最完整的理由是？", "options": ["只是為了讓食物變得比較難吃", "延長保存期限、避免腐爛浪費，並增加居民收入", "為了讓食物更快壞掉", "因為法律強迫一定要加工"], "answer": 1, "explain": "加工可延長保存期限、避免農漁產腐爛浪費，並能增加居民的收入。"}, {"lv": 3, "type": "choice", "q": "宜蘭三星鄉的青蔥蔥白長、香味濃郁，這最能說明特產和什麼的關係？", "options": ["特產和自然環境完全沒有關係", "蔥的好壞只看價格高低", "特產的品質與當地的自然環境、氣候息息相關", "蔥的香味是人工噴上去的"], "answer": 2, "explain": "三星鄉雨量豐沛、日夜溫差大、土壤排水良好，造就青蔥的特色，說明特產與自然環境密切相關。"}, {"lv": 3, "type": "choice", "q": "漁民把容易腐壞的鰹魚加工製成柴魚片，最主要解決了什麼問題？", "options": ["避免漁產短時間賣不出去而腐爛浪費，並延長保存", "讓魚變得不能吃", "讓漁民賺不到錢", "讓魚的數量變多"], "answer": 0, "explain": "加工能延長保存期限、避免漁產無法短時間賣出而腐爛浪費。"}, {"lv": 3, "type": "choice", "q": "一位遊客到南投參加世界茶業博覽會，買了很多茶葉回家送人。這些茶葉對當地最直接的意義是什麼？", "options": ["讓當地居民變窮", "成為當地居民的收入來源，促進地方經濟發展", "使茶葉產業消失", "和地方經濟完全無關"], "answer": 1, "explain": "遊客採購伴手禮帶來收入，推廣特產活動能促進地方經濟發展。"}, {"lv": 3, "type": "choice", "q": "埔里手工紙保存了傳統製紙工藝，原住民族皮雕呈現傳統信仰圖紋。這說明了什麼？", "options": ["特產和文化完全沒有關係", "所有特產都只是食物", "有些家鄉特產反映了當地的傳統文化特色", "特產不需要任何技藝"], "answer": 2, "explain": "有些家鄉特產反映當地傳統文化的特色，例如手工紙、皮雕。"}, {"lv": 3, "type": "choice", "q": "小華住在臺南玉井，當地盛產芒果。如果想讓芒果不會在短時間內賣不完而腐爛，下列哪個做法最合適？", "options": ["把芒果全部丟掉", "把芒果埋進土裡", "等芒果自己壞掉再說", "把芒果烘烤加工製成芒果乾"], "answer": 3, "explain": "把芒果加工製成芒果乾可延長保存、避免浪費，正是玉井的做法。"}, {"lv": 3, "type": "choice", "q": "為什麼家鄉舉辦特產活動（如木雕節、茶博會）能「展現家鄉特色」又「促進地方經濟」？", "options": ["結合觀光、節慶吸引遊客前來消費，同時呈現在地文化", "因為活動完全不花錢也沒人來", "因為活動會趕走所有遊客", "因為活動和特產毫無關聯"], "answer": 0, "explain": "結合觀光、節慶活動能展現家鄉特色，也能吸引遊客促進地方經濟發展。"}, {"lv": 3, "type": "choice", "q": "農漁會建置網站行銷在地農漁產品，這樣做最主要的好處是什麼？", "options": ["讓農漁產品賣不出去", "幫助在地農漁產品打開銷路、增加居民收入", "使農民與漁民失去工作", "和居民收入沒有關係"], "answer": 1, "explain": "透過網站行銷可幫助在地農漁特產銷售，是增加居民收入的方式。"}, {"lv": 3, "type": "choice", "q": "同樣是水果，屏東林邊產蓮霧、臺南玉井產芒果，為什麼兩地的特色水果不一樣？", "options": ["因為兩地的居民長得不一樣", "因為政府隨機分配水果", "兩地的自然環境與氣候不同，適合生長的水果也不同", "因為兩地距離很遠所以隨便種"], "answer": 2, "explain": "各地自然環境和氣候不同，所以會有不同的特色農作物。"}, {"lv": 3, "type": "choice", "q": "客家油紙傘具有「多子多孫、吉祥」的象徵意義。這最能說明特產的哪一種價值？", "options": ["特產只看能賣多少錢", "特產不需要任何意義", "特產和文化互相衝突", "特產可以反映並保存家鄉的傳統文化"], "answer": 3, "explain": "有些家鄉特產反映當地傳統文化，油紙傘的象徵意義即為人文特色的展現。"}, {"lv": 3, "type": "choice", "q": "鶯歌的居民「就地取材」用當地黏土做陶瓷。這說明特產的形成和什麼最有關？", "options": ["和當地擁有的自然資源有關", "和當地有沒有高樓有關", "和居民人數多少有關", "和當地的天氣完全無關"], "answer": 0, "explain": "利用自然資源（如黏土）發展出工藝品，是特產形成的重要原因之一。"}, {"lv": 3, "type": "choice", "q": "如果一個家鄉想增加居民收入、又能讓外地人認識自己，下列哪種做法最符合課本的精神？", "options": ["禁止外地人進入家鄉", "推廣具有家鄉特色的特產，吸引遊客採購伴手禮", "把特產的做法完全保密", "停止生產所有特產"], "answer": 1, "explain": "推廣家鄉特產、吸引遊客採購伴手禮，既能增加收入也能展現家鄉特色。"}, {"lv": 3, "type": "choice", "q": "新竹因為「經年強風」而發展出彈性佳、不易斷裂的米粉。這個例子說明了什麼？", "options": ["米粉的特色和環境無關", "強風會讓米粉變得難吃", "特產的特色常與當地的自然環境（氣候）密切相關", "米粉是進口來的"], "answer": 2, "explain": "新竹米粉的特性來自當地經年強風的氣候，顯示特產與自然環境密切相關。"}, {"lv": 3, "type": "choice", "q": "下列關於「特產與家鄉」的敘述，哪一項最完整正確？", "options": ["特產來自家鄉產業，與自然環境、文化相關，也是居民收入來源並能成為家鄉特色", "特產只是隨便製造、與家鄉無關的東西", "特產不能帶來任何收入", "特產只能用來自己吃，不能對外販售"], "answer": 0, "explain": "特產源自家鄉產業活動，與自然環境、文化息息相關，是居民收入來源，也能成為家鄉特色。"}, {"lv": 3, "type": "choice", "q": "小安發現「玉井芒果乾」比「新鮮芒果」更能寄到遠方的親戚家而不壞掉。這說明加工的哪一項好處？", "options": ["讓芒果更快腐爛", "降低芒果的價值", "使芒果不能食用", "延長保存期限，方便運送與保存"], "answer": 3, "explain": "加工延長了保存期限，使特產更方便對外運送與販售。"}, {"lv": 3, "type": "choice", "q": "為什麼不同家鄉舉辦的特產活動會「不一樣」（例如南投辦茶博會、苗栗辦木雕節）？", "options": ["因為各家鄉的特產不同，活動會結合自己的在地特產來舉辦", "因為各家鄉故意要跟別人不同", "因為活動內容是隨機抽籤決定的", "因為這些活動其實都一樣"], "answer": 0, "explain": "各家鄉的自然環境與特產不同，活動會結合當地特產舉辦，所以會不一樣。"}, {"lv": 3, "type": "choice", "q": "一個家鄉的農會把新鮮農產品「包裝成商品」再販售，這樣做的好處最可能是什麼？", "options": ["讓農產品更難賣出", "方便銷售與運送，提高賣相並增加居民收入", "使農民不再生產", "和經濟沒有關係"], "answer": 1, "explain": "包裝成商品有助於行銷販售、增加收入，是推廣在地農產品的做法。"}, {"lv": 3, "type": "choice", "q": "課本說「認識自己家鄉的特產，能對家鄉文化有更深刻的體認」。最主要的原因是？", "options": ["特產和文化沒有任何關係", "所有特產都是工廠量產的", "有些特產是因當地歷史發展與風土民情而形成，帶有人文特色", "特產只跟金錢有關"], "answer": 2, "explain": "有些家鄉因歷史發展和風土民情形成具人文特色的特產，認識特產能加深對家鄉文化的體認。"}, {"lv": 3, "type": "choice", "q": "綜合來看，遊客採購「伴手禮」對家鄉產生的影響，下列哪一項最正確？", "options": ["讓家鄉變得沒有特色", "減少家鄉居民的收入", "使家鄉特產消失", "帶來收入，成為居民收入來源之一，也推廣了家鄉特色"], "answer": 3, "explain": "遊客採購伴手禮是居民收入來源之一，同時也推廣了家鄉特色。"}, {"lv": 3, "type": "tf", "q": "各個家鄉因為自然環境（土地與氣候）不同，所以會有不同的特色農作物或水產品。", "answer": true, "explain": "各家鄉以獨特的自然環境，會有適合生產的不同農漁產。"}, {"lv": 3, "type": "tf", "q": "居民把農漁產加工製成食品，可以延長保存期限、避免腐爛浪費，並增加收入。", "answer": true, "explain": "這正是加工的三項主要好處。"}, {"lv": 3, "type": "tf", "q": "新竹米粉因為當地經年強風，才具有彈性佳、不易斷裂的特性，可見特產和自然環境有關。", "answer": true, "explain": "新竹米粉的特性來自當地強風的氣候，顯示特產與自然環境密切相關。"}, {"lv": 3, "type": "tf", "q": "埔里手工紙保存了傳統製紙工藝，可見有些特產能反映並保存當地的傳統文化。", "answer": true, "explain": "手工紙保存傳統工藝，是特產反映傳統文化的例子。"}, {"lv": 3, "type": "tf", "q": "把容易腐壞的鰹魚加工成柴魚片，反而會讓漁產更快壞掉、更容易浪費。", "answer": false, "explain": "加工是為了延長保存、避免腐爛浪費，不會讓漁產更快壞掉。"}, {"lv": 3, "type": "tf", "q": "遊客來家鄉觀光採購伴手禮，能為當地帶來收入，是居民收入來源之一。", "answer": true, "explain": "遊客採購伴手禮帶來收入，是家鄉居民收入來源之一。"}, {"lv": 3, "type": "tf", "q": "家鄉舉辦特產活動結合觀光與節慶，既能展現家鄉特色，也能促進地方經濟發展。", "answer": true, "explain": "結合觀光、節慶的特產活動能展現特色並促進地方經濟。"}, {"lv": 3, "type": "tf", "q": "鶯歌居民利用當地黏土做陶瓷，說明特產的形成和當地的自然資源有關。", "answer": true, "explain": "就地取材利用黏土做陶瓷，顯示特產與當地自然資源相關。"}, {"lv": 3, "type": "tf", "q": "不同家鄉舉辦的特產活動之所以不同，是因為各地的特產不同。", "answer": true, "explain": "各家鄉結合自己的在地特產舉辦活動，所以活動會不一樣。"}, {"lv": 3, "type": "tf", "q": "屏東林邊產蓮霧、臺南玉井產芒果，這顯示自然環境不同會使各地特色水果不同。", "answer": true, "explain": "各地自然環境與氣候不同，會有不同的特色農作物。"}, {"lv": 3, "type": "tf", "q": "農漁會透過網站行銷在地農漁產品，目的是幫助銷售並增加居民收入。", "answer": true, "explain": "網站行銷有助於打開銷路、增加居民收入。"}, {"lv": 3, "type": "tf", "q": "認識家鄉特產對了解家鄉文化沒有任何幫助。", "answer": false, "explain": "有些特產帶有人文特色，認識特產能加深對家鄉文化的體認。"}, {"lv": 3, "type": "tf", "q": "把農產品包裝成商品再販售，有助於行銷與運送，能增加居民收入。", "answer": true, "explain": "包裝成商品有利於銷售與運送，是推廣在地農產品、增加收入的做法。"}, {"lv": 3, "type": "tf", "q": "客家油紙傘的吉祥象徵意義，說明特產只看價錢、與文化無關。", "answer": false, "explain": "油紙傘的象徵意義正說明特產能反映當地傳統文化，並非只看價錢。"}, {"lv": 3, "type": "tf", "q": "特產源自家鄉的產業活動，與自然環境、氣候、歷史文化都息息相關。", "answer": true, "explain": "地方特產的形成與自然環境、氣候、產業、歷史文化息息相關。"}, {"lv": 3, "type": "tf", "q": "把新鮮芒果加工成芒果乾後，更方便寄送到遠方而不容易腐壞。", "answer": true, "explain": "加工延長保存期限，使特產更方便運送與保存。"}, {"lv": 3, "type": "tf", "q": "推廣家鄉特產只會浪費金錢，對地方經濟沒有任何幫助。", "answer": false, "explain": "推廣特產能展現家鄉特色，並能促進地方經濟發展。"}, {"lv": 3, "type": "tf", "q": "虱目魚是在魚塭養殖的水產品，這和布袋鎮鄰近海邊的自然環境有關。", "answer": true, "explain": "布袋鎮鄰近海邊，適合開闢魚塭養殖虱目魚，顯示特產與自然環境相關。"}, {"lv": 3, "type": "tf", "q": "同樣是把農漁產加工的特產，芒果乾和柴魚片都達到了延長保存、避免浪費的效果。", "answer": true, "explain": "兩者都是加工食品，都能延長保存期限、避免農漁產腐爛浪費。"}]}, {"id": "4-3", "name": "4-3　愛我家鄉", "cards": [{"tier": "基礎", "text": "愛護家鄉有三個面向：<br><span class='hl'>友善環境、保存文化、為家鄉盡心力</span>。"}, {"tier": "基礎", "text": "友善環境：參與<span class='hl'>淨灘</span><br>（撿垃圾、把海洋廢棄物再利用）。"}, {"tier": "基礎", "text": "友善環境：用友善土地的方式耕作，<br><span class='hl'>不用農藥、化肥</span>。"}, {"tier": "進階", "text": "「<span class='hl'>老鷹紅豆</span>」：農民改用農機把紅豆種子深埋，<br>小鳥不吃豆苗，老鷹也不再中毒。"}, {"tier": "進階", "text": "保存文化：用行動<span class='hl'>記錄家鄉</span><br>（臺南將軍國小拍紀錄片、做繪本，記錄神明帽老店）。"}, {"tier": "深入", "text": "為家鄉盡心力：主動關心公共事務、<br>用<span class='hl'>實際行動</span>解決問題。"}, {"tier": "深入", "text": "例子：新北野柳國小學生<span class='hl'>寫信給市長</span>、<br>用竹叢礁成功復育軟絲。"}, {"tier": "深入", "text": "愛護家鄉是<span class='hl'>每一個人</span>的責任。"}], "questions": [{"lv": 1, "type": "choice", "q": "愛護家鄉有三個面向，下列何者「不是」其中之一？", "options": ["友善環境、重視生態", "保存文化、永續發展", "為家鄉盡心力", "破壞自然、發展工業"], "answer": 3, "explain": "愛護家鄉的三個面向是友善環境重視生態、保存文化永續發展、為家鄉盡心力，破壞自然並非愛護家鄉的方式。"}, {"lv": 1, "type": "choice", "q": "許多人到海邊「撿拾垃圾」、清理沙灘的活動稱為什麼？", "options": ["淨灘", "插秧", "登山", "划船"], "answer": 0, "explain": "到海邊撿拾垃圾、清理沙灘的活動稱為淨灘，可以維護海洋與沙灘環境。"}, {"lv": 1, "type": "choice", "q": "友善土地的耕作方式，主要是「不使用」下列哪些東西？", "options": ["陽光和雨水", "農藥和化學肥料", "農機和種子", "土壤和水分"], "answer": 1, "explain": "友善土地的耕作方式不使用農藥和化學肥料，以減少對土地及自然生態的破壞。"}, {"lv": 1, "type": "choice", "q": "「老鷹紅豆」故事中，老鷹一開始為什麼會中毒？", "options": ["吃了被農藥毒死的小鳥屍體", "喝了受汙染的河水", "吃了噴農藥的紅豆", "被獵人開槍射傷"], "answer": 0, "explain": "農民撒下摻了農藥的稻穀毒小鳥，老鷹吃了中毒小鳥的屍體，因此跟著中毒。"}, {"lv": 1, "type": "choice", "q": "屏東縣農民後來改用什麼方法種紅豆，讓小鳥不再吃豆苗？", "options": ["用稻草蓋住豆苗", "用農機把紅豆種子深埋進土裡", "在田裡放稻草人", "用網子蓋住整片田"], "answer": 1, "explain": "屏東農民改用農機把紅豆種子深深埋進土裡，豆苗長出地面時已又粗又壯，小鳥就不吃豆苗了。"}, {"lv": 1, "type": "choice", "q": "臺南市將軍國小的學生，用哪些方法記錄家鄉的事物？", "options": ["蓋新大樓", "拍攝紀錄片、製作繪本", "開設工廠", "舉辦運動會"], "answer": 1, "explain": "將軍國小學生為了傳承家鄉文化，著手拍攝紀錄片、製作繪本，為家鄉建置影像資料庫。"}, {"lv": 1, "type": "choice", "q": "將軍國小學生製作的繪本「神明的造型師」，是以哪一種老店為故事主題？", "options": ["神明帽老店", "糖果老店", "書店", "麵店"], "answer": 0, "explain": "「神明的造型師」繪本以在地傳承三代的神明帽老店為故事主題，記錄保存這項手工技藝。"}, {"lv": 1, "type": "choice", "q": "新北市野柳國小的學生，為了反映海域生態遭破壞，做了什麼行動？", "options": ["寫信給市長", "搬離家鄉", "關閉漁港", "禁止大家吃魚"], "answer": 0, "explain": "野柳國小學生觀察到海域生態遭破壞、軟絲變少，於是寫信給新北市市長，希望恢復原有的海洋生態。"}, {"lv": 1, "type": "choice", "q": "野柳國小的學生利用什麼東西成功復育軟絲？", "options": ["塑膠箱", "竹叢礁", "漁網", "鐵籠"], "answer": 1, "explain": "在相關單位合作下，利用竹叢礁復育軟絲，竹叢礁有利於軟絲產卵，使軟絲數量逐漸增加。"}, {"lv": 1, "type": "choice", "q": "學生把在海邊撿到的廢棄物拿來做什麼，給予它們新生命？", "options": ["創作成藝術作品", "直接丟掉", "埋進沙裡", "賣給工廠"], "answer": 0, "explain": "學生利用海邊撿拾的廢棄物創作出藝術作品，給予廢棄物新生命，例如用廢棄雨衣做成水母玩偶。"}, {"lv": 1, "type": "choice", "q": "課文中提到，愛護家鄉是「誰」的責任？", "options": ["只有政府官員", "只有學校老師", "每一個人", "只有科學家"], "answer": 2, "explain": "課文強調愛護家鄉是每一個人的責任，大家都要主動關心並以實際行動參與解決家鄉的問題。"}, {"lv": 1, "type": "choice", "q": "有些家鄉的傳統文化面臨什麼樣的情形，所以需要我們關心保護？", "options": ["逐漸消失", "越來越多", "完全消失", "變得很有名"], "answer": 0, "explain": "有些家鄉的傳統文化面臨逐漸消失的情形，因此居民運用各種方式，將原本的文化注入嶄新的活力。"}, {"lv": 1, "type": "choice", "q": "野柳國小學生親手打造的「竹叢礁」，主要是用什麼材料做成的？", "options": ["竹子", "鋼鐵", "玻璃", "塑膠"], "answer": 0, "explain": "竹叢礁是用竹子做成的，放到海裡後有利於軟絲產卵，幫助復育海洋生態。"}, {"lv": 1, "type": "choice", "q": "過去有些家鄉的居民「不當使用」什麼，使得土地及自然生態受到破壞？", "options": ["農藥", "清水", "堆肥", "竹子"], "answer": 0, "explain": "過去有些家鄉居民不當使用農藥，使得土地及自然生態受到破壞，後來許多人才開始採用友善土地的耕作方式。"}, {"lv": 1, "type": "choice", "q": "老鷹紅豆故事的結局，老鷹的數量怎麼了？", "options": ["完全消失", "慢慢恢復", "沒有改變", "變得更少"], "answer": 1, "explain": "農民不再毒鳥後，老鷹也不再因為吃小鳥而中毒，數量開始慢慢恢復，重新翱翔於天空。"}, {"lv": 1, "type": "choice", "q": "將軍國小學生除了製作繪本，還用什麼方式讓更多人認識繪本故事？", "options": ["表演", "比賽", "考試", "拍賣"], "answer": 0, "explain": "學生透過表演的方式呈現繪本故事內容，讓更多人認識與了解家鄉文化。"}, {"lv": 1, "type": "choice", "q": "「友善環境、重視生態」屬於愛護家鄉的哪一類做法？", "options": ["保存文化", "愛護家鄉的面向之一", "破壞環境", "與愛護家鄉無關"], "answer": 1, "explain": "友善環境、重視生態是愛護家鄉的三個面向之一，例如淨灘和友善土地的耕作方式。"}, {"lv": 1, "type": "choice", "q": "看到家鄉的沙灘變乾淨，淨灘的人會有什麼感受？", "options": ["覺得辛苦都值得了", "覺得很後悔", "覺得浪費時間", "覺得沒有意義"], "answer": 0, "explain": "課文中淨灘的人說「看到家鄉的沙灘變乾淨，淨灘的辛苦都值得了」，表達出愛護家鄉的成就感。"}, {"lv": 1, "type": "tf", "q": "愛護家鄉的三個面向包括友善環境重視生態、保存文化永續發展、為家鄉盡心力。", "answer": true, "explain": "這正是課文所提的愛護家鄉三個面向。"}, {"lv": 1, "type": "tf", "q": "友善土地的耕作方式會大量使用農藥和化學肥料。", "answer": false, "explain": "友善土地的耕作方式正好相反，是「不使用」農藥和化學肥料，以保護土地與生態。"}, {"lv": 1, "type": "tf", "q": "淨灘活動就是到海邊撿拾垃圾、清理沙灘。", "answer": true, "explain": "淨灘是到海邊撿拾垃圾、清理沙灘，是友善環境的具體行動。"}, {"lv": 1, "type": "tf", "q": "老鷹紅豆故事中，老鷹是因為直接吃了紅豆才中毒的。", "answer": false, "explain": "老鷹是因為吃了被農藥毒死的小鳥屍體才中毒，不是直接吃紅豆。"}, {"lv": 1, "type": "tf", "q": "屏東農民改用農機把紅豆種子深埋進土裡後，小鳥就不吃豆苗了。", "answer": true, "explain": "種子深埋土裡，豆苗長出地面時已又粗又壯，小鳥就不吃豆苗了，老鷹也不再中毒。"}, {"lv": 1, "type": "tf", "q": "臺南市將軍國小的學生用拍攝紀錄片、製作繪本的方式記錄家鄉文化。", "answer": true, "explain": "將軍國小學生著手拍攝紀錄片、製作繪本，成為家鄉文化的守護者。"}, {"lv": 1, "type": "tf", "q": "「神明的造型師」這本繪本是以神明帽老店為故事主題。", "answer": true, "explain": "這本繪本以在地傳承三代的神明帽老店為故事主題。"}, {"lv": 1, "type": "tf", "q": "新北市野柳國小的學生寫信給市長，希望恢復海洋生態。", "answer": true, "explain": "野柳國小學生觀察到軟絲變少，寫信給新北市市長，希望恢復原有的海洋生態。"}, {"lv": 1, "type": "tf", "q": "野柳國小學生利用竹叢礁成功復育了軟絲。", "answer": true, "explain": "利用竹叢礁復育軟絲，使軟絲數量逐漸增加，復育成功。"}, {"lv": 1, "type": "tf", "q": "學生把海邊撿到的廢棄物創作成藝術作品，給予廢棄物新生命。", "answer": true, "explain": "學生利用海邊撿拾的廢棄物創作藝術作品，例如把廢棄雨衣做成水母玩偶。"}, {"lv": 1, "type": "tf", "q": "愛護家鄉只是政府的責任，跟一般人沒有關係。", "answer": false, "explain": "愛護家鄉是每一個人的責任，大家都要主動關心並以實際行動參與解決問題。"}, {"lv": 1, "type": "tf", "q": "有些家鄉的傳統文化正面臨逐漸消失的情形。", "answer": true, "explain": "課文提到有些家鄉的傳統文化面臨逐漸消失，因此居民運用各種方式注入新活力。"}, {"lv": 1, "type": "tf", "q": "竹叢礁是用塑膠和鋼鐵做成的。", "answer": false, "explain": "竹叢礁是用竹子做成的，放到海裡後有利於軟絲產卵。"}, {"lv": 1, "type": "tf", "q": "過去有些居民不當使用農藥，使土地及自然生態受到破壞。", "answer": true, "explain": "課文指出過去不當使用農藥破壞了土地與生態，後來人們才改採友善土地的耕作方式。"}, {"lv": 1, "type": "tf", "q": "老鷹紅豆故事最後，老鷹的數量開始慢慢恢復。", "answer": true, "explain": "農民不再毒鳥後，老鷹不再中毒，數量慢慢恢復，重新翱翔於天空。"}, {"lv": 1, "type": "tf", "q": "將軍國小學生只會製作繪本，不會用表演的方式介紹故事。", "answer": false, "explain": "學生除了製作繪本，也透過表演的方式呈現繪本故事內容，讓更多人了解。"}, {"lv": 1, "type": "tf", "q": "我們可以把自己帶到海邊的物品和垃圾帶回家，這是守護海洋的行動之一。", "answer": true, "explain": "課文提到守護海洋的行動包括把帶過去的物品、垃圾帶回家，協助清理沙灘或海中的垃圾。"}, {"lv": 1, "type": "tf", "q": "用廢棄雨衣做成水母玩偶，是為了傳達海洋保育的理念。", "answer": true, "explain": "學生用廢棄雨衣做成水母玩偶，傳達海洋保育理念，讓更多人一起愛護家鄉環境。"}, {"lv": 1, "type": "tf", "q": "友善土地的耕作方式是為了改善環境生態。", "answer": true, "explain": "因為過去不當使用農藥破壞了生態，許多人開始採用友善土地的耕作方式以改善環境生態。"}, {"lv": 2, "type": "choice", "q": "野柳國小學生「寫信給市長、用竹叢礁復育軟絲」，最符合愛護家鄉的哪一個面向？", "options": ["友善環境、重視生態", "保存文化、永續發展", "為家鄉盡心力，解決公共問題", "發展家鄉的工業"], "answer": 2, "explain": "主動關心公共事務、以實際行動解決問題，屬於「為家鄉盡心力」的面向。"}, {"lv": 2, "type": "choice", "q": "將軍國小學生「拍攝紀錄片、製作神明帽繪本」，最符合哪一個面向？", "options": ["保存文化、永續發展", "友善環境、重視生態", "為家鄉發展觀光", "破壞傳統文化"], "answer": 0, "explain": "用行動記錄家鄉、守護傳統手工技藝，屬於「保存文化、永續發展」的面向。"}, {"lv": 2, "type": "choice", "q": "「參加淨灘、採用不用農藥的耕作方式」這些做法，屬於哪一個面向？", "options": ["保存文化", "友善環境、重視生態", "為家鄉盡心力的公共事務", "認識家鄉特產"], "answer": 1, "explain": "淨灘與友善土地的耕作方式都是在保護自然環境，屬於「友善環境、重視生態」。"}, {"lv": 2, "type": "choice", "q": "下列哪一組「做法與面向」的配對是「正確」的？", "options": ["拍紀錄片保存文化 → 友善環境", "淨灘撿垃圾 → 保存文化", "寫信給市長解決生態問題 → 為家鄉盡心力", "友善耕作不用農藥 → 保存文化"], "answer": 2, "explain": "寫信給市長、主動解決家鄉生態問題，屬於「為家鄉盡心力」；其餘配對都錯置了面向。"}, {"lv": 2, "type": "choice", "q": "老鷹紅豆故事告訴我們，自然界中的生物有什麼樣的關係？", "options": ["彼此完全沒有影響", "環環相扣、互相影響", "只有人類重要", "老鷹和小鳥無關"], "answer": 1, "explain": "小鳥中毒影響到吃小鳥的老鷹，說明自然生態環環相扣、互相影響。"}, {"lv": 2, "type": "choice", "q": "屏東農民改變種紅豆的方法後，對生態帶來什麼好處？", "options": ["紅豆長得比較慢", "土地不再受汙染，小鳥和老鷹不再被毒死", "老鷹搬到別的地方", "小鳥變得更多更吵"], "answer": 1, "explain": "居民改變耕種方式後，土地不再受到汙染，小鳥、老鷹不再被毒死，自然生態維持平衡。"}, {"lv": 2, "type": "choice", "q": "下列哪一個做法「不屬於」友善環境、重視生態？", "options": ["參加淨灘活動", "採用不用農藥的耕作方式", "把海廢創作成藝術品", "寫信反映老房子年久失修"], "answer": 3, "explain": "反映老房子整修屬於關心公共事務、為家鄉盡心力；其餘三項都是友善環境、重視生態的做法。"}, {"lv": 2, "type": "choice", "q": "將軍國小學生為家鄉建置「影像資料庫」，主要的目的是什麼？", "options": ["賺很多錢", "傳承家鄉歷史與產業文化", "蓋一座博物館", "讓學生不用上課"], "answer": 1, "explain": "學生拍紀錄片、製作繪本並建置影像資料庫，是為了傳承家鄉歷史、產業文化，守護家鄉文化。"}, {"lv": 2, "type": "choice", "q": "關於老鷹紅豆故事的因果順序，下列何者「正確」？", "options": ["農民毒小鳥 → 老鷹吃小鳥屍體中毒 → 農民改用農機深埋種子 → 老鷹數量恢復", "老鷹數量恢復 → 農民毒小鳥 → 小鳥死亡", "農民改用農機 → 老鷹中毒 → 小鳥死亡", "老鷹中毒 → 小鳥變多 → 農民毒小鳥"], "answer": 0, "explain": "正確順序是：農民用農藥毒小鳥、老鷹吃屍體中毒、農民改用農機把種子深埋、最後老鷹數量恢復。"}, {"lv": 2, "type": "choice", "q": "「把廢棄雨衣做成水母玩偶」這個做法，同時達到哪兩個目的？", "options": ["賺錢和娛樂", "廢棄物再利用和傳達海洋保育理念", "運動和比賽", "裝飾教室和考試"], "answer": 1, "explain": "把廢棄雨衣做成水母玩偶，既讓廢棄物再利用，也傳達海洋保育理念，讓更多人愛護環境。"}, {"lv": 2, "type": "choice", "q": "野柳國小學生能成功復育軟絲，最主要靠的是什麼？", "options": ["只靠運氣", "主動發現問題並採取實際行動解決", "等別人來幫忙", "完全不做任何事"], "answer": 1, "explain": "學生主動觀察到生態破壞、寫信反映並親手打造竹叢礁，以實際行動解決問題才復育成功。"}, {"lv": 2, "type": "choice", "q": "下列哪一項「最能」代表「保存文化、永續發展」？", "options": ["把神明帽手工技藝記錄下來並傳承", "在海邊撿垃圾", "用農機種紅豆", "寫信給市長救軟絲"], "answer": 0, "explain": "記錄並傳承神明帽手工技藝屬於保存文化、永續發展；其餘屬於友善環境或為家鄉盡心力。"}, {"lv": 2, "type": "choice", "q": "為什麼國際淨灘活動除了撿垃圾，還要「記錄廢棄物的種類和數量」？", "options": ["為了比賽誰撿得多", "用數據教育民眾廢棄物對海洋汙染的嚴重", "為了賣掉廢棄物", "因為規定一定要寫作業"], "answer": 1, "explain": "記錄種類和數量是希望以數據教育民眾，讓大家了解廢棄物對海洋汙染的嚴重性。"}, {"lv": 2, "type": "choice", "q": "如果一位農夫說「我種田都不用農藥和化學肥料」，他展現的是哪一種精神？", "options": ["保存傳統文化", "友善土地、重視生態", "關心公共事務", "認識家鄉特產"], "answer": 1, "explain": "不使用農藥和化學肥料的友善耕作，是友善土地、重視生態的表現。"}, {"lv": 2, "type": "tf", "q": "野柳國小學生寫信給市長並打造竹叢礁，屬於「為家鄉盡心力」的面向。", "answer": true, "explain": "主動關心公共事務、以實際行動解決生態問題，屬於為家鄉盡心力。"}, {"lv": 2, "type": "tf", "q": "將軍國小學生製作神明帽繪本，屬於「友善環境、重視生態」的面向。", "answer": false, "explain": "製作繪本記錄手工技藝屬於「保存文化、永續發展」，不是友善環境。"}, {"lv": 2, "type": "tf", "q": "老鷹紅豆的故事說明自然界生物之間環環相扣、互相影響。", "answer": true, "explain": "小鳥中毒進而影響吃小鳥的老鷹，正說明生態環環相扣。"}, {"lv": 2, "type": "tf", "q": "屏東農民改變耕種方式後，土地不再受汙染，生態維持平衡。", "answer": true, "explain": "改用農機深埋種子後不再毒鳥，土地不受汙染，小鳥老鷹不再被毒死，生態恢復平衡。"}, {"lv": 2, "type": "tf", "q": "淨灘撿垃圾和友善土地耕作，都屬於友善環境、重視生態的做法。", "answer": true, "explain": "兩者都是在保護自然環境，屬於友善環境、重視生態的面向。"}, {"lv": 2, "type": "tf", "q": "把海邊撿到的廢棄物創作成藝術品，可以同時做到廢棄物再利用和宣導保育。", "answer": true, "explain": "海廢創作既讓廢棄物再利用，也能傳達海洋保育理念。"}, {"lv": 2, "type": "tf", "q": "老鷹紅豆故事的正確順序是：先有農民改用農機，老鷹才開始中毒。", "answer": false, "explain": "順序相反，應是農民先毒小鳥、老鷹中毒，之後農民才改用農機深埋種子。"}, {"lv": 2, "type": "tf", "q": "記錄並傳承神明帽手工技藝，屬於保存文化、永續發展的面向。", "answer": true, "explain": "保存傳統手工技藝、讓文化延續，屬於保存文化、永續發展。"}, {"lv": 2, "type": "tf", "q": "野柳國小學生能成功復育軟絲，是因為他們主動發現問題並採取實際行動。", "answer": true, "explain": "學生主動觀察、寫信反映並親手打造竹叢礁，以行動解決問題才成功。"}, {"lv": 2, "type": "tf", "q": "國際淨灘活動只在意撿了多少垃圾，不會記錄垃圾的種類和數量。", "answer": false, "explain": "淨灘除了撿垃圾，也會記錄廢棄物種類和數量，用數據教育民眾汙染的嚴重性。"}, {"lv": 2, "type": "tf", "q": "寫信向相關單位反映老房子年久失修，屬於關心公共事務、為家鄉盡心力。", "answer": true, "explain": "關注並反映家鄉的公共問題，屬於主動關心公共事務、為家鄉盡心力。"}, {"lv": 2, "type": "tf", "q": "友善土地的耕作方式對改善家鄉生態沒有任何幫助。", "answer": false, "explain": "友善耕作不用農藥化肥，能減少對土地和生態的破壞，對改善生態很有幫助。"}, {"lv": 2, "type": "tf", "q": "將軍國小學生建置影像資料庫，是為了傳承家鄉歷史與產業文化。", "answer": true, "explain": "學生拍紀錄片、做繪本、建置影像資料庫，目的是傳承家鄉歷史與產業文化。"}, {"lv": 2, "type": "tf", "q": "把廢棄雨衣做成水母玩偶，只是好玩，沒有任何環保意義。", "answer": false, "explain": "這個做法讓廢棄物再利用，並傳達海洋保育理念，具有環保與教育意義。"}, {"lv": 2, "type": "tf", "q": "「採用不用農藥的耕作」和「拍紀錄片保存文化」屬於同一個愛護家鄉的面向。", "answer": false, "explain": "前者屬於友善環境、重視生態，後者屬於保存文化、永續發展，兩者面向不同。"}, {"lv": 2, "type": "tf", "q": "愛護家鄉的各種做法，最終都是希望讓家鄉變得更美好。", "answer": true, "explain": "無論友善環境、保存文化或為家鄉盡心力，都是為了讓家鄉更美好。"}, {"lv": 2, "type": "tf", "q": "老鷹之所以成為農村與生態保育的代言人，是因為老鷹紅豆的故事提倡守護老鷹、重視自然生態。", "answer": true, "explain": "老鷹紅豆故事提倡重視自然生態、守護老鷹行動，因而老鷹成為農村與生態保育的代言人。"}, {"lv": 2, "type": "choice", "q": "下列哪一項做法「最能」代表『為家鄉盡心力』？", "options": ["在田裡採用不用農藥的耕作", "到海邊撿垃圾淨灘", "把神明帽技藝做成繪本", "主動關心並向相關單位反映家鄉的公共問題"], "answer": 3, "explain": "主動關心公共事務、以實際行動反映並解決問題，最能代表為家鄉盡心力。"}, {"lv": 2, "type": "choice", "q": "白沙國小學生把『塑膠雨衣』和『釣具浮標』變成藝術品，這屬於哪一個面向？", "options": ["保存傳統文化", "為家鄉發展工業", "認識家鄉特產", "友善環境、重視生態"], "answer": 3, "explain": "把海洋廢棄物再利用、創作藝術品以宣導保育，屬於友善環境、重視生態。"}, {"lv": 2, "type": "choice", "q": "下列哪一組案例「正確」對應到『保存文化、永續發展』？", "options": ["野柳國小用竹叢礁復育軟絲", "師生一起到海邊淨灘", "將軍國小拍紀錄片、做神明帽繪本", "屏東農民改用農機種紅豆"], "answer": 2, "explain": "將軍國小拍紀錄片、製作繪本記錄並傳承家鄉文化，屬於保存文化、永續發展。"}, {"lv": 2, "type": "choice", "q": "老鷹紅豆故事中，造成『連老鷹也中毒』的關鍵原因是什麼？", "options": ["老鷹自己去吃了紅豆苗", "海水受到嚴重汙染", "農藥用量太少沒有效果", "農民用摻農藥的稻穀毒小鳥，老鷹吃了中毒的小鳥屍體"], "answer": 3, "explain": "農民用摻農藥的稻穀毒小鳥，老鷹吃了這些中毒小鳥的屍體，因此跟著中毒。"}, {"lv": 2, "type": "choice", "q": "下列哪一個做法『不能』幫助保存家鄉的傳統文化？", "options": ["訪問老師傅記錄手工技藝", "把老技藝拍成紀錄片", "製作介紹家鄉文化的繪本", "拆掉百年老店改建停車場"], "answer": 3, "explain": "拆掉老店會讓傳統文化消失，無法保存；訪問、拍攝、做繪本才有助於保存文化。"}, {"lv": 3, "type": "choice", "q": "小華看到住家附近的公園堆滿垃圾，下列哪一個做法「最能」展現愛護家鄉的精神？", "options": ["假裝沒看到，反正不是自己丟的", "主動揪同學一起清理，並提醒大家不要亂丟", "拍照笑一笑就走", "抱怨政府都不處理"], "answer": 1, "explain": "愛護家鄉要主動關心並以實際行動參與解決問題，主動清理並提醒他人最能展現這種精神。"}, {"lv": 3, "type": "choice", "q": "為什麼說「愛護家鄉是每一個人的責任」，而不是只靠政府？", "options": ["因為政府不想做事", "因為家鄉是大家共同生活的地方，需要每個人主動關心與行動", "因為政府沒有錢", "因為小孩子不能幫忙"], "answer": 1, "explain": "家鄉是大家共同生活的地方，唯有每個人都主動關心、以實際行動參與，才能讓家鄉真正變好。"}, {"lv": 3, "type": "choice", "q": "小芸發現家鄉的傳統布袋戲快要失傳，參考將軍國小的做法，她「最適合」怎麼做？", "options": ["把布袋戲忘掉，學別的才藝", "訪問老師傅、把表演拍成紀錄片或做成繪本記錄下來", "勸老師傅趕快退休", "等別人去處理"], "answer": 1, "explain": "參考將軍國小用行動記錄家鄉文化的做法，訪問、拍攝、製作繪本能保存即將失傳的傳統文化。"}, {"lv": 3, "type": "choice", "q": "老鷹紅豆故事中，農民「願意改變耕種方法」這件事告訴我們什麼道理？", "options": ["改變很麻煩，不值得做", "人類願意調整做法，就能和自然生態和諧共處", "農藥其實沒有問題", "老鷹本來就不重要"], "answer": 1, "explain": "農民改變方法後生態得以恢復，說明只要人類願意調整做法，就能與自然和諧共生。"}, {"lv": 3, "type": "choice", "q": "野柳國小學生「先寫信、再打造竹叢礁、持續觀察直播」，這整個過程最能說明什麼？", "options": ["解決家鄉問題需要主動發現、付諸行動並持續關心", "只要寫信就一定會成功", "小學生其實幫不上忙", "復育軟絲只靠運氣"], "answer": 0, "explain": "從發現問題、寫信反映、動手復育到持續觀察，說明解決家鄉問題需要主動行動並長期關心。"}, {"lv": 3, "type": "choice", "q": "下列哪一位同學的行為「最不符合」愛護家鄉的精神？", "options": ["阿明假日參加社區淨灘", "小美把看到的破壞環境行為向大人反映", "大雄覺得環境問題與自己無關，從不參與", "小莉幫忙宣傳家鄉的文化繪本"], "answer": 2, "explain": "愛護家鄉強調主動關心與參與，認為與自己無關、從不參與的態度最不符合。"}, {"lv": 3, "type": "choice", "q": "小傑想愛護家鄉的海洋，下列哪一個生活中的行動「最直接」有幫助？", "options": ["買珊瑚和海龜做的紀念品", "把帶到海邊的垃圾帶回家，不破壞生態", "在海邊製造更多垃圾", "捕捉海裡的軟絲帶回家"], "answer": 1, "explain": "把垃圾帶回家、不破壞生態是守護海洋的具體行動；買瀕危海洋生物製品反而會傷害生態。"}, {"lv": 3, "type": "choice", "q": "為什麼農民只是「把紅豆種子深埋土裡」，就能同時保護小鳥和老鷹？", "options": ["因為種子有毒可以毒死害蟲", "因為豆苗長出時已又粗又壯，小鳥不吃，農民就不必再用毒餌", "因為深埋後紅豆長得更快", "因為小鳥看不到泥土裡的種子就會餓死"], "answer": 1, "explain": "種子深埋使豆苗長出時又粗又壯，小鳥不吃豆苗，農民不必再撒毒餌，小鳥和老鷹都不會中毒。"}, {"lv": 3, "type": "choice", "q": "結合三個面向來看，下列哪一位同學「同時」做到了不只一種愛護家鄉的行動？", "options": ["小安只在家寫作業", "阿哲參加淨灘把海廢做成藝術品，又上臺宣導海洋保育", "小雯整天看電視", "大華只負責收錢"], "answer": 1, "explain": "阿哲淨灘屬於友善環境，把海廢創作並宣導保育又兼具保存與盡心力，做到不只一種行動。"}, {"lv": 3, "type": "choice", "q": "小組討論「為什麼傳統文化值得保護」，下列哪個理由「最恰當」？", "options": ["因為舊的東西比較貴", "因為傳統文化是家鄉的特色與歷史，消失了就難以再回來", "因為老師規定要保護", "因為保護文化可以賺大錢"], "answer": 1, "explain": "傳統文化承載家鄉的特色與歷史，一旦消失難以恢復，所以值得我們關心與保護。"}, {"lv": 3, "type": "choice", "q": "如果你想效法野柳國小，為家鄉的一條髒臭小溪盡一份心力，最完整的做法是？", "options": ["只在心裡希望它變乾淨", "觀察並了解汙染原因，向里長或相關單位反映，並參與整治行動", "上網抱怨後就不管了", "等小溪自己變乾淨"], "answer": 1, "explain": "效法野柳國小，要主動了解問題、向相關單位反映並實際參與行動，才是完整的愛護家鄉做法。"}, {"lv": 3, "type": "choice", "q": "老鷹紅豆與野柳軟絲兩個故事的「共同啟示」是什麼？", "options": ["只有大人能保護生態", "只要願意改變做法或採取行動，受損的生態就有機會恢復", "生態破壞後就再也救不回來", "保護生態要花很多錢所以不要做"], "answer": 1, "explain": "兩個故事都顯示：只要人們願意改變做法、採取行動，受損的生態就有機會慢慢恢復。"}, {"lv": 3, "type": "choice", "q": "班上要替家鄉做一件愛護家鄉的事，下列哪個提案「最能」對應『保存文化』？", "options": ["在校門口撿垃圾", "採訪家鄉老店師傅並製作介紹影片", "幫公園的樹澆水", "到海邊淨灘"], "answer": 1, "explain": "採訪老店師傅並製作影片是用行動記錄與傳承家鄉文化，最能對應保存文化的面向。"}, {"lv": 3, "type": "tf", "q": "看到家鄉的環境問題卻認為「不關我的事」，這種想法符合愛護家鄉的精神。", "answer": false, "explain": "愛護家鄉是每個人的責任，應主動關心並參與解決，置身事外不符合愛護家鄉的精神。"}, {"lv": 3, "type": "tf", "q": "老鷹紅豆和野柳軟絲的故事都說明：只要願意採取行動，受損的生態就有機會恢復。", "answer": true, "explain": "兩個故事都顯示人們改變做法、付諸行動後，生態得以慢慢恢復，啟示一致。"}, {"lv": 3, "type": "tf", "q": "想保存快失傳的家鄉技藝，可以效法將軍國小，用訪談、拍攝、製作繪本的方式記錄下來。", "answer": true, "explain": "將軍國小正是用訪談、拍攝、製作繪本記錄家鄉文化，這個方法可以效法用來保存技藝。"}, {"lv": 3, "type": "tf", "q": "農民把紅豆種子深埋土裡，是因為豆苗長大後又粗又壯，小鳥不吃，就不必再用毒餌。", "answer": true, "explain": "深埋使豆苗長出時又粗又壯，小鳥不吃豆苗，農民不必再撒毒餌，小鳥老鷹都得救。"}, {"lv": 3, "type": "tf", "q": "愛護家鄉只要在心裡想就好，不一定需要實際行動。", "answer": false, "explain": "課文強調要以實際行動參與解決問題，光是空想無法改善家鄉。"}, {"lv": 3, "type": "tf", "q": "去海邊玩時購買珊瑚、海龜做成的紀念品，是愛護海洋的好行為。", "answer": false, "explain": "課文提到不買瀕危海洋生物製品（如珊瑚、海龜），購買這些製品反而會傷害海洋生態。"}, {"lv": 3, "type": "tf", "q": "野柳國小的例子說明，小學生也能透過主動行動，幫助解決家鄉的生態問題。", "answer": true, "explain": "野柳國小學生主動寫信、打造竹叢礁、復育軟絲，證明小學生也能為家鄉帶來改變。"}, {"lv": 3, "type": "tf", "q": "一位同學參加淨灘、又把撿到的海廢做成藝術品宣導保育，等於同時實踐了多種愛護家鄉的行動。", "answer": true, "explain": "淨灘屬於友善環境，海廢創作與宣導又兼具再利用與盡心力，確實同時實踐多種行動。"}, {"lv": 3, "type": "tf", "q": "傳統文化一旦消失就很難再回來，所以我們要趁早關心和保護。", "answer": true, "explain": "傳統文化是家鄉的特色與歷史，消失後難以恢復，因此值得我們及早關心與保護。"}, {"lv": 3, "type": "tf", "q": "農民願意改變耕種方法，說明人類只要願意調整做法，就能與自然和諧共處。", "answer": true, "explain": "農民改變方法後生態恢復，正說明人類願意調整做法就能與自然和諧共生。"}, {"lv": 3, "type": "tf", "q": "要為家鄉的一條髒小溪盡心力，最好的方法是上網抱怨完就不再理會。", "answer": false, "explain": "愛護家鄉要以實際行動參與解決，抱怨後不行動無法真正改善問題。"}, {"lv": 3, "type": "tf", "q": "班上想用行動保存家鄉文化，採訪老店師傅並製作介紹影片是合適的做法。", "answer": true, "explain": "採訪師傅、製作影片能記錄並傳承家鄉文化，是保存文化的合適做法。"}, {"lv": 3, "type": "tf", "q": "愛護家鄉的行動，不論大小，只要主動參與都有助於讓家鄉更美好。", "answer": true, "explain": "課文鼓勵每個人主動關心、以實際行動參與，不論行動大小都能讓家鄉更美好。"}, {"lv": 3, "type": "tf", "q": "國際淨灘活動只是撿垃圾，與『教育民眾、永續發展』完全沒有關係。", "answer": false, "explain": "淨灘會記錄廢棄物種類數量，用數據教育民眾，與守護生態、永續發展密切相關。"}, {"lv": 3, "type": "tf", "q": "如果家鄉有閒置的老房子年久失修，可以請里長幫忙反映給相關單位處理，這是關心公共事務的表現。", "answer": true, "explain": "課文舉例可請里長反映給相關單位規畫整修老房子，這正是主動關心家鄉公共事務的表現。"}, {"lv": 3, "type": "tf", "q": "只要把『保存文化』做好，就完全不需要友善環境或為家鄉盡心力了。", "answer": false, "explain": "愛護家鄉的三個面向同樣重要，彼此並重，不能只做其中一項而忽略其他。"}, {"lv": 3, "type": "choice", "q": "小明想效法老鷹紅豆的故事精神，幫助家鄉的鳥類，下列哪個觀念「最正確」？", "options": ["鳥類太多會吵，應該想辦法趕走", "可以撒一點毒餌控制鳥的數量", "鳥死掉跟其他動物沒有關係", "減少使用農藥，才能避免傷害鳥類和以鳥為食的其他動物"], "answer": 3, "explain": "老鷹紅豆故事說明生態環環相扣，減少農藥才能保護鳥類及吃鳥的老鷹等動物。"}, {"lv": 3, "type": "choice", "q": "班上要規畫一場『愛我家鄉』行動，下列哪個提案「同時兼顧」友善環境和宣導理念？", "options": ["在教室裡看一整天電影", "舉辦考試比賽誰背得快", "各自回家睡覺", "到社區淨灘並把撿到的廢棄物做成藝術品展出宣導保育"], "answer": 3, "explain": "淨灘是友善環境，把廢棄物做成藝術品展出宣導，又能傳達保育理念，兼顧兩者。"}, {"lv": 3, "type": "choice", "q": "為什麼將軍國小學生要『建置影像資料庫』，而不是只口頭講給同學聽？", "options": ["因為講話太累", "因為影像資料可長久保存與傳承，讓更多人持續認識家鄉文化", "因為老師不准他們說話", "因為影片可以拿去賣錢"], "answer": 1, "explain": "建置影像資料庫能長久保存文化，讓家鄉歷史與技藝持續流傳給更多人，達到永續傳承。"}, {"lv": 3, "type": "choice", "q": "小組討論『愛護家鄉時三個面向的關係』，下列哪個結論「最恰當」？", "options": ["三個面向互相衝突，只能選一個做", "只有友善環境最重要，其他可以不管", "三個面向各有重點但同樣重要，可以一起進行", "三個面向都不重要"], "answer": 2, "explain": "友善環境、保存文化、為家鄉盡心力三者各有重點但同樣重要，可同時進行，共同讓家鄉更好。"}, {"lv": 3, "type": "choice", "q": "看完野柳國小復育軟絲的故事，下列哪一句反思「最貼近」課文要傳達的精神？", "options": ["這種事只能交給專家，小學生別插手", "原來只要主動發現問題、付諸行動，我也能為家鄉的環境盡一份心力", "軟絲變多變少跟我沒關係", "反正政府會處理，我不用關心"], "answer": 1, "explain": "課文鼓勵每個人主動關心、以實際行動參與，野柳學生的故事正說明小學生也能為家鄉盡心力。"}, {"lv": 3, "type": "choice", "q": "下列哪一種生活情境，「最能」表現出『把愛護家鄉化為日常實際行動』？", "options": ["只在作文裡寫我愛家鄉", "把家鄉的問題都怪給別人", "平常隨手撿垃圾、向人分享友善環境的知識並參與社區活動", "看到環境被破壞也不出聲"], "answer": 2, "explain": "愛護家鄉重在日常的實際行動，隨手撿垃圾、分享知識、參與社區活動正是把愛化為行動。"}, {"lv": 3, "type": "choice", "q": "小芳家附近的溪流出現許多垃圾與死魚，參考課文精神，她「最應該優先」做的是？", "options": ["先了解汙染的原因，再向里長或相關單位反映並參與後續行動", "假裝沒看見，免得麻煩", "只在網路上發文罵人", "把死魚撿起來丟到鄰居家"], "answer": 0, "explain": "課文鼓勵主動關心、了解問題並以實際行動參與解決，了解原因後向相關單位反映最恰當。"}, {"lv": 3, "type": "tf", "q": "老鷹紅豆的故事提醒我們：減少使用農藥，才能同時保護鳥類和以鳥為食的老鷹。", "answer": true, "explain": "生態環環相扣，減少農藥能避免毒害小鳥，連帶保護吃小鳥的老鷹。"}, {"lv": 3, "type": "tf", "q": "愛護家鄉的三個面向互相衝突，一次只能選一個來做。", "answer": false, "explain": "三個面向各有重點但同樣重要，可以同時進行，並不互相衝突。"}, {"lv": 3, "type": "tf", "q": "把愛護家鄉化為日常行動，例如隨手撿垃圾、分享環保知識，比只在作文裡寫『我愛家鄉』更有意義。", "answer": true, "explain": "課文強調以實際行動參與，日常的具體行動比僅止於口號或文字更能真正幫助家鄉。"}, {"lv": 3, "type": "tf", "q": "建置影像資料庫之所以重要，是因為影像能長久保存並傳承家鄉文化。", "answer": true, "explain": "影像資料庫能長久保存文化，讓家鄉歷史與技藝持續流傳，達到永續傳承的目的。"}, {"lv": 3, "type": "tf", "q": "如果家附近的溪流出現垃圾與死魚，最好的做法是上網罵人後就不再理會。", "answer": false, "explain": "愛護家鄉要以實際行動參與，了解原因並向相關單位反映、參與後續整治才有效。"}]}]}];
+
+/* 關卡定義：stage 0未開始 1讀完重點 2基礎 3中等 4進階 5精熟 */
+const STAGES = [
+  {key:"read",   stage:1, ic:"📖", name:"讀重點小卡", desc:"一張一句，由淺到深慢慢讀", need:0},
+  {key:"bronze", stage:2, ic:"🥉", name:"基礎關",     desc:"最核心的概念，答對 8/10 過關", need:1, pool:[1],     pass:0.8},
+  {key:"silver", stage:3, ic:"🥈", name:"中等關",     desc:"加入更多細節，答對 8/10 過關", need:2, pool:[1,2],   pass:0.8},
+  {key:"gold",   stage:4, ic:"🥇", name:"進階關",     desc:"應用與情境題，答對 8/10 過關", need:3, pool:[2,3],   pass:0.8},
+  {key:"master", stage:5, ic:"🏆", name:"精熟關",     desc:"綜合全部，要全部答對才精熟！", need:4, pool:[1,2,3], pass:1.0},
 ];
+const STAGE_LABEL = ["未開始","📖 讀完重點","🥉 基礎","🥈 中等","🥇 進階","🏆 精熟"];
+const ROUND = 10;
+const STORE_KEY = "soc4_guided_v1";
 
-/* ============================================================
-   等級制度
-   ============================================================ */
-const LEVELS = ["⚪ 未挑戰","🥉 銅牌","🥈 銀牌","🥇 金牌","🏆 精熟"];
-const LADDER = ["🥉 銅牌","🥈 銀牌","🥇 金牌","🏆 精熟"]; // 1..4
-const ROUND_SIZE = 10;
-const STORE_KEY = "she4_u34_levels_v1";
+function load(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch(e){return {};} }
+function save(o){ try{localStorage.setItem(STORE_KEY, JSON.stringify(o));}catch(e){} }
+function getStage(id){ return load()[id]||0; }
+function setStage(id, s){ const o=load(); o[id]=Math.max(o[id]||0, s); save(o); }
+function badgeClass(s){ return s>0?("badge s"+s):"badge"; }
 
-function loadLevels(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{};}catch(e){return {};} }
-function saveLevels(o){ try{localStorage.setItem(STORE_KEY, JSON.stringify(o));}catch(e){} }
-function getLevel(id){ return loadLevels()[id]||0; }
-function setLevel(id, lv){ const o=loadLevels(); o[id]=Math.max(o[id]||0, lv); saveLevels(o); }
-
-function tierForAccuracy(acc){
-  if(acc>=1.0) return 4;       // 精熟
-  if(acc>=0.9) return 3;       // 金
-  if(acc>=0.75) return 2;      // 銀
-  if(acc>=0.6) return 1;       // 銅
-  return 0;
-}
-function badgeClass(lv){ return lv>0 ? ("badge lv"+lv) : "badge"; }
-
-/* ============================================================
-   首頁渲染
-   ============================================================ */
 const allLessons = DATA.flatMap(u=>u.lessons);
+const totalQ = allLessons.reduce((n,l)=>n+l.questions.length,0);
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+
+/* ---- HOME ---- */
 function renderHome(){
-  const list = document.getElementById("unitList");
-  list.innerHTML = "";
+  const list=document.getElementById("unitList"); list.innerHTML="";
   DATA.forEach(u=>{
-    const wrap = document.createElement("div");
-    wrap.className = "unit"+(u.cls==="u4"?" u4":"");
-    wrap.innerHTML = `<h2>${u.title}</h2>`;
+    const wrap=document.createElement("div"); wrap.className="unit"+(u.cls==="u4"?" u4":"");
+    wrap.innerHTML=`<h2>${u.title}</h2>`;
     u.lessons.forEach(ls=>{
-      const lv = getLevel(ls.id);
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="lesson-head">
-          <span class="name">${ls.name}</span>
-          <span class="${badgeClass(lv)}">${LEVELS[lv]}</span>
-        </div>
-        <div class="btnrow">
-          <button class="${u.cls==='u4'?'btn-u4':'btn-u3'}" data-go="lesson" data-id="${ls.id}">看重點 / 複習</button>
-          <button class="btn-main" data-go="quiz" data-id="${ls.id}">開始測驗</button>
-        </div>`;
+      const s=getStage(ls.id);
+      const stars=["🥉","🥈","🥇","🏆"].map((m,k)=> s>=k+2 ? m : "⚪").join("　");
+      const card=document.createElement("div"); card.className="card";
+      card.innerHTML=`<div class="lesson-head"><span class="name">${ls.name}</span><span class="${badgeClass(s)}">${STAGE_LABEL[s]}</span></div>
+        <div class="ministars">${stars}</div>
+        <div class="btnrow"><button class="${u.cls==='u4'?'btn-u4':'btn-u3'}" data-id="${ls.id}">進入闖關 →</button></div>`;
       wrap.appendChild(card);
     });
     list.appendChild(wrap);
   });
-  // overall mastery progress = 已達精熟課數 / 總課數
-  const mastered = allLessons.filter(l=>getLevel(l.id)>=4).length;
-  const pct = Math.round(mastered/allLessons.length*100);
-  document.getElementById("ovPct").textContent = pct;
-  document.getElementById("ovBar").style.width = pct+"%";
-  document.getElementById("ovText").textContent =
-    mastered===allLessons.length ? "🎊 太厲害了！全部達到精熟！" : `已精熟 ${mastered} / ${allLessons.length} 課，繼續加油！`;
-
-  list.querySelectorAll("button[data-go]").forEach(b=>{
-    b.addEventListener("click", ()=>{
-      const id=b.getAttribute("data-id");
-      if(b.getAttribute("data-go")==="lesson") openLesson(id);
-      else startQuiz(id);
-    });
-  });
+  const mastered=allLessons.filter(l=>getStage(l.id)>=5).length;
+  const pct=Math.round(mastered/allLessons.length*100);
+  document.getElementById("ovPct").textContent=pct;
+  document.getElementById("ovBar").style.width=pct+"%";
+  document.getElementById("ovText").textContent = mastered===allLessons.length?"🎊 全部精熟，太厲害了！":`已精熟 ${mastered} / ${allLessons.length} 課，加油！`;
+  document.getElementById("ovQ").textContent=totalQ;
+  list.querySelectorAll("button[data-id]").forEach(b=> b.addEventListener("click",()=>openLesson(b.getAttribute("data-id"))));
 }
-
-/* ============================================================
-   課程詳情
-   ============================================================ */
-function findLesson(id){ return allLessons.find(l=>l.id===id); }
-let curLessonId=null;
-
-function show(sec){
-  ["home","lesson","quiz","result"].forEach(s=>{
-    document.getElementById(s).classList.toggle("hidden", s!==sec);
-  });
-  window.scrollTo({top:0, behavior:"smooth"});
-}
+function show(sec){ ["home","lesson","cards","quiz","result"].forEach(s=>document.getElementById(s).classList.toggle("hidden", s!==sec)); window.scrollTo({top:0,behavior:"smooth"}); }
 function goHome(){ renderHome(); show("home"); }
 
+/* ---- LESSON MAP ---- */
+let curId=null;
+function findLesson(id){ return allLessons.find(l=>l.id===id); }
 function openLesson(id){
-  curLessonId=id;
-  const ls=findLesson(id);
-  const lv=getLevel(id);
+  curId=id; const ls=findLesson(id); const s=getStage(id);
   document.getElementById("lsName").textContent=ls.name;
-  const badge=document.getElementById("lsBadge");
-  badge.className=badgeClass(lv); badge.textContent=LEVELS[lv];
-  document.getElementById("lsPoints").innerHTML = ls.points.map(p=>`<li>${p}</li>`).join("");
-  document.getElementById("lsReview").innerHTML = ls.review;
-  document.getElementById("lsStart").onclick=()=>startQuiz(id);
+  const b=document.getElementById("lsBadge"); b.className=badgeClass(s); b.textContent=STAGE_LABEL[s];
+  const box=document.getElementById("stageList"); box.innerHTML="";
+  STAGES.forEach(st=>{
+    const unlocked = s>=st.need;
+    const done = s>=st.stage;
+    const row=document.createElement("div");
+    row.className="stage"+(done?" done":"")+(!unlocked?" locked":"");
+    let actHtml;
+    if(!unlocked){ actHtml=`<span class="status lk">🔒 未解鎖</span>`; }
+    else { actHtml=`<button class="${done?'btn-soft':'btn-main'}" data-key="${st.key}">${st.key==='read'?(done?'再讀一次':'開始讀'):(done?'再挑戰':'開始')}</button>`; }
+    row.innerHTML=`<div class="ic">${done?'✅':st.ic}</div>
+      <div class="info"><div class="t">${st.ic} ${st.name}</div><div class="d">${st.desc}</div></div>
+      <div class="act">${actHtml}</div>`;
+    box.appendChild(row);
+  });
+  box.querySelectorAll("button[data-key]").forEach(btn=> btn.addEventListener("click",()=>{
+    const key=btn.getAttribute("data-key");
+    if(key==="read") startCards(); else startQuiz(key);
+  }));
   show("lesson");
 }
+function backToLesson(){ openLesson(curId); }
 
-/* ============================================================
-   測驗引擎
-   ============================================================ */
-let q={lessonId:null, items:[], idx:0, correct:0, answered:false};
-
-function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
-
-function startQuiz(id){
-  const ls=findLesson(id);
-  const pool=shuffle(ls.questions);
-  q={lessonId:id, items:pool.slice(0, Math.min(ROUND_SIZE, pool.length)), idx:0, correct:0, answered:false};
-  show("quiz");
-  renderQuestion();
+/* ---- CARDS (guided reading) ---- */
+let cd={idx:0, cards:[]};
+function startCards(){ cd={idx:0, cards:findLesson(curId).cards}; show("cards"); renderCard(); }
+function renderCard(){
+  const c=cd.cards[cd.idx];
+  document.getElementById("cdTier").textContent="🌱🌿🌳"[["基礎","進階","深入"].indexOf(c.tier)]+" "+c.tier;
+  document.getElementById("cdTier").className="tierchip tier-"+c.tier;
+  document.getElementById("cdText").innerHTML=c.text;
+  document.getElementById("cdIdx").textContent=`第 ${cd.idx+1} / ${cd.cards.length} 張`;
+  const dots=document.getElementById("cdDots"); dots.innerHTML="";
+  cd.cards.forEach((_,i)=>{ const d=document.createElement("span"); d.className="dot"+(i===cd.idx?" on":(i<cd.idx?" seen":"")); dots.appendChild(d); });
+  document.getElementById("cdPrev").disabled = cd.idx===0;
+  document.getElementById("cdNext").textContent = cd.idx===cd.cards.length-1 ? "讀完了！✅" : "下一張 →";
 }
+document.getElementById("cdPrev").addEventListener("click",()=>{ if(cd.idx>0){cd.idx--; renderCard();} });
+document.getElementById("cdNext").addEventListener("click",()=>{
+  if(cd.idx<cd.cards.length-1){ cd.idx++; renderCard(); }
+  else { setStage(curId,1); backToLesson(); }
+});
 
-function renderQuestion(){
-  q.answered=false;
-  const it=q.items[q.idx];
-  document.getElementById("qIdx").textContent=`第 ${q.idx+1} / ${q.items.length} 題`;
-  document.getElementById("qScore").textContent=`✔ ${q.correct}`;
-  document.getElementById("qBar").style.width=Math.round(q.idx/q.items.length*100)+"%";
-  const typeLabel = it.type==="tf" ? "是非題" : "選擇題";
-  document.getElementById("qText").innerHTML=`<span class="qtype">${typeLabel}</span>${it.q}`;
-  const opts=document.getElementById("qOpts");
-  opts.innerHTML="";
-  const choices = it.type==="tf" ? ["⭕ 對","❌ 錯"] : it.options;
-  choices.forEach((c,i)=>{
-    const b=document.createElement("button");
-    b.className="opt"; b.innerHTML=c;
-    b.addEventListener("click", ()=>answer(i,b));
-    opts.appendChild(b);
+/* ---- QUIZ ---- */
+let q={key:null, items:[], idx:0, correct:0, answered:false, cfg:null};
+function startQuiz(key){
+  const cfg=STAGES.find(s=>s.key===key); const ls=findLesson(curId);
+  let pool=ls.questions.filter(it=>cfg.pool.includes(it.lv));
+  pool=shuffle(pool).slice(0, Math.min(ROUND, pool.length)).map(it=>{
+    if(it.type==="choice"){ // 打散選項，重算正解
+      const idxs=shuffle(it.options.map((_,i)=>i));
+      const opts=idxs.map(i=>it.options[i]);
+      const ans=idxs.indexOf(it.answer);
+      return {...it, options:opts, answer:ans};
+    }
+    return it;
   });
+  q={key, items:pool, idx:0, correct:0, answered:false, cfg};
+  show("quiz"); renderQ();
+}
+function renderQ(){
+  q.answered=false; const it=q.items[q.idx];
+  document.getElementById("qLvl").textContent=`${q.cfg.ic} ${q.cfg.name}`;
+  document.getElementById("qScore").textContent=`✔ ${q.correct} / ${q.items.length}`;
+  document.getElementById("qBar").style.width=Math.round(q.idx/q.items.length*100)+"%";
+  document.getElementById("qText").innerHTML=`<span class="qtype">${it.type==="tf"?"是非題":"選擇題"}</span>${it.q}`;
+  const opts=document.getElementById("qOpts"); opts.innerHTML="";
+  const choices=it.type==="tf"?["⭕ 對","❌ 錯"]:it.options;
+  choices.forEach((c,i)=>{ const b=document.createElement("button"); b.className="opt"; b.innerHTML=c; b.addEventListener("click",()=>answer(i,b)); opts.appendChild(b); });
   const fb=document.getElementById("qFb"); fb.className="feedback"; fb.innerHTML="";
   document.getElementById("qNext").classList.add("hidden");
 }
-
-function answer(i, btn){
-  if(q.answered) return;
-  q.answered=true;
-  const it=q.items[q.idx];
-  const correctIdx = it.type==="tf" ? (it.answer?0:1) : it.answer;
-  const isRight = (i===correctIdx);
-  if(isRight) q.correct++;
+function answer(i,btn){
+  if(q.answered)return; q.answered=true; const it=q.items[q.idx];
+  const correctIdx=it.type==="tf"?(it.answer?0:1):it.answer; const right=(i===correctIdx);
+  if(right)q.correct++;
   const opts=document.getElementById("qOpts").children;
-  for(let k=0;k<opts.length;k++){ opts[k].setAttribute("disabled","true"); }
-  opts[correctIdx].classList.add("correct");
-  if(!isRight) btn.classList.add("wrong");
-  const fb=document.getElementById("qFb");
-  fb.className="feedback show "+(isRight?"good":"bad");
-  fb.innerHTML=`<span class="lab">${isRight?"✅ 答對了！":"❌ 答錯了"}</span>${it.explain}`;
-  document.getElementById("qScore").textContent=`✔ ${q.correct}`;
-  const next=document.getElementById("qNext");
-  next.classList.remove("hidden");
-  next.textContent = (q.idx===q.items.length-1) ? "看結果 🎯" : "下一題 →";
+  for(let k=0;k<opts.length;k++)opts[k].setAttribute("disabled","true");
+  opts[correctIdx].classList.add("correct"); if(!right)btn.classList.add("wrong");
+  const fb=document.getElementById("qFb"); fb.className="feedback show "+(right?"good":"bad");
+  fb.innerHTML=`<span class="lab">${right?"✅ 答對了！":"❌ 答錯了"}</span>${it.explain}`;
+  document.getElementById("qScore").textContent=`✔ ${q.correct} / ${q.items.length}`;
+  const nx=document.getElementById("qNext"); nx.classList.remove("hidden");
+  nx.textContent=(q.idx===q.items.length-1)?"看結果 🎯":"下一題 →";
 }
-
-document.getElementById("qNext").addEventListener("click", ()=>{
-  if(q.idx<q.items.length-1){ q.idx++; renderQuestion(); }
-  else finishQuiz();
-});
-
-function quitQuiz(){ goHome(); }
+document.getElementById("qNext").addEventListener("click",()=>{ if(q.idx<q.items.length-1){q.idx++; renderQ();} else finishQuiz(); });
 
 function finishQuiz(){
-  const total=q.items.length, acc=q.correct/total;
-  const before=getLevel(q.lessonId);
-  const earned=tierForAccuracy(acc);
-  const after=Math.max(before, earned);
-  setLevel(q.lessonId, after);
-
+  const total=q.items.length, acc=q.correct/total, passed=acc>=q.cfg.pass;
   document.getElementById("qBar").style.width="100%";
-  const pct=Math.round(acc*100);
-  document.getElementById("rScore").textContent=`答對 ${q.correct} / ${total} 題（${pct}%）`;
-  const emoji = acc>=1?"🏆": acc>=0.9?"🥇": acc>=0.75?"🥈": acc>=0.6?"🥉":"💪";
-  document.getElementById("rEmoji").textContent=emoji;
-
-  const lvBox=document.getElementById("rLevel");
-  if(after>before){
-    lvBox.className="levelup up";
-    lvBox.innerHTML = `🎉 升級！本課等級達到 <b>${LEVELS[after]}</b>`;
-  }else if(earned>=4){
-    lvBox.className="levelup up";
-    lvBox.innerHTML = `🏆 太棒了！維持 <b>精熟</b> 等級！`;
-  }else{
-    lvBox.className="levelup same";
-    const need = after<4 ? `再加油，挑戰 <b>${LADDER[after]}</b>${after<3?"以上":""}！` : "";
-    lvBox.innerHTML = `目前等級 <b>${LEVELS[after]}</b>。${need}`;
+  document.getElementById("rScore").textContent=`答對 ${q.correct} / ${total} 題（${Math.round(acc*100)}%）`;
+  document.getElementById("rEmoji").textContent = passed?(q.cfg.key==="master"?"🏆":"🎉"):"💪";
+  const v=document.getElementById("rVerdict");
+  const nextBtn=document.getElementById("rNext");
+  if(passed){
+    const before=getStage(curId); setStage(curId, q.cfg.stage);
+    v.className="verdict pass";
+    if(q.cfg.key==="master") v.innerHTML="🏆 恭喜！這一課 <b>精熟</b> 達成！";
+    else v.innerHTML=`✅ 過關！解鎖下一關 <b>${STAGES.find(s=>s.need===q.cfg.stage)?.name||""}</b>`;
+    const nextStage=STAGES.find(s=>s.need===q.cfg.stage);
+    if(nextStage){ nextBtn.classList.remove("hidden"); nextBtn.textContent="前往 "+nextStage.name+" →"; nextBtn.onclick=()=> nextStage.key==="read"?startCards():startQuiz(nextStage.key); }
+    else { nextBtn.classList.add("hidden"); }
+  } else {
+    v.className="verdict fail";
+    const need=Math.ceil(q.cfg.pass*total);
+    v.innerHTML=`再加油！這一關要答對 <b>${need}/${total}</b> 才能過。再挑戰一次，題目會換新的！`;
+    nextBtn.classList.add("hidden");
   }
-
-  // ladder display
-  const ladder=document.getElementById("rLadder");
-  ladder.innerHTML="";
-  LADDER.forEach((name,k)=>{
-    const lv=k+1;
-    const r=document.createElement("span");
-    r.className="rung"+(after>=lv?" on":"")+(after===lv?" cur":"");
-    r.textContent=name;
-    ladder.appendChild(r);
-  });
-
-  document.getElementById("rRetry").onclick=()=>startQuiz(q.lessonId);
-  document.getElementById("rReview").onclick=()=>openLesson(q.lessonId);
+  document.getElementById("rRetry").onclick=()=>startQuiz(q.key);
   show("result");
 }
 
-/* ============================================================
-   重置
-   ============================================================ */
-function resetAll(){
-  if(confirm("確定要清除所有課程的等級與進度嗎？")){
-    localStorage.removeItem(STORE_KEY);
-    goHome();
-  }
-}
-
-/* init */
+function resetAll(){ if(confirm("確定清除所有課程的闖關進度嗎？")){ localStorage.removeItem(STORE_KEY); goHome(); } }
 goHome();
 </script>
 </body>
